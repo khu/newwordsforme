@@ -1,5 +1,6 @@
 Keepin::Application.routes.draw do
   resources :users
+  resources :words
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

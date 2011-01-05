@@ -19,4 +19,12 @@ ActiveRecord::Schema.define(:version => 20110104080125) do
     t.datetime "updated_at"
   end
 
+  create_table "words", :force => true do |t|
+    t.string   "word"
+    t.string   "translation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
 end
