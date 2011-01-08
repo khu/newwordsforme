@@ -28,20 +28,18 @@ class WordsController < ApplicationController
   # POST /users.xml
   def create
     user = find_user
-    translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ params[:word] + '&langpair=en|zh-CN'
-    j = ActiveSupport::JSON
-    encoded = j.decode(translated)
-    @word = Word.new({:word=>params[:word], :translation=>encoded["responseData"]["translatedText"]})
-    
-    
+    words = params[:word].split('\n')
+    words.each{ |single_word|
+      translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ single_word + '&langpair=en|zh-CN'
+      j = ActiveSupport::JSON
+      encoded = j.decode(translated)
+      @word = Word.new({:word=>single_word, :translation=>encoded["responseData"]["translatedText"]})      
+      @word.save
+    }
+
     respond_to do |format|
-      if @word.save
-        format.html { redirect_to(@word, :notice => 'Word was successfully created.') }
-        format.xml  { render :xml => @word, :status => :created, :location => @word }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @word.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to(@word, :notice => 'Word was successfully created.') }
+      format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end
   
