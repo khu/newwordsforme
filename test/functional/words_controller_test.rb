@@ -5,10 +5,17 @@ class WordsControllerTest < ActionController::TestCase
     @user = users(:one)
   end
 
-  test "should create user" do
-    post :create, {:word => 'apple', :translation => 'this is apple'}, {'user_id' => @user.id}
+  test "should create word with only the word" do
+    post :create, {:word => 'apple'}, {'user_id' => @user.id}
     word = Word.find_by_word('apple')
     assert_not_nil(word)
+    assert_response :redirect
   end
-
+  
+  test "should save multiple words into the vocabulary" do
+    post :create, {:word => 'apple'}, {'user_id' => @user.id}
+    word = Word.find_by_word('apple')
+    assert_not_nil(word)
+    assert_response :redirect
+  end
 end
