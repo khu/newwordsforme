@@ -2,6 +2,7 @@ require 'net/http'
 require 'uri'
 
 class WordsController < ApplicationController
+  before_filter :authorize, :except => :login
   # GET /users
   # GET /users.xml
   def index
@@ -27,7 +28,6 @@ class WordsController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    user = find_user
     words = params[:word].split('\n')
     words.each{ |single_word|
       translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ single_word + '&langpair=en|zh-CN'
@@ -44,7 +44,8 @@ class WordsController < ApplicationController
   end
   
   private
-  def find_user 
+  def authorize
+    #unless User.find_by_id(session[:user_id]) flash[:notice] = "Please log in" redirect_to :controller => :admin, :action => :login
     if not session[:user]
       session[:user] = User.find_by_id(params[:user_id])
     end
