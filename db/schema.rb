@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20110104080125) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
   create_table "words", :force => true do |t|
     t.string   "word"
     t.string   "translation"

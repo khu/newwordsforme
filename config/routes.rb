@@ -1,4 +1,8 @@
 Keepin::Application.routes.draw do
+  get "users/new"
+
+  get "sessions/new"
+
   resources :users
   resources :words
 

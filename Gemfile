@@ -1,7 +1,28 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'mysql2'
+
+group :development do
+  gem "autotest"
+  gem "autotest-rails"
+  gem "rspec"
+  gem 'rspec-rails', '2.3.0'
+  gem 'annotate-models', '1.0.4'
+end
+
+group :test do
+  gem "autotest"
+  gem "rspec"
+  gem "rspec-rails",      "2.3.0"
+  gem "machinist",        :git => "git://github.com/notahat/machinist.git"
+  gem "ZenTest"
+  gem "autotest"
+  gem "autotest-rails"
+  gem "cucumber",         :git => "git://github.com/aslakhellesoy/cucumber.git"
+  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
+  gem "cucumber-rails",   :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
+end
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
