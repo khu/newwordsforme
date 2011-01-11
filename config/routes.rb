@@ -1,4 +1,6 @@
 Keepin::Application.routes.draw do
+  match '/signup',  :to => 'users#new'
+  
   get "users/new"
 
   get "sessions/new"
