@@ -1,8 +1,9 @@
-
-
 <h1>Sign up</h1>
-
 <%= form_for(@user) do |f| %>
+	<% @user.errors.full_messages.each do |msg| %>
+	  <p><%=msg%></p>
+    <% end %>
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

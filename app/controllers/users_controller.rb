@@ -12,10 +12,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      # Handle a successful save.
+      sign_in @user
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user
     else
       @title = "Sign up"
+      ## Reset password input after failed password attempt
+      @user.password = nil
+      @user.password_confirmation = nil
       render 'new'
     end
   end
+  
+  def signed_in_user
+    if current_user?(@user)
+      flash[:success] = "You are already signed in"
+    else
+      redirect_to root_path# unless current_user?(@user)
+    end
+  end  
 end
