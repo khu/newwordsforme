@@ -6,6 +6,7 @@ group :development do
   gem "autotest"
   gem "autotest-rails"
   gem "rspec"
+  gem 'webrat'
   gem 'rspec-rails', '2.3.0'
   gem 'annotate-models', '1.0.4'
 end

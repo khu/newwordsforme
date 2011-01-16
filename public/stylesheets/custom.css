@@ -1,0 +1,296 @@
+@import url('reset.css');
+@import url('text.css');
+@import url('960.css');
+@import url('sifr.css');
+
+
+
+/* Begin Slider */
+		
+noscript p, noscript ol {}
+noscript a { }
+noscript ol {  }
+		
+#slider a:focus { outline:none }
+						
+		.stripViewer .panelContainer .panel ul {
+		
+			
+}
+		
+		.slider-wrap { /* This div isn't entirely necessary but good for getting the side arrows vertically centered */
+}
+
+		/* These 2 lines specify style applied while slider is loading */
+		.csw {width: 1px; height: 1px; background: #fff; overflow: hidden}
+		.csw .loading {}
+.stripNav { display: none }
+		
+		.stripViewer { /* This is the viewing window */
+			position: relative;
+			overflow: hidden; 
+			margin: auto;
+			width: 700px; /* Also specified in  .stripViewer .panelContainer .panel  below */
+			height: 200px;
+			clear: both;
+			
+		}
+		.stripViewer .panelContainer { /* This is the big long container used to house your end-to-end divs. Width is calculated and specified by the JS  */
+			position: relative;
+			left: 0; top: 0;
+			width: 100%;
+			list-style-type: none;
+			/* -moz-user-select: none; // This breaks CSS validation but stops accidental (and intentional - beware) panel highlighting in Firefox. Some people might find this useful, crazy fools. */
+		}
+		.stripViewer .panelContainer .panel { /* Each panel is arranged end-to-end */
+			float:left;
+			height: 100%;
+			position: relative;
+			width: 700px; /* Also specified in  .stripViewer  above */
+		}
+		.stripViewer .panelContainer .panel .wrapper { /* Wrapper to give some padding in the panels, without messing with existing panel width */
+			padding: 0px;
+		}		
+		.stripNavL, .stripNavR { /* The left and right arrows */
+			position: absolute;
+			top: 115px;
+			text-indent: -9000em;
+}
+		.stripNavL a, .stripNavR a {
+			display: block;
+			height: 40px;
+			width: 40px;
+		}
+		.stripNavL {
+
+}
+		.stripNavR {
+		
+}
+		
+		.stripNavL {
+			background: url("images/arrow-left.gif") no-repeat center;
+		}
+		
+		.stripNavR {
+			background: url("images/arrow-right.gif") no-repeat center;
+		}
+/* End Slider */
+
+* {
+   padding:0;
+   margin:0;
+}
+
+body
+{
+	background: #f3f1e5;
+	border-top: 5px solid #e6e5d9;
+	color: #4d505d;
+
+}
+
+
+#headbox{
+	margin-left: 10px;
+	width: 698px;
+	height:	200px;
+	border: 1px solid #e6e5d9;
+	border-bottom-style: none;
+	background: white url(../images/zz.jpg) repeat-x center bottom;
+	
+	}
+
+#headbox h1{
+	margin-bottom: 0px;
+	padding-top: 30px;
+	}
+	
+	
+#headbox img{
+	margin-top: 30px;
+}
+a
+{
+	color: #4f98b2;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+.text{
+	border-top: 1px solid #e6e5d9;
+
+}
+
+.textlast{
+	border-top: 1px solid #e6e5d9;
+	margin-bottom: 40px;
+}
+
+.thanks{
+	font-weight: bold;
+	color: #0c0e1a;
+}
+
+.portfolioimg{
+	padding-bottom: 60px;
+	
+}
+
+p
+{
+	overflow: hidden;
+	padding: 10px 0;
+	text-align: left;
+}
+
+img
+{display: block;
+padding: 0px;
+  margin-left: auto;
+  margin-right: auto; }
+
+img.headingimg 
+{
+	
+	margin-top: 20px;
+	margin-bottom: 20px;
+ }
+
+.container_16
+{
+
+}
+
+h1.logo {
+	background: url(../images/logo.png) no-repeat;
+	height:60px;
+	width:140px;
+	margin-top: 25px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+	
+h1.logo a {
+	height:60px;
+	width:140px;
+	display:block;
+	text-indent:-9999px;
+	}
+
+	ul#nav {
+	
+		font-weight: bold;
+		list-style-type: none;
+		float: right;
+	margin-top: 40px;
+}
+
+	ul#nav li {
+		display: inline;
+	}
+
+	ul#nav a{
+		text-decoration: none;
+		color: #0c0e1a;
+		border-right: 1px solid #bab9ae;
+		padding-right: 4px;
+		padding-left: 2px;
+	}
+	
+#map{
+	margin-top: 20px;
+	border: 1px solid #bab9ae;
+	width:700px;
+	height:220px
+}
+
+ul#nav a:hover{
+	text-decoration: underline;
+}
+
+	ul#nav li.last a{
+		border: none;
+	}
+	
+		ul#footernav {
+		list-style-type: none;
+		float: right;
+	}
+	ul#footernav li {
+	border-right: 1px solid #bab9ae;
+		padding-right: 4px;
+		padding-left: 2px;
+		display: inline;
+	}
+	
+	ul#footernav li.last{
+		border: none;
+	}
+
+
+	ul.zebra {
+	
+	color: #0c0e1a;
+		font-weight: bold;
+		list-style-type: none;
+	background: url(../images/zeb.png) repeat;
+		margin-bottom: 20px;
+}
+	
+	ul.zebra li{
+	height: 20px;
+	padding-left: 0px;
+	background: url(../images/tick.png) no-repeat right;
+}
+
+
+.send{
+	width:220px;
+	overflow:hidden;
+	list-style:none;
+}
+.send li{
+	float:left;
+	width:220px;
+	padding-top: 10px;
+}
+.send label{
+	float:left;
+}
+.send input{
+	border:1px solid #e6e5d9;
+	height: 22px;
+	float: right;
+}
+
+
+.send textarea{
+	width: 100%;
+	float:right;
+	height:110px;
+	border:1px solid #e6e5d9;
+}
+
+input.button {
+	float:left;
+	border:1px solid #e6e5d9;
+	background-color: #fff;
+	margin-bottom: 20px;
+	padding-left: 4px;
+	padding-right: 4px;
+	cursor: pointer;
+}
+	
+#footer{
+	border-top: 1px solid #e6e5d9;
+	background-color: white;
+	height: 45px;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 0;
+}

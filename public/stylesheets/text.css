@@ -1,0 +1,56 @@
+/* =Basic HTML
+--------------------------------------------------------------------------------*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 12px/2 "Lucida Grande", Helvetica, Sans-Serif;	
+}
+
+
+/* =Headings
+--------------------------------------------------------------------------------*/
+
+
+h1
+{
+	font: 30px Georgia, Serif;
+	color: #0c0e1a;
+}
+
+h2
+{
+	color: #0c0e1a;
+}
+
+h3
+{	text-align: center;
+	font-weight: bold;
+	color: #0c0e1a;
+}
+
+
+/* =Spacing
+--------------------------------------------------------------------------------*/
+
+p, /* this needs to be adjusted when it comes to the footer*/
+dl,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ol,
+ul,
+pre,
+table,
+address,
+fieldset
+{
+	margin-bottom: 0px;
+}
