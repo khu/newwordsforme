@@ -1,21 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'annotate-models', '1.0.4'
 
-group :development do
-  gem "autotest"
-  gem "autotest-rails"
-  gem "rspec"
-  gem 'webrat'
-  gem 'rspec-rails', '2.3.0'
-  gem 'annotate-models', '1.0.4'
-end
-
-group :test do
+group :development, :test do
   gem 'factory_girl_rails', '1.0'
   gem "autotest"
   gem "rspec"
   gem "rspec-rails",      "2.3.0"
+  gem 'webrat'
   gem "machinist",        :git => "git://github.com/notahat/machinist.git"
   gem "ZenTest"
   gem "autotest"

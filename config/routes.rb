@@ -5,6 +5,7 @@ Keepin::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
 
   root :to => 'pages#home'
   
@@ -14,6 +15,7 @@ Keepin::Application.routes.draw do
 
   resources :users
   resources :words
+  resources :sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
