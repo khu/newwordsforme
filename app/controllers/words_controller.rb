@@ -17,7 +17,7 @@ class WordsController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @word = Word.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ class WordsController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    words = params[:word].split('\n')
+    words = params[:word][:word].split('\n')
     words.each{ |single_word|
       translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ single_word + '&langpair=en|zh-CN'
       j = ActiveSupport::JSON
