@@ -13,8 +13,9 @@ Keepin::Application.routes.draw do
 
   get "sessions/new"
 
-  resources :users
-  resources :words
+  resources :users do
+    resources :words
+  end
   resources :sessions
 
   # The priority is based upon order of creation:

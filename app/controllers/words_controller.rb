@@ -14,11 +14,8 @@ class WordsController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
   def show
-    @word = Word.find(params[:id])
-
+    @word = Word.find_by_user_id_and_word(params[:user_id], params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -28,17 +25,19 @@ class WordsController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    userid = params[:user_id]
+    puts userid
     words = params[:word][:word].split('\n')
     words.each{ |single_word|
       translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ single_word + '&langpair=en|zh-CN'
       j = ActiveSupport::JSON
       encoded = j.decode(translated)
-      @word = Word.new({:word=>single_word, :translation=>encoded["responseData"]["translatedText"]})      
+      @word = Word.new({:word=>single_word, :translation=>encoded["responseData"]["translatedText"], :user_id => userid})
       @word.save
     }
 
     respond_to do |format|
-      format.html { redirect_to(@word, :notice => 'Word was successfully created.') }
+      format.html { redirect_to([User.find(userid), @word], :notice => 'Word was successfully created.') }
       format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end
