@@ -19,8 +19,5 @@ When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, wordx
 end
 
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
-  response.should contain("苹果")
-  within '#translation' do |scope|
-      scope.should contain("苹果")
-  end
+  response.should contain(translation)
 end

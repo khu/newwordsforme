@@ -15,7 +15,6 @@ class WordsController < ApplicationController
   end
 
   def show
-    puts "show method"
     @word = Word.find_by_user_id_and_word(params[:user_id], params[:id])
     respond_to do |format|
       format.html
@@ -24,11 +23,10 @@ class WordsController < ApplicationController
   end
   
   def show_word
-    puts "show word"
     @word = Word.find_by_user_id_and_word(params[:id], params[:word])
     respond_to do |format|
       format.html
-      format.xml  { render :xml => @user }
+      format.json { render :json => @word, :status => :created, :content_type => "text/html"}
     end
   end
   
@@ -47,7 +45,8 @@ class WordsController < ApplicationController
     }
 
     respond_to do |format|
-      format.html { redirect_to(show_word_path(User.find(userid), @word.word), :notice => 'Word was successfully created.') }
+      format.json {redirect_to(show_word_path(User.find(userid), @word.word) + ".json")}
+      format.html {redirect_to(show_word_path(User.find(userid), @word.word), :notice => 'Word was successfully created.')}
       format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end
