@@ -15,13 +15,23 @@ class WordsController < ApplicationController
   end
 
   def show
+    puts "show method"
     @word = Word.find_by_user_id_and_word(params[:user_id], params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml  { render :xml => @user }
     end
   end
-
+  
+  def show_word
+    puts "show word"
+    @word = Word.find_by_user_id_and_word(params[:id], params[:word])
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @user }
+    end
+  end
+  
   # POST /users
   # POST /users.xml
   def create
@@ -37,7 +47,7 @@ class WordsController < ApplicationController
     }
 
     respond_to do |format|
-      format.html { redirect_to([User.find(userid), @word], :notice => 'Word was successfully created.') }
+      format.html { redirect_to(show_word_path(User.find(userid), @word.word), :notice => 'Word was successfully created.') }
       format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end

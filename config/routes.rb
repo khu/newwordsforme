@@ -6,7 +6,8 @@ Keepin::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
-
+  match 'users/:id/words/:word', :to => 'words#show_word', :as => "show_word"
+  
   root :to => 'pages#home'
   
   get "users/new"

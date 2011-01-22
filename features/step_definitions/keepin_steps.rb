@@ -11,9 +11,9 @@ Given /^"([^"]*)" logged in$/ do |user|
   click_button "session_submit"
 end
 
-When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, word|
+When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, wordx|
   visit user_path(Factory.create(user))
-  fill_in "word_word", :with => word
+  fill_in "word_word", :with => wordx
   click_button "word_submit"
   follow_redirect!
 end
