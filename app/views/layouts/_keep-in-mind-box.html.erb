@@ -1,0 +1,25 @@
+<div class="main-tweet-box">
+	<div class="tweet-box">
+		<div class="tweet-box-title">
+			<h2>
+				Do you learn something new?
+			</h2>
+		</div>
+		<div class="text-area">
+			<div class="text-area-editor twttr-editor">
+				<%= form_for([ @user, Word.new ], :format => :json) do |f| %>
+				  <div class="field">
+				    <%= f.text_area :word, :class=> "twitter-anywhere-tweet-box-editor", :style=>"width: 482px; height: 56px;" %>
+				  </div>
+				<div class="tweet-button-container">
+					<%= f.submit "Keep In Mind" %>
+					<img style="display: none;" class="tweet-spinner" src="/images/spinner.gif"> 
+						<a class="tweet-button button disabled" href="#">Keep In Mind</a>
+				</div>
+				<% end %>
+				<ul class="autocomplete-container" 
+					style="width: 498px; top: 73px; left: 0px; visibility: hidden;"></ul>
+			</div>
+		</div>
+	</div>
+</div>

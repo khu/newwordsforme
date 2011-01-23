@@ -1,16 +1,48 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-  <head>
-    <title><%= @title %></title>
-    <%= csrf_meta_tag %>
-    <%= render 'layouts/stylesheets' %>
-  </head>
-  <body>
-    <div class="container_16">
-      <%= render 'layouts/header' %>
-      <%= yield %>
-      
-    </div>
-	<%= render 'layouts/footer' %>
-  </body>
+	<head>
+		<title>
+			<%= @title %>
+		</title><%= csrf_meta_tag %><%= render 'layouts/stylesheets' %>
+	</head>
+	<body>
+		<div id="doc" class="route-home">
+			<%= render 'layouts/header' %>
+			<div id="page-outer">
+				<div id="page-container" class="home-container">
+					<div>
+						<div class="main-content" style="min-height: 238px">
+							<div class="home-header">
+								<%= render "/layouts/keep-in-mind-box"%>
+								<ul class="stream-tabs">
+									<li class="stream-tab stream-tab-home">
+										<a href="#" title="All you follow" class="tab-text">This week</a>
+									</li>
+									<li class="stream-tab stream-tab-mentions active">
+										<a href="#" title="Mentions" class="tab-text">This month</a>
+									</li><!-- here once stood an html comment fight btwn @ded and @k -->
+									<li class="stream-tab stream-tab-retweets dropdown-link">
+										<a href="#" class="tab-text">All</a>
+									</li>
+								</ul>
+							</div>
+							<div class="stream-manager">
+								<div>
+									<div class="stream-title"></div>
+									<div>
+										<div class="steam">
+											<div class="stream-items">
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="dashboard"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

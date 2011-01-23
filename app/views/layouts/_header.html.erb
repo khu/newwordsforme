@@ -1,13 +1,58 @@
-<div class="grid_3 prefix_2">
-	<h1 class="logo"><a href="http://www.pixelcraft.ie">Pixelcraft - Design, Branding &amp; Web Consultancy</a></h1>
-</div>
-<div class="grid_9">
-	<ul id="nav">
-		<li><%= link_to "Home", root_path %></li>
-		<li><%= link_to "Sign up", signup_path %></li>
-		<li><%= link_to "Sign in", signin_path %></li>
-		<li><%= link_to "Help", help_path %></li>
-	   	<li class="last"><a href="../contact">Contact</a></li>
-	</ul>
-</div>
-<div class="clear">&nbsp;</div>
+		<div id="top-stuff">
+			<div style="clear: both;" id="banners"></div>
+			<div id="top-bar-outer">
+				<div id="top-bar-bg"></div>
+				<div id="top-bar">
+					<div class="top-bar-inside">
+						<div class="static-links">
+							<div id="logo">
+								<a href="/">KeepIn</a>
+							</div>
+							<div id="global-nav">
+								<ul>
+									<li id="global-nav-home" class="active">
+										<%= link_to "Home", user_path(@user) %>
+									</li>
+									<li id="global-nav-profile">
+										<a href="/#!/iamhukai">Vocabulary</a>
+									</li>
+									<li id="global-nav-messages">
+										<a href="/#!/messages">Take an exam!</a>
+									</li>
+								</ul>
+							</div>
+							<div id="sections"></div>
+						</div>
+						<div class="active-links">
+							<div class="loggedin" id="session">
+								<a href="#" class="profile-links">
+									<span id="profile-image">
+										<img src="http://a0.twimg.com/profile_images/133985056/Photo_4_normal.jpg">
+									</span>
+								</a>
+								<span id="screen-name">iamhukai</span>
+								<div class="dropdown">
+									<ul class="user-dropdown">
+										<li>
+											<a href="/settings/account">Settings</a>
+										</li>
+										<li>
+											<a href="http://support.twitter.com">Help</a>
+										</li>
+										<li>
+											<a href="/account/use_phx?setting=false&amp;format=html">Switch to Old Twitter</a>
+										</li>
+										<li>
+											<form method="post" action="/logout" class="signout-form">
+												<a href="#" class="signout-button">Sign out</a> <input type="hidden" name="authenticity_token" value="a6db05da322450efc1993d101dad6c0022372e62">
+											</form>
+										</li>
+									</ul>
+								</div>
+							</div><a id="new-tweet" original-title="New Tweet" name="new-tweet"><span>New Tweet</span></a>
+						</div>
+					</div>
+				</div>
+				<div id="message-drawer"></div>
+			</div>
+		</div>
