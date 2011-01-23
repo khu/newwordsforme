@@ -1,0 +1,13 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+	<head>
+		<title>
+			<%= @title %>
+		</title><%= csrf_meta_tag %><%= render 'layouts/stylesheets' %>
+	</head>
+	<body>
+		<h1 style="background-color:yellow;">
+			<%= yield %>
+		</h1>
+	</body>
+</html>

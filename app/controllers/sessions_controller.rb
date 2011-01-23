@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout 'index-page-layout'
+  
   def new
     @title = "Sign in"
   end
