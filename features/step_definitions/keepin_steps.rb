@@ -21,3 +21,16 @@ end
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
   response.should contain(translation)
 end
+
+When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
+  visit user_words_path(User.find_by_name(user), {:today=>DateTime.parse("2011-01-21"), :mode=>period})
+end
+
+Then /^"([^"]*)" can see:$/ do |arg1, words_table|
+  words_table.hashes.each {|hash| 
+    response.should contain(hash[:word])
+  }
+end
+
+
+

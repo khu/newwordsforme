@@ -1,0 +1,1 @@
+bundle exec /Users/twer/.rvm/rubies/ruby-1.9.2-p136/bin/ruby -I "/Users/twer/.rvm/gems/ruby-1.9.2-p136/bundler/gems/cucumber-e2df150cc4fd/lib:lib" "/Users/twer/.rvm/gems/ruby-1.9.2-p136/bundler/gems/cucumber-e2df150cc4fd/bin/cucumber"  --profile done

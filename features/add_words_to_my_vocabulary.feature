@@ -3,7 +3,7 @@ Feature: Live
   people
   want to be able to eat strawberries
 
-@Figo @wip
+@Figo @done
   Scenario: Save single english word
     Given "Figo" logged in
     When  "Figo" save "Apple" into vocabulary from home page

@@ -3,21 +3,35 @@ Feature: Listing
   Arden
   want to organize the words
 
-@arden
+@arden @listing @done
   Scenario: list words for this week
 	Give "Arden" logged in
-	When "Arden" visit new words for "this week"
-	Then "Arden" can see all words added within "this week" sorted by time in descending order
-@arden	
+	When "Arden" visit new words for "7days"
+	Then "Arden" can see:
+	|word|
+	|tomato|
+	|to|
+
+@arden @listing	@done
   Scenario: list words for this month
 	Give "Arden" logged in
-	When "Arden" visit new words for "this month"
-	Then "Arden" can see all words added within "this month" sorted by time in descending order
-@arden
-  Scenario: list all words
+	When "Arden" visit new words for "30days"
+	Then "Arden" can see:
+	|word|
+	|tomato|
+	|last|
+	
+@arden @listing	@done
+Scenario: list words for this month
 	Give "Arden" logged in
 	When "Arden" visit new words for "all"
-	Then "Arden" can see all words added within "all" sorted by time in descending order
+	Then "Arden" can see:
+	|word|
+	|tomato|
+	|last|
+	|month|
+	|year|
+	
 @arden
   Scenario: list all words I mastered
 	Give "Arden" logged in

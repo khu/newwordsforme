@@ -21,7 +21,7 @@ Factory.define :Figo, :class => User do |u|
   u.password_confirmation "password"
 end
 
-Factory.define :Arden, :class => User do |u|
+arden = Factory.define :Arden, :class => User do |u|
   u.name                  "Arden"
   u.email                 "arden@gmail.com"
   u.password              "password"
@@ -34,4 +34,3 @@ Factory.define :Unice, :class => User do |u|
   u.password              "password"
   u.password_confirmation "password"
 end
-
