@@ -6,7 +6,7 @@ Feature: Listing
 @arden @listing @done
   Scenario: list words for this week
 	Give "Arden" logged in
-	When "Arden" visit new words for "7days"
+	When "Arden" visit new words for "days7"
 	Then "Arden" can see:
 	|word|
 	|tomato|
@@ -15,7 +15,7 @@ Feature: Listing
 @arden @listing	@done
   Scenario: list words for this month
 	Give "Arden" logged in
-	When "Arden" visit new words for "30days"
+	When "Arden" visit new words for "days30"
 	Then "Arden" can see:
 	|word|
 	|tomato|
@@ -32,21 +32,32 @@ Scenario: list words for this month
 	|month|
 	|year|
 	
-@arden
-  Scenario: list all words I mastered
+@arden @listing	@done
+Scenario: list all words I mastered
 	Give "Arden" logged in
-	When "Arden" visit new words for "all"
-	Then "Arden" can see all words added within "all" sorted by time in descending order
-@arden
-  Scenario: list all words I do not master
+	When "Arden" visit new words for "mastered"
+	Then "Arden" can see all "mastered" words:
+	|word|
+	|year|
+	
+@arden @listing @done
+Scenario: list all words I do not master
 	Give "Arden" logged in
-	When "Arden" visit new words for "all"
-	Then "Arden" can see all words added within "all" sorted by time in descending order
-@arden
-  Scenario: list all words I not familiar
+	When "Arden" visit new words for "notmastered"
+	Then "Arden" can see all "notmastered" words:
+	|word|
+	|tomato|
+	|to|
+
+@arden @listing @done
+  Scenario: list all words I am unfamiliar with
 	Give "Arden" logged in
-	When "Arden" visit new words for "all"
-	Then "Arden" can see all words added within "all" sorted by time in descending order
+	When "Arden" visit new words for "unfamiliar"
+	Then "Arden" can see all "unfamiliar" words:
+	|word|
+	|last|
+	|month|
+	
 
 @arden
   Scenario: hide the translation for the words words for this month

@@ -32,5 +32,12 @@ Then /^"([^"]*)" can see:$/ do |arg1, words_table|
   }
 end
 
+Then /^"([^"]*)" can see all "([^"]*)" words:$/ do |user, status, words|
+  words.hashes.each {|hash| 
+    response.should contain(hash[:word])
+  }
+end
+
+
 
 

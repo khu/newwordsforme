@@ -7,21 +7,14 @@ class WordsController < ApplicationController
   # GET /users.xml
   def index
     today  = params[:today].nil? ? DateTime.now : DateTime.parse(params[:today])
-    mode   = params[:mode].nil? ? "7days" : params[:mode]
+    mode   = params[:mode].nil? ? "days7" : params[:mode]
     @user  =  User.find(params[:user_id])
-    if (mode == "7days")
-      @words = @user.word.where("created_at >= ? and created_at <= ?", today - 7, today)
-    end
-    if (mode == "30days")
-      @words = @user.word.where("created_at >= ? and created_at <= ?", today - 30, today)
-    end
-    if (mode == "all")
-      @words = @user.word
-    end
 
+    @words = @user.method(mode).call(today);
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
+      format.json { render :json => @words, :content_type => "text/html"}
     end
   end
 
