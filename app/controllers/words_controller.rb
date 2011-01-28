@@ -39,7 +39,8 @@ class WordsController < ApplicationController
   def create
     userid = params[:user_id]
     single_word = params[:word][:word].lstrip()
-    @word =  Word.translate({:word=>single_word, :user_id => userid})
+    @word =  Word.create({:word=>single_word, :user_id => userid})
+    @word.translate!
     @word.save
 
     respond_to do |format|
