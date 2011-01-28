@@ -39,13 +39,8 @@ class WordsController < ApplicationController
   def create
     userid = params[:user_id]
     single_word = params[:word][:word].lstrip()
-
-    translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ single_word + '&langpair=en|zh-CN'
-    j = ActiveSupport::JSON
-    encoded = j.decode(translated)
-    @word = Word.new({:word=>single_word, :translation=>encoded["responseData"]["translatedText"], :user_id => userid})
+    @word =  Word.translate({:word=>single_word, :user_id => userid})
     @word.save
-
 
     respond_to do |format|
       format.json {redirect_to(show_word_path(User.find(userid), @word.word) + ".json")}
