@@ -15,17 +15,20 @@ Feature: Live
     When  "Figo" save "Apple" into vocabulary from home page
     Then  "Figo" should see "apple" with translation "苹果"
 
-@Figo
-  Scenario: Save the example sentence
+@Figo @wip
+Scenario: Save the example sentence
 	 Given "Figo" logged in
-	 When  "Figo" save "apple@I love apple"
-	 Then  "Figo" should see translation and the example sentence
+	 When  "Figo" save "apple@I love apple" into vocabulary from home page
+	 Then  "Figo" should see "apple" with translation ""
+	 Then  "Figo" should see sample "I love apple"
 
-@Figo
+@Figo @wip
   Scenario: Save where the word from
  	 Given "Figo" logged in
-	 When  "Figo" save "apple@http://google.com"
-	 Then  "Figo" should see translation and link to navigate to the page
+	 When  "Figo" save "apple@http://google.com" into vocabulary from home page
+	 Then  "Figo" should see "apple" with translation ""
+	 Then  "Figo" should see link "http://google.com"
+
 
 @Figo
   Scenario: See the first video tutorial on the right hand

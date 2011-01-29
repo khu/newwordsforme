@@ -38,6 +38,15 @@ Then /^"([^"]*)" can see all "([^"]*)" words:$/ do |user, status, words|
   }
 end
 
+Then /^"([^"]*)" should see sample "([^"]*)"$/ do |user, sample|
+    response.should contain(sample)
+end
+
+Then /^"([^"]*)" should see link "([^"]*)"$/ do |user, link|
+    response.should contain(link)
+end
+
+
 
 
 
