@@ -1,16 +1,31 @@
 *{margin:0;padding:0;border:0;}
-#heroku-header{overflow:hidden;display:inline-block;margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:arialxŒ,helvetica,sans-serif;vertical-align:baseline;min-width:1044px;background-image:url(/images/header.png);background-repeat:repeat-x;background-position:0 0;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#E6E5D9;height:91px;}
-#heroku-header{display:block;}
-#main{overflow:hidden;padding:37px 11.5em 28px 11.5em;}
+
+body{font:13px/1.5 Helvetica Neue,Arial,Helvetica,'Liberation Sans',FreeSans,sans-serif;}
+a{color:#2D76B9;text-decoration:none;}
+a:hover{text-decoration:underline;cursor:pointer;}
+a:focus{outline:1px dotted;cursor:pointer;}
+hr{border:0;border-top:1px solid rgba(0,0,0,0.1);border-bottom:1px solid rgba(255,255,255,0.3);*border-top:1px solid #000;*border-bottom:1px solid #fff;*filter:alpha(opacity = 30);clear:both;height:0;display:block;margin:15px 0 15px 0;}
+h1{font-size:25px;}
+h2{font-size:23px;}
+h3{font-size:21px;}
+h4{font-size:19px;}
+h5{font-size:17px;}
+h6{font-size:15px;}
+ol{list-style:decimal;}
+ul{list-style:disc;}
+li{margin-left:30px;}
+b,strong{font-weight:bold;}
+
+
+#main{overflow:hidden;padding:37px 8em 28px 8em}
 .home{background-color:#F3F1E5;}
 .rightpane{float:right;width:425px;padding:21px 27px 0 0;}
 .accordion{float:left;margin:0;padding:0;list-style:none;height:360px;overflow:hidden;}
 .accordion .content{height:203px;padding-bottom:0;padding-left:38px;padding-right:38px;padding-top:25px;}
-.signup{width:169px;height:34px;margin-bottom:19px;background:url(/images/signup.png) no-repeat;padding-right:2px;display:block;text-indent:-9999px;}
 
-body #wrapper #chart{background:rgba(0,0,0,0.2);border-bottom:1px solid rgba(255,255,255,0.1);-moz-border-radius:32px;-webkit-border-radius:32px;float:left;width:99%;}
+body #wrapper #chart{background:rgba(0,0,0,0.2);-moz-border-radius:32px;-webkit-border-radius:32px;}
 body #wrapper #chart #bars{float:left;width:950px;border-bottom:1px solid rgba(255,255,255,0.05);margin:7px 0 7px 8px;-moz-border-radius:28px;-webkit-border-radius:28px;}
-body #wrapper #chart .bar{float:left;width:185px;height:40px;position:relative;}
+body #wrapper #chart .bar{float:left;width:120px;height:40px;position:relative;}
 body #wrapper #chart .bar .pointer{background:url("/images/bg-pointer.png") 0 0 no-repeat;height:62px;width:17px;position:absolute;left:44%;top:-35px;}
 body #wrapper #chart .bar .description{position:absolute;width:100%;text-align:center;top:-82px;}
 body #wrapper #chart .bar .description h2{background:url("/images/bg-chart-titles.png") center 0 no-repeat;height:16px;width:100%;margin:0 0 3px;padding:0;}
@@ -28,7 +43,66 @@ body #wrapper #chart .fourth .description{top:84px;}
 body #wrapper #chart .fourth h2{background-position:center -55px !important;}
 body #wrapper #chart .fifth{background-image:-moz-linear-gradient(center bottom,#0c2265,#0c2265,#174dab);background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#174dab),to(#0c2265));border-left:1px solid #062860;-moz-border-radius:0 28px 28px 0;-webkit-border-top-right-radius:28px;-webkit-border-bottom-right-radius:28px;}
 body #wrapper #chart .fifth h2{background-position:center -73px !important;}
-#chart-wrapper {
-	padding-top:10em;
-	padding-bottom:10em;
+
+#chart-panel{
+	float:left;
+	width:70%;
+	padding-top:7em;
+	height:300px;
 }
+
+#signup-panel{
+	float:left;
+	width:30%;
+}
+
+
+#nav, #nav li {
+	list-style-type:none;
+	list-style-position:outside;
+}
+#nav {
+	height : 40px;
+	padding-right:30px;
+}
+#nav li {
+    float: right;
+    padding: 0;
+	margin-top:10px;
+}
+
+#main-logo {
+	float: left;
+    margin: 0;
+    padding: 0;
+}
+
+ul li#link-login {
+	border-bottom:4px solid #174dab;
+}
+
+#link-download-mobiles {
+	border-bottom:4px solid #e55c00;	
+}
+
+#link-download-plugins {
+	border-bottom:4px solid #377800;
+}
+
+#nav  a {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    background-attachment: scroll;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-image: none;
+    background-position: 0 0;
+    background-repeat: repeat;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.signup{
+	width:100%;height:34px;margin-bottom:19px;background:url(/images/signup.png) no-repeat;padding-right:2px;display:block;text-indent:-9999px;
+}
+
