@@ -1,13 +1,117 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 	<head>
 		<title>
 			<%= @title %>
-		</title><%= csrf_meta_tag %><%= render 'layouts/stylesheets' %>
+		</title>
+		<%= csrf_meta_tag %>
+		<%= render 'layouts/signin-signup' %>
+		<%= javascript_include_tag 'jquery-1.4.4' %>
 	</head>
-	<body>
-		<h1 style="background-color:yellow;">
-			<%= yield %>
-		</h1>
+	<body class="home">
+		<div id="heroku-header">
+			<h5 id="heroku-logo">
+				<a href="http://heroku.com">Keep In</a>
+			</h5>
+			<ul id="heroku-section-nav">
+				<li id="heroku-header-link-login">
+					<%= link_to "Login", signin_path %>
+				</li>
+					<a>Add-ons</a>
+				</li>
+			</ul>
+		</div>
+		<div id="wrapper">
+			<div id="main">
+				<div style="position: absolute; z-index: 1000; display: none;" id="dummy">
+					&nbsp;
+				</div>
+				<ul class="accordion">
+					<li id="create-slide">
+						<span class="opener">Capture: Get the word easily</span>
+						<div style="display: block;" class="slide">
+							<div class="content">
+								<h2>
+									Capture: Get the word easily
+								</h2>
+								<span id="code-create">
+									Image: Use firefox/Chrome Plugin to capture the word
+								</span>
+							</div>
+						</div>
+					</li>
+					<li id="deploy-slide">
+						<span class="opener">Learn: make good use of your time</span>
+						<div style="display: none;" class="slide">
+							<div class="content">
+								<h2>
+									Learn: make good use of your time
+								</h2>
+								<span id="code-create">
+									Image: Learn your English word on tram.
+									Image: Learn the unfamiliar and not mastered word.
+								</span>
+							</div>
+						</div>
+					</li>
+					<li id="work-slide">
+						<span class="opener">Feedback: know how good are you using reports</span>
+						<div class="slide slide-bottom" style="display: none;">
+							<div class="content">
+								<h2>
+									Feedback: know how good are you using reports
+								</h2>
+								<span id="code-work">
+									Image: Reports
+								</span>
+							</div>
+						</div>
+					</li>					
+				</ul>
+				<div class="rightpane">
+					<h2 class="tagline">
+						Never miss one word
+					</h2>
+					<ul class="subtag">
+						<li>Learn from others</li>
+						<li>Inspired by others</li>
+						<li>Grow with others</li>
+						<li>Study with more fun</li>
+					</ul>
+					<span class="apps-now"></span>
+					<span class="presign"></span> 
+					<%= link_to "signup", signup_path, :class=>'signup' %>
+					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+							$(document).ready(function() {
+								// initial accordion slide-down
+								accordion_used = false
+								$('#dummy').fadeOut(500, function(){
+									if (accordion_used == false) {
+										$('#create-slide .opener').addClass("active")
+										$('#create-slide .slide').slideDown(400)
+										$('#work-slide .opener').removeClass("active")
+										$('#work-slide .slide').slideUp(400)
+									}
+								});
+
+								// accordion mouseover
+								$('.opener').mouseover(function(){
+									accordion_used = true
+									if (!$(this).hasClass("active")) {
+										$('.slide').stop(true, true)
+										$('.opener').each(function(){
+											$(this).removeClass("active")
+											$(this).next().slideUp("fast")
+										})
+										$(this).addClass("active")
+										$(this).next().slideDown("fast")
+									}
+								});
+							});
+		</script>
+		
 	</body>
 </html>

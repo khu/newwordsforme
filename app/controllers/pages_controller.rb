@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  layout "index-page-layout"
+  
   def home
     @title = "Home"
   end

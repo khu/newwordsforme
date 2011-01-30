@@ -1,0 +1,88 @@
+*{margin:0;padding:0;border:0;}
+#heroku-header{overflow:hidden;display:inline-block;margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:arialxŒ,helvetica,sans-serif;vertical-align:baseline;min-width:1044px;background-image:url(/images/header.png);background-repeat:repeat-x;background-position:0 0;border-bottom-style:solid;border-bottom-width:3px;border-bottom-color:#E6E5D9;height:91px;}
+#heroku-header{display:block;}
+#main{overflow:hidden;padding:37px 9px 28px 9px;}
+.home{background-color:#F3F1E5;}
+.rightpane{float:right;width:425px;padding:21px 27px 0 0;}
+.accordion{float:left;margin:0;padding:0;list-style:none;height:360px;overflow:hidden;}
+#heroku-header #heroku-logo{margin:20px 0 15px 25px;float:left;}
+#heroku-header #heroku-logo a{display:block;text-indent:-9999px;width:177px;height:56px;overflow:hidden;background-image:url(xxxx);background-repeat:no-repeat;}
+#heroku-header ul#heroku-account-nav,#heroku-header ul#heroku-section-nav{list-style-type:none;overflow:hidden;display:inline-block;float:right;margin-top:30px;padding:10px;}
+#heroku-header ul#heroku-account-nav,#heroku-header ul#heroku-section-nav{display:block;}
+#heroku-header ul#heroku-account-nav li,#heroku-header ul#heroku-section-nav li{float:left;margin-left:10px;}
+#heroku-header ul#heroku-account-nav li:first-child,#heroku-header ul#heroku-section-nav li:first-child{margin-left:0;}
+#heroku-header ul#heroku-account-nav li,#heroku-header ul#heroku-section-nav li{border-left-style:solid;border-left-width:2px;border-left-color:#494573;padding-left:10px;font-size:16px;}
+#heroku-header ul#heroku-account-nav li:first-child,#heroku-header ul#heroku-section-nav li:first-child{border-left:none;padding-left:0;}
+#heroku-header ul#heroku-account-nav li#heroku-header-link-login,#heroku-header ul#heroku-section-nav li#heroku-header-link-login{border:none;margin-left:0;padding-left:0;}
+#heroku-header ul#heroku-account-nav li a,#heroku-header ul#heroku-section-nav li a{color:#c9c3e6;text-decoration:none;font-weight:normal;}
+#heroku-header ul#heroku-account-nav li a:hover,#heroku-header ul#heroku-section-nav li a:hover{color:white;}
+#heroku-header ul#heroku-account-nav li a.active,#heroku-header ul#heroku-section-nav li a.active{color:#bff740;}
+#heroku-header ul#heroku-account-nav li a.active:hover,#heroku-header ul#heroku-section-nav li a.active:hover{color:#bff740;}
+#heroku-header ul#heroku-account-nav{background-color:#231d40;padding-left:15px;padding-right:15px;margin-right:25px;margin-left:10px;-moz-border-radius:7px;-webkit-border-radius:7px;}
+#heroku-header ul#heroku-account-nav li a{color:#45a4ff;}
+#heroku-header ul#heroku-account-nav li a:hover{color:#74d0f4;}
+#heroku-header ul#heroku-account-nav li a.active{color:#bff740;}
+#heroku-header ul#heroku-account-nav li a.active:hover{color:#bff740;}
+
+.opener {
+	display: block;
+	width: 490px;
+	border: 1px solid black;
+}
+#create-slide .opener {
+	height: 45px;
+	background: url(/images/v3/create.png) no-repeat;
+}
+#create-slide .opener.active {
+	background-position: 0 -45px;
+}
+#deploy-slide .opener {
+	height: 41px;
+	background: url(/images/v3/deploy.png) no-repeat;
+}
+#deploy-slide .opener.active {
+	background-position: 0 -41px;
+}
+#work-slide .opener {
+	height: 44px;
+	background: url(/images/v3/work.png) no-repeat;
+}
+#work-slide .opener.active {
+	background-position: 0 -44px;
+	height: 39px;
+}
+#code-create, #code-deploy, #code-work {
+	display: block;
+}
+#code-create {
+	width: 280px;
+	height: 93px;
+	background: url(/images/v3/code-create.png) no-repeat;
+}
+#code-deploy {
+	width: 339;
+	height: 117px;
+	background: url(/images/v3/code-deploy.png) no-repeat;
+}
+#code-work {
+	width: 305;
+	height: 110px;
+	background: url(/images/v3/code-work.png) no-repeat;
+}
+
+.accordion .content {
+    height: 203px;
+    padding-bottom: 0;
+    padding-left: 38px;
+    padding-right: 38px;
+    padding-top: 25px;
+}
+.signup {
+	width: 169px;
+	height: 34px;
+	margin-bottom: 19px;
+	background: url(/images/signup.png) no-repeat;
+	padding-right: 2px;
+	display:block;
+	text-indent: -9999px;
+}

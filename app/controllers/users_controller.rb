@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def new
       @user = User.new
       @title = "Sign up"
+      render 'new', :layout=>'signin-signup-layout'
   end
   
   def create
