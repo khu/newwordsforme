@@ -1,11 +1,9 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 	<head>
 		<title>
 			<%= @title %>
-		</title>
-		<%= csrf_meta_tag %>
-		<%= render 'layouts/signin-signup' %>
-		<%= javascript_include_tag 'jquery-1.4.4' %>
+		</title><%= csrf_meta_tag %><%= render 'layouts/signin-signup' %><%= javascript_include_tag 'jquery-1.4.4' %>
 	</head>
 	<body class="home">
 		<div id="heroku-header">
@@ -16,102 +14,87 @@
 				<li id="heroku-header-link-login">
 					<%= link_to "Login", signin_path %>
 				</li>
+				<li style="list-style: none">
 					<a>Add-ons</a>
 				</li>
 			</ul>
 		</div>
 		<div id="wrapper">
 			<div id="main">
-				<div style="position: absolute; z-index: 1000; display: none;" id="dummy">
-					&nbsp;
+				<div id="chart-wrapper">
+				<div id="chart">
+					<div id="bars">
+						<div class="bar first">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									<%= image_tag("firefox.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("safari.png",  :width=>'48', :height=>'48') %>
+									<%= image_tag("chrome.png",  :width=>'48', :height=>'48') %><br>
+									Capture word using browser plugin
+								</p>
+							</div>
+						</div>
+						<div class="bar second">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Sync the words to mobile<br>
+									<%= image_tag("iphone.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("android.png",  :width=>'48', :height=>'48') %>
+								</p>
+								</p>
+							</div>
+						</div>
+						<div class="bar third">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									<%= image_tag("train.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("bus.png",  :width=>'48', :height=>'48') %><br>
+									Learn anytime, anywhere
+								</p>
+							</div>
+						</div>
+						<div class="bar fourth">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Understand your progress using reports<br>
+									<%= image_tag("bar_chart.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("line_chart.png",  :width=>'48', :height=>'48') %>
+								</p>
+							</div>
+						</div>
+						<div class="bar fifth">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Learning/Sharing with others<br>
+									<%= image_tag("community.png", :width=>'48', :height=>'48') %>
+								</p>
+							</div>
+						</div>
+					</div>
 				</div>
-				<ul class="accordion">
-					<li id="create-slide">
-						<span class="opener">Capture: Get the word easily</span>
-						<div style="display: block;" class="slide">
-							<div class="content">
-								<h2>
-									Capture: Get the word easily
-								</h2>
-								<span id="code-create">
-									Image: Use firefox/Chrome Plugin to capture the word
-								</span>
-							</div>
-						</div>
-					</li>
-					<li id="deploy-slide">
-						<span class="opener">Learn: make good use of your time</span>
-						<div style="display: none;" class="slide">
-							<div class="content">
-								<h2>
-									Learn: make good use of your time
-								</h2>
-								<span id="code-create">
-									Image: Learn your English word on tram.
-									Image: Learn the unfamiliar and not mastered word.
-								</span>
-							</div>
-						</div>
-					</li>
-					<li id="work-slide">
-						<span class="opener">Feedback: know how good are you using reports</span>
-						<div class="slide slide-bottom" style="display: none;">
-							<div class="content">
-								<h2>
-									Feedback: know how good are you using reports
-								</h2>
-								<span id="code-work">
-									Image: Reports
-								</span>
-							</div>
-						</div>
-					</li>					
-				</ul>
-				<div class="rightpane">
+			</div>
+
+				<!-- <div class="rightpane">
 					<h2 class="tagline">
 						Never miss one word
 					</h2>
 					<ul class="subtag">
-						<li>Learn from others</li>
-						<li>Inspired by others</li>
-						<li>Grow with others</li>
-						<li>Study with more fun</li>
-					</ul>
-					<span class="apps-now"></span>
-					<span class="presign"></span> 
-					<%= link_to "signup", signup_path, :class=>'signup' %>
-					
-				</div>
+						<li>Learn from others
+						</li>
+						<li>Inspired by others
+						</li>
+						<li>Grow with others
+						</li>
+						<li>Study with more fun
+						</li>
+					</ul><%= link_to "signup", signup_path, :class=>'signup' %>
+				</div> -->
 			</div>
 		</div>
-		<script type="text/javascript">
-							$(document).ready(function() {
-								// initial accordion slide-down
-								accordion_used = false
-								$('#dummy').fadeOut(500, function(){
-									if (accordion_used == false) {
-										$('#create-slide .opener').addClass("active")
-										$('#create-slide .slide').slideDown(400)
-										$('#work-slide .opener').removeClass("active")
-										$('#work-slide .slide').slideUp(400)
-									}
-								});
-
-								// accordion mouseover
-								$('.opener').mouseover(function(){
-									accordion_used = true
-									if (!$(this).hasClass("active")) {
-										$('.slide').stop(true, true)
-										$('.opener').each(function(){
-											$(this).removeClass("active")
-											$(this).next().slideUp("fast")
-										})
-										$(this).addClass("active")
-										$(this).next().slideDown("fast")
-									}
-								});
-							});
-		</script>
-		
 	</body>
 </html>
