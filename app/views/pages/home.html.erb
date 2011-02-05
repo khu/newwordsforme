@@ -1,10 +1,71 @@
-<div class="grid_12 alpha prefix_2">
-	<div id="headbox"></div>
+<div>
+	<div id="chart-panel">
+		<div id="chart-wrapper">
+			<div id="chart">
+				<div id="bars">
+					<div class="bar first">
+						<div class="pointer"></div>
+						<div class="description">
+							<p>
+								Record with plugin<br>
+								<%= image_tag("plugin.png", :width=>'48', :height=>'48') %>
+								<%= image_tag("safari.png",  :width=>'48', :height=>'48') %> 
+							</p>
+						</div>
+					</div>
+					<div class="bar second">
+						<div class="pointer"></div>
+						<div class="description">
+							<p>
+								<%= image_tag("iphone.png", :width=>'48', :height=>'48') %> 
+								<%= image_tag("android.png",  :width=>'48', :height=>'48') %><br>
+								Sync the words to mobile
+							</p>
+						</div>
+					</div>
+					<div class="bar third">
+						<div class="pointer"></div>
+						<div class="description">
+							<p>
+								Learn anytime, anywhere
+								<%= image_tag("train.png", :width=>'48', :height=>'48') %> <%= image_tag("bus.png",  :width=>'48', :height=>'48') %><br>
+
+							</p>
+						</div>
+					</div>
+					<div class="bar fourth">
+						<div class="pointer"></div>
+						<div class="description">
+							<p>
+								<%= image_tag("bar_chart.png", :width=>'48', :height=>'48') %> <%= image_tag("line_chart.png",  :width=>'48', :height=>'48') %>
+								Understand your progress using reports<br>
+							</p>
+						</div>
+					</div>
+					<div class="bar fifth">
+						<div class="pointer"></div>
+						<div class="description">
+							<p>
+								Sharing while study<br>
+								<%= image_tag("community.png", :width=>'48', :height=>'48') %>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="signup-panel">
+		<h1>Start learning</h1>
+		<p>
+			Start today to put yourself into different learning experience: 
+			<ul>
+				<li>Smart facilitating</li>
+				<li>Efficient</li>
+				<li>Fun</li>
+			</ul>
+
+		</p>
+		<%= link_to "signup", signup_path, :class=>'signup' %>
+	</div>
 </div>
-<div class="clear">&nbsp;</div>
-<div class="grid_12 prefix_2">
-	<p>
-		Feedback driven 
-	</p>
-</div>
-<div class="clear">&nbsp;</div>

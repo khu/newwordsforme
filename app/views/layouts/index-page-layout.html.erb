@@ -6,96 +6,9 @@
 		</title><%= csrf_meta_tag %><%= render 'layouts/signin-signup' %><%= javascript_include_tag 'jquery-1.4.4' %>
 	</head>
 	<body class="home">
-		<div id="header" style="background-color:black">
-			<h5 id="main-logo">
-				<a href="">Keep In</a>
-			</h5>
-			<ul id="nav">
-				<li id="link-login">
-					<%= link_to "Login", signin_path %>
-				</li>
-				<li id="link-download-mobiles">
-					<a>Mobiles</a>
-				</li>
-				<li id="link-download-plugins">
-					<a>Plugins</a>
-				</li>
-			</ul>
-			<div style="clear:both"></div>
-		</div>
+		<%= render 'layouts/header' %>
 		<div id="wrapper">
 			<div id="main">
-				<div >
-					<div id="chart-panel">
-						<div id="chart-wrapper">
-							<div id="chart">
-								<div id="bars">
-									<div class="bar first">
-										<div class="pointer"></div>
-										<div class="description">
-											<p>
-												Record with plugin<br>
-												<%= image_tag("plugin.png", :width=>'48', :height=>'48') %>
-												<%= image_tag("safari.png",  :width=>'48', :height=>'48') %> 
-											</p>
-										</div>
-									</div>
-									<div class="bar second">
-										<div class="pointer"></div>
-										<div class="description">
-											<p>
-												<%= image_tag("iphone.png", :width=>'48', :height=>'48') %> 
-												<%= image_tag("android.png",  :width=>'48', :height=>'48') %><br>
-												Sync the words to mobile
-											</p>
-										</div>
-									</div>
-									<div class="bar third">
-										<div class="pointer"></div>
-										<div class="description">
-											<p>
-												Learn anytime, anywhere
-												<%= image_tag("train.png", :width=>'48', :height=>'48') %> <%= image_tag("bus.png",  :width=>'48', :height=>'48') %><br>
-
-											</p>
-										</div>
-									</div>
-									<div class="bar fourth">
-										<div class="pointer"></div>
-										<div class="description">
-											<p>
-												<%= image_tag("bar_chart.png", :width=>'48', :height=>'48') %> <%= image_tag("line_chart.png",  :width=>'48', :height=>'48') %>
-												Understand your progress using reports<br>
-											</p>
-										</div>
-									</div>
-									<div class="bar fifth">
-										<div class="pointer"></div>
-										<div class="description">
-											<p>
-												Sharing while study<br>
-												<%= image_tag("community.png", :width=>'48', :height=>'48') %>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="signup-panel">
-						<h1>Start learning</h1>
-						<p>
-							Start today to put yourself into different learning experience: 
-							<ul>
-								<li>Smart facilitating</li>
-								<li>Efficient</li>
-								<li>Fun</li>
-							</ul>
-
-						</p>
-						<%= link_to "signup", signup_path, :class=>'signup' %>
-					</div>
-				</div>
 			</div>
 		</div>
 	</body>

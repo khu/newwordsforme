@@ -1,58 +1,17 @@
-		<div id="top-stuff">
-			<div style="clear: both;" id="banners"></div>
-			<div id="top-bar-outer">
-				<div id="top-bar-bg"></div>
-				<div id="top-bar">
-					<div class="top-bar-inside">
-						<div class="static-links">
-							<div id="logo">
-								<a href="/">KeepIn</a>
-							</div>
-							<div id="global-nav">
-								<ul>
-									<li id="global-nav-home" class="active">
-										<%= link_to "Home", user_path(@user) %>
-									</li>
-									<li id="global-nav-profile">
-										<a href="/#!/iamhukai">Vocabulary</a>
-									</li>
-									<li id="global-nav-messages">
-										<a href="/#!/messages">Take an exam!</a>
-									</li>
-								</ul>
-							</div>
-							<div id="sections"></div>
-						</div>
-						<div class="active-links">
-							<div class="loggedin" id="session">
-								<a href="#" class="profile-links">
-									<span id="profile-image">
-										<img src="http://a0.twimg.com/profile_images/133985056/Photo_4_normal.jpg">
-									</span>
-								</a>
-								<span id="screen-name">iamhukai</span>
-								<div class="dropdown">
-									<ul class="user-dropdown">
-										<li>
-											<a href="/settings/account">Settings</a>
-										</li>
-										<li>
-											<a href="http://support.twitter.com">Help</a>
-										</li>
-										<li>
-											<a href="/account/use_phx?setting=false&amp;format=html">Switch to Old Twitter</a>
-										</li>
-										<li>
-											<form method="post" action="/logout" class="signout-form">
-												<a href="#" class="signout-button">Sign out</a> <input type="hidden" name="authenticity_token" value="a6db05da322450efc1993d101dad6c0022372e62">
-											</form>
-										</li>
-									</ul>
-								</div>
-							</div><a id="new-tweet" original-title="New Tweet" name="new-tweet"><span>New Tweet</span></a>
-						</div>
-					</div>
-				</div>
-				<div id="message-drawer"></div>
-			</div>
-		</div>
+<div id="header" style="background-color:black">
+	<h5 id="main-logo">
+		<a href="">Keep In</a>
+	</h5>
+	<ul id="nav">
+		<li id="link-login">
+			<%= link_to "Login", signin_path %>
+		</li>
+		<li id="link-download-mobiles">
+			<a>Mobiles</a>
+		</li>
+		<li id="link-download-plugins">
+			<a>Plugins</a>
+		</li>
+	</ul>
+	<div style="clear:both"></div>
+</div>

@@ -3,46 +3,19 @@
 	<head>
 		<title>
 			<%= @title %>
-		</title><%= csrf_meta_tag %><%= render 'layouts/stylesheets' %>
+		</title>
+		<%= csrf_meta_tag %>
+		<%= stylesheet_link_tag 'reset', :media => 'screen' %>
+		<%= stylesheet_link_tag 'keepin', :media => 'screen' %>
+		<%= javascript_include_tag 'jquery-1.4.4' %>
 	</head>
-	<body>
-		<div id="doc" class="route-home">
-			<%= render 'layouts/header' %>
-			<div id="page-outer">
-				<div id="page-container" class="home-container">
-					<div>
-						<div class="main-content" style="min-height: 238px">
-							<div class="home-header">
-								<%= render "/layouts/keep-in-mind-box"%>
-								<ul class="stream-tabs">
-									<li class="stream-tab stream-tab-home">
-										<a href="#" title="All you follow" class="tab-text">This week</a>
-									</li>
-									<li class="stream-tab stream-tab-mentions active">
-										<a href="#" title="Mentions" class="tab-text">This month</a>
-									</li><!-- here once stood an html comment fight btwn @ded and @k -->
-									<li class="stream-tab stream-tab-retweets dropdown-link">
-										<a href="#" class="tab-text">All</a>
-									</li>
-								</ul>
-							</div>
-							<div class="stream-manager">
-								<div>
-									<div class="stream-title"></div>
-									<div>
-										<div class="steam">
-											<div class="stream-items">
-												<%= yield %>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="dashboard"></div>
-					</div>
-				</div>
+	<body class="home">
+		<%= render 'layouts/header' %>
+		<div id="wrapper">
+			<div id="main">
+				<%= yield %>
 			</div>
 		</div>
 	</body>
 </html>
+
