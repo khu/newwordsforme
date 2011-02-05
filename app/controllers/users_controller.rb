@@ -3,12 +3,14 @@ class UsersController < ApplicationController
   
   def show
       @user = User.find(params[:id])
+      @tabs = Tabs.new.logged_in @user
       @title = "Settings"
   end
   
   def new
       @user = User.new
       @title = "Sign up"
+      @tabs = Tabs.new.logged_out
       render 'new'
   end
   
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
       ## Reset password input after failed password attempt
       @user.password = nil
       @user.password_confirmation = nil
+      @tabs = Tabs.new.logged_out
       render 'new'
     end
   end
