@@ -49,7 +49,7 @@ class WordsController < ApplicationController
     
     respond_to do |format|
       format.json {redirect_to(show_word_path(User.find(userid), @word.word) + ".json")}  
-      format.html {redirect_to(user_path(@word.user))}
+      format.html {redirect_to(user_path(@word.user).to_s)}
       format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end
