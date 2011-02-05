@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
+
+    
   def home
     @title = "Home"
+    @tabs = Tabs.new.logged_out
   end
 
   def help

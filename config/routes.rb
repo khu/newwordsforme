@@ -1,10 +1,13 @@
 Keepin::Application.routes.draw do
 
+  match '/mobile',  :to => 'pages#mobile'
+  match '/plugins', :to => 'pages#plugins'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
+  
   match 'users/:id/words/:word', :to => 'words#show_word', :as => "show_word"
   
   root :to => 'pages#home'

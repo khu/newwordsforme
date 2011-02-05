@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
     @title = "Sign in"
+    @tabs = Tabs.new.logged_out.select :signin
   end
 
   def create

@@ -75,15 +75,19 @@ body #wrapper #chart .fifth h2{background-position:center -73px !important;}
     padding: 0;
 }
 
-ul li#link-login {
+ul li#link-signin {
 	border-bottom:4px solid #174dab;
 }
+ul li#link-signin.selected {
+	border-bottom:0;
+}
 
-#link-download-mobiles {
+
+#link-mobiles {
 	border-bottom:4px solid #e55c00;	
 }
 
-#link-download-plugins {
+#link-plugins {
 	border-bottom:4px solid #377800;
 }
 

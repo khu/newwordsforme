@@ -3,15 +3,11 @@
 		<a href="">Keep In</a>
 	</h5>
 	<ul id="nav">
-		<li id="link-login">
-			<%= link_to "Login", signin_path %>
-		</li>
-		<li id="link-download-mobiles">
-			<a>Mobiles</a>
-		</li>
-		<li id="link-download-plugins">
-			<a>Plugins</a>
-		</li>
+		<% @tabs.each { |tab| %>
+			<li class="<%=tab.css%>" id="link-<%=tab.id%>"> 
+				<%= link_to tab.label, tab.url  %>
+			</li>
+		<% } %>
 	</ul>
 	<div style="clear:both"></div>
 </div>
