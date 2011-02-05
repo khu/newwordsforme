@@ -15,10 +15,8 @@ class SessionsController < ApplicationController
       @tabs = Tabs.new.logged_out
       render 'new'
     else
-      # Sign the user in and redirect to the user's show page.
       sign_in user
-      # redirect_to user
-      redirect_back_or user ## Listing 10.17
+      redirect_to user_path(user)
     end
   end
 
