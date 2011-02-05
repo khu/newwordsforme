@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       render 'new'
     else
       sign_in user
-      redirect_to user_path(user)
+      redirect_to user_path(user).to_s
     end
   end
 
