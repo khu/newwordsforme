@@ -50,7 +50,7 @@ module SessionsHelper
 
   ## Listing 10.16
   def redirect_back_or(default)
-    redirect_to(user_path(default))
+    redirect_to(session[:return_to].to_s || user_path(default).to_s)
     clear_return_to
   end
 
