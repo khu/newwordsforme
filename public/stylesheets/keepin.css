@@ -15,7 +15,7 @@ li{margin-left:30px;}
 b,strong{font-weight:bold;}
 
 
-#main{overflow:hidden;padding:37px 8em 28px 8em}
+#main{overflow:hidden;padding:37px 5em 28px 5em}
 .home{background-color:#F3F1E5;}
 .rightpane{float:right;width:425px;padding:21px 27px 0 0;}
 .accordion{float:left;margin:0;padding:0;list-style:none;height:360px;overflow:hidden;}
@@ -23,7 +23,7 @@ b,strong{font-weight:bold;}
 
 body #wrapper #chart{background:rgba(0,0,0,0.2);-moz-border-radius:32px;-webkit-border-radius:32px;}
 body #wrapper #chart #bars{float:left;width:950px;border-bottom:1px solid rgba(255,255,255,0.05);margin:7px 0 7px 8px;-moz-border-radius:28px;-webkit-border-radius:28px;}
-body #wrapper #chart .bar{float:left;width:120px;height:40px;position:relative;}
+body #wrapper #chart .bar{float:left;width:100px;height:40px;position:relative;}
 body #wrapper #chart .bar .pointer{background:url("/images/bg-pointer.png") 0 0 no-repeat;height:62px;width:17px;position:absolute;left:44%;top:-35px;}
 body #wrapper #chart .bar .description{position:absolute;width:100%;text-align:center;top:-82px;}
 body #wrapper #chart .bar .description h2{background:url("/images/bg-chart-titles.png") center 0 no-repeat;height:16px;width:100%;margin:0 0 3px;padding:0;}
@@ -44,14 +44,24 @@ body #wrapper #chart .fifth h2{background-position:center -73px !important;}
 
 #chart-panel{
 	float:left;
-	width:70%;
+	width:600px;
 	padding-top:7em;
 	height:300px;
 }
 
 #signup-panel{
 	float:left;
-	width:30%;
+	width:300px;
+	margin-left:50px;
+}
+
+#signup-panel .subtag {
+	width: 230px;
+}
+
+#signup-panel .subtag span {
+	display:block;
+	margin-bottom: 28px;
 }
 
 
@@ -61,7 +71,7 @@ body #wrapper #chart .fifth h2{background-position:center -73px !important;}
 }
 #nav {
 	height : 40px;
-	padding-right:30px;
+	padding-right:145px;
 }
 #nav li {
     float: right;
@@ -71,8 +81,8 @@ body #wrapper #chart .fifth h2{background-position:center -73px !important;}
 
 #main-logo {
 	float: left;
-    margin: 0;
-    padding: 0;
+    margin: 10px 0 0 0;
+    padding: 0 0 0 140px;
 }
 
 ul li#link-signin {
