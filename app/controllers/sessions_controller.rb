@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       # Create an error message and re-render the signin form.
       flash.now[:error] = "Invalid email/password combination."
       @title = "Sign in"
+      @tabs = Tabs.new.logged_out
       render 'new'
     else
       # Sign the user in and redirect to the user's show page.
