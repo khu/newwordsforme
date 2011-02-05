@@ -11,6 +11,8 @@ class WordsController < ApplicationController
     @user  =  User.find(params[:user_id])
 
     @words = @user.method(mode).call(today);
+    @tabs = Tabs.new.logged_in(@user)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
