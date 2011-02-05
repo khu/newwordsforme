@@ -19,15 +19,15 @@ Feature: Live
 Scenario: Save the example sentence
 	 Given "Figo" logged in
 	 When  "Figo" save "apple@I love apple" into vocabulary from home page
-	 Then  "Figo" should see "apple" with translation ""
+	 Then  "Figo" should see "apple" with translation "\u82f9\u679c"
 	 Then  "Figo" should see sample "I love apple"
 
 @Figo @wip
   Scenario: Save where the word from
  	 Given "Figo" logged in
-	 When  "Figo" save "apple@http://google.com" into vocabulary from home page
-	 Then  "Figo" should see "apple" with translation ""
-	 Then  "Figo" should see link "http://google.com"
+	 When  "Figo" save "apple@http://icgoogle.com" into vocabulary from home page
+	 Then  "Figo" should see "apple" with translation "\u82f9\u679c"
+	 Then  "Figo" should see link "http://icgoogle.com"
 
 
 @Figo

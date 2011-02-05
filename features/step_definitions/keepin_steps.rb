@@ -43,6 +43,7 @@ Then /^"([^"]*)" should see sample "([^"]*)"$/ do |user, sample|
 end
 
 Then /^"([^"]*)" should see link "([^"]*)"$/ do |user, link|
+    puts response.body
     response.should contain(link)
 end
 

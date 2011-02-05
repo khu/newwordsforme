@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
       @user = User.find(params[:id])
       @tabs = Tabs.new.logged_in @user
+      @words = @user.word.reverse;
       @title = "Settings"
   end
   
