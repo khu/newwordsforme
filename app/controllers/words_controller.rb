@@ -45,9 +45,10 @@ class WordsController < ApplicationController
     @word =  Word.create({:word=>single_word, :user_id => userid})
     @word.translate!
     @word.save
-
+    puts user_path(@word.user)
+    
     respond_to do |format|
-      format.json {redirect_to(show_word_path(User.find(userid), @word.word) + ".json")}
+      format.json {redirect_to(show_word_path(User.find(userid), @word.word) + ".json")}  
       format.html {redirect_to(user_path(@word.user))}
       format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
