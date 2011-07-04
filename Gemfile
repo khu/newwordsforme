@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'annotate-models', '1.0.4'
+# gem 'annotate-models', '1.0.4'
 
 group :development, :test do
   gem 'factory_girl_rails', '1.0'
@@ -13,9 +13,9 @@ group :development, :test do
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
-  gem "cucumber",         :git => "git://github.com/aslakhellesoy/cucumber.git"
+  gem "cucumber"       
   gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
-  gem "cucumber-rails",   :git => "git://github.com/aslakhellesoy/cucumber-rails.git"
+  gem "cucumber-rails"
 end
 
 # Bundle edge Rails instead:
