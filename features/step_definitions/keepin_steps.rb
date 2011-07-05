@@ -15,11 +15,10 @@ When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, wordx
   visit user_path(Factory.create(user))
   fill_in "word_word", :with => wordx
   click_button "word_submit"
-  follow_redirect!
 end
 
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
-  response.should contain(translation)
+  page.body.should contain(translation)
 end
 
 When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
@@ -28,23 +27,22 @@ end
 
 Then /^"([^"]*)" can see:$/ do |arg1, words_table|
   words_table.hashes.each {|hash| 
-    response.should contain(hash[:word])
+    page.body.should contain(hash[:word])
   }
 end
 
 Then /^"([^"]*)" can see all "([^"]*)" words:$/ do |user, status, words|
   words.hashes.each {|hash| 
-    response.should contain(hash[:word])
+    page.body.should contain(hash[:word])
   }
 end
 
 Then /^"([^"]*)" should see sample "([^"]*)"$/ do |user, sample|
-    response.should contain(sample)
+    page.body.should contain(sample)
 end
 
 Then /^"([^"]*)" should see link "([^"]*)"$/ do |user, link|
-    puts response.body
-    response.should contain(link)
+    page.body.should contain(link)
 end
 
 

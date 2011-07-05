@@ -3,11 +3,11 @@ Feature: Live
   people
   want to be able to eat strawberries
 
-@Figo @done
+@Figo @done @current @javascript
   Scenario: Save single english word
     Given "Figo" logged in
     When  "Figo" save "Apple" into vocabulary from home page
-    Then  "Figo" should see "apple" with translation "\u82f9\u679c"
+    Then  "Figo" should see "apple" with translation "苹果"
 
 @Figo
   Scenario: Save incorrect english word
