@@ -16,6 +16,8 @@ group :development, :test do
   gem "cucumber"       
   gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
   gem "cucumber-rails"
+  gem "curb"
+  gem "json"
 end
 
 # Bundle edge Rails instead:

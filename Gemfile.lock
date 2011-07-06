@@ -67,6 +67,7 @@ GEM
       cucumber (~> 1.0.0)
       nokogiri (>= 1.4.4)
       rack-test (>= 0.5.7)
+    curb (0.7.15)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -148,8 +149,10 @@ DEPENDENCIES
   autotest-rails
   cucumber
   cucumber-rails
+  curb
   database_cleaner!
   factory_girl_rails (= 1.0)
+  json
   machinist!
   rails (= 3.0.3)
   rspec
