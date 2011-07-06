@@ -7,6 +7,7 @@
 					<div class="sponsorFlip">
 						<%= time_ago_in_words(word.created_at)%>
 						<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.word%></div>
+
 					</div>
 					<div class="sponsorData">
 						<div class="sponsorDescription">
@@ -16,9 +17,22 @@
 							<a href="<%= word.link%>"><%= (word.sample || word.link)%></a>
 						</div>
 					</div>
+
+				</div>
+				<div style="clear:both">
+					<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" >edit</a>
 				</div>
 			<%}%>
 	<div>
+</div>
+
+<div class="dialog" style='display:none'>
+	<div id="name">
+		Word: <span id='word' ></span><br/>
+		Translation: <span id='translation'></span><br/>
+		Tags: <input type='text' id='tag'/>		
+	</div>
+
 </div>
 
 <script>
@@ -63,5 +77,26 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.edit').bind('click', function(){
+		user_id = $(this).attr('user_id');
+		word_id = $(this).attr('word_id');
+		word = $(this).attr('word');
+		translation = $(this).attr('translation');
+
+		$('.dialog').dialog({
+			modal:true,
+			title : "Edit Word",
+			open : function(){
+				$('#word').html(word);
+				$('#translation').html(translation);
+			},
+			buttons: { "OK": function() { 
+				// TODO : Ajax save tags
+				$('#word').html('');
+				$('#translation').html('');
+				$(this).dialog("close"); 
+			}}
+		});
+	});
 });
 </script>
