@@ -59,13 +59,13 @@ Scenario: list all words I do not master
 	|month|
 	
 
-@arden
+@arden @wip
   Scenario: hide the translation for the words words for this month
 	Give "Arden" logged in
 	When "Arden" visit new words for "this month"
 	Then "Arden" cannot see any translation
 
-@arden
+@arden @wip
   Scenario: show the translation for the words words for this month
 	Give "Arden" logged in
 	When "Arden" visit new words for "this month"
