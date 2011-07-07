@@ -3,24 +3,37 @@
 <div id="cards">
 	<div class="sponsorListHolder">
 			<% @words.each { |word| %>
-				<div class="sponsor" title="Click to flip">
-					<div class="sponsorFlip">
-						<%= time_ago_in_words(word.created_at)%>
-						<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.word%></div>
-
-					</div>
-					<div class="sponsorData">
-						<div class="sponsorDescription">
-							<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.translation%></div>
+				<div id='<%= word.word %>' style='float:left'>
+					<div class="sponsor" title="Click to flip">
+						<div class="sponsorFlip">
+							<div id="name" style="padding: 10px 10px 40px">
+								<%= time_ago_in_words(word.created_at)%>								
+								<div class='word-content'>
+									<%=word.word%>
+								</div>
+							</div>
+							<div class='tag'>
+								<ul style="margin-left:10px; ">
+									<% word.tags.each do |tag| %>
+									 <li class='tag-item'>
+									 	<%= tag.name %>
+									 </li>	
+									<% end%>
+								</ul>
+							</div>
 						</div>
-						<div class="sponsorURL">
-							<a href="<%= word.link%>"><%= (word.sample || word.link)%></a>
+					 	<div class="sponsorData">
+							<div class="sponsorDescription">
+								<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.translation%></div>
+							</div>
+							<div class="sponsorURL">
+								<a href="<%= word.link%>"><%= (word.sample || word.link)%></a>
+							</div>
 						</div>
-					</div>
-
-				</div>
-				<div style="clear:both">
-					<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" >edit</a>
+					</div>					
+					<div style='margin-left:10px'>
+						<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" >edit</a>
+					</div>	
 				</div>
 			<%}%>
 	<div>
@@ -76,14 +89,17 @@ $(document).ready(function(){
 			elem.data('flipped',true);
 		}
 	});
-	
 	$('.edit').bind('click', function(){
+		var me = $(this);
+					
 		user_id = $(this).attr('user_id');
 		word_id = $(this).attr('word_id');
 		word = $(this).attr('word');
 		translation = $(this).attr('translation');
+		
 
 		$('.dialog').dialog({
+
 			modal:true,
 			title : "Edit Word",
 			open : function(){
@@ -91,10 +107,29 @@ $(document).ready(function(){
 				$('#translation').html(translation);
 			},
 			buttons: { "OK": function() { 
-				// TODO : Ajax save tags
-				$('#word').html('');
-				$('#translation').html('');
-				$(this).dialog("close"); 
+				$.ajax({
+					url: "/words/add_tag",
+					type: "POST",
+					data: {"word": {"word_id" : word_id,"tag": $('#tag').val()}},
+					dataType: "json",
+					success :function(data){
+						if(data.state == "created"){
+							var ul = me.parent().prev().children('.sponsorFlip').children('.tag').children()[0];
+							var new_tag = $("<li class='tag-item'></li");
+							new_tag.text($('#tag').val());
+							new_tag.addClass('new-tag');
+							$(ul).append(new_tag);
+							$('#word').html('');
+							$('#translation').html('');
+							$(".dialog").dialog("close"); 
+						}else if(data.state == 'attached'){
+							$('#word').html('');
+							$('#translation').html('');
+							$(".dialog").dialog("close");	
+						}else{}
+					},
+					error: function(){ window.log("error");}
+				})
 			}}
 		});
 	});

@@ -54,6 +54,30 @@ class WordsController < ApplicationController
     end
   end
   
+  def add_tag
+   if (not Word.exists? params[:word][:word_id]) || params[:word][:tag].length == 0
+     render :json => {:state => "failure"}
+     return 
+   end
+   
+    word = Word.find(params[:word][:word_id])
+    
+    if Tag.find_by_name(params[:word][:tag])
+      tag = Tag.find_by_name(params[:word][:tag])
+      if word.tags.include? tag
+        render :json => {:state => "attached"}
+        return
+      end
+      word.tags << Tag.find_by_name(params[:word][:tag])
+      word.save
+    else
+      tag = word.tags.create(:name => params[:word][:tag])
+      tag.save
+    end
+
+    render :json => {:state => "created"}
+  end
+  
   private
   def authorize
     #unless User.find_by_id(session[:user_id]) flash[:notice] = "Please log in" redirect_to :controller => :admin, :action => :login

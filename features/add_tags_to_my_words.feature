@@ -8,9 +8,13 @@ Feature: Add Tags
 	And there exists a word "hello" for "Rick"
 
 @javascript
-Scenario: I should see the edit link on the specific word
+Scenario: Single Tag should be added to my specific word
    Given I logged in as "Rick"
-   Then I should be on Rick's page
-   Then show me the page
-   Then I follow "edit"
+   When I follow "edit"
+   And I fill in "greeting" for "tag"
+   And I press "OK"
+   Then I should see "greeting" tag
+   
+   
+
 
