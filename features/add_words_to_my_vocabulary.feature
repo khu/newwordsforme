@@ -5,7 +5,7 @@ Feature: Live
 
 @Figo @done
   Scenario: Save single english word
-    Given "Figo" logged in
+	Given "Figo" logged in
     When  "Figo" save "Apple" into vocabulary from home page
     Then  "Figo" should see "apple" with translation "苹果"
 

@@ -6,6 +6,11 @@ class UsersController < ApplicationController
       @tabs = Tabs.new.logged_in @user
       @words = @user.word.reverse;
       @title = "Settings"
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml #{ render :xml => @words, :template => "show.xml.erb" }
+      end
   end
   
   def new

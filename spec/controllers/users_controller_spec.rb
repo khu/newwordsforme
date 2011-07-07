@@ -17,6 +17,15 @@ describe UsersController do
         get :show, :id => @user
         assigns(:user).should == @user
       end
+      
+      it "should subscribe the rss results" do
+        url = "http://localhost:3000/users/#{@user.id}.xml"
+        rss = `curl #{url}`
+        rss.should have_selector("rss[version='2.0']")
+        rss.should have_selector("words")
+        rss.should have_selector("word")
+        rss.should have_selector("english")
+      end
   end
   
   describe "GET 'new'" do
