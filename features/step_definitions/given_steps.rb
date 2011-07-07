@@ -12,5 +12,5 @@ end
 
 Given /^there exists a word "([^"]*)" for "([^"]*)"$/ do |word, user|
   rick = User.find_by_name(user)
-  hello = rick.word.create!(:word => word, :translation => "你好")
+  hello = rick.word.create!(:word => word, :translation => "hello")
 end

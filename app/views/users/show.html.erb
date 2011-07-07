@@ -41,6 +41,8 @@
 
 <div class="dialog" style='display:none'>
 	<div id="name">
+		<div class='error-message'>
+		</div>
 		Word: <span id='word' ></span><br/>
 		Translation: <span id='translation'></span><br/>
 		Tags: <input type='text' id='tag'/>		
@@ -123,14 +125,19 @@ $(document).ready(function(){
 							$('#translation').html('');
 							$(".dialog").dialog("close"); 
 						}else if(data.state == 'attached'){
-							$('#word').html('');
-							$('#translation').html('');
-							$(".dialog").dialog("close");	
+							$('.error-message').html('Sorry,existing tag has already attached');
+							$('#tag').addClass("error")
 						}else{}
 					},
 					error: function(){ window.log("error");}
 				})
-			}}
+			  },
+			  "Cancel": function(){
+				$('#word').html('');
+				$('#translation').html('');
+				$(".dialog").dialog("close"); 
+				}
+			}
 		});
 	});
 });

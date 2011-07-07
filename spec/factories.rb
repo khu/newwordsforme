@@ -34,10 +34,3 @@ Factory.define :Unice, :class => User do |u|
   u.password              "password"
   u.password_confirmation "password"
 end
-
-Factory.define :Rick, :class => User do |u|
-  u.name                  "Rick"
-  u.email                 "rick@gmail.com"
-  u.password              "password"
-  u.password_confirmation "password"
-end

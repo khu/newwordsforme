@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe WordsController do
@@ -5,7 +7,7 @@ describe WordsController do
   context "add tags for word" do
     before(:each) do
         @user = Factory(:Figo)
-        @word = @user.word.create!(:word => 'hello', :translation => "你好")
+        @word = @user.word.create!(:word => 'hello', :translation => '你好')
     end
 
     it "should return created given a correct tag with existing word" do
