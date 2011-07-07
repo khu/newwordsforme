@@ -17,14 +17,13 @@ end
 
 When /^"([^"]*)" post a word "([^"]*)" to the API with password "([^"]*)"$/ do |username, word, password|
   user = User.find_by_name(username)
-  url = "http://localhost:3000/users/#{user.id}/words.json"
-  json_to_post = { "user_id" => user.id, "word" => { "word" => word } }.to_json
-  @post_new_word = Curl::Easy.http_post(url, json_to_post) do |request|
-    request.headers['Accept'] = 'application/json'
-    request.headers['Content-Type'] = 'application/json'
-  end
+  path = "/users/#{user.id}/words.json"
+  data = { "user_id" => user.id, "word" => { "word" => word } }.to_json
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  post path, data
 end
 
 Then /^Rick can get a response with HTTP status code (\d+) \(Created\)$/ do |code_wanted|
-  @post_new_word.response_code.should == code_wanted
+  last_response.status.should == code_wanted
 end
