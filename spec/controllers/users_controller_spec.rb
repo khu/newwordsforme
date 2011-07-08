@@ -28,8 +28,8 @@ describe UsersController do
       end
       
       it "should subscribe all the words" do
-        @user.word.create!(:word =>"new", :translation => "新的", :created_at => Time.new, :updated_at => Time.new)
-        @user.word.create!(:word =>"go", :translation => "进入", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
+        @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
+        @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
         get :show, :id => @user.id, :format => :rss
         
         @user.word.each do |word|
@@ -39,8 +39,8 @@ describe UsersController do
       end
 
       it "should subscribe all the words group by updated date" do
-        @user.word.create!(:word =>"new", :translation => "新的", :created_at => Time.new, :updated_at => Time.new)
-        @user.word.create!(:word =>"go", :translation => "进入", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
+        @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
+        @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
         get :show, :id => @user.id, :format => :rss
         
         response.should have_selector("item", :count => 2)

@@ -35,8 +35,6 @@ Factory.define :Unice, :class => User do |u|
   u.password_confirmation "password"
   
 end
-<<<<<<< Updated upstream
-=======
 
 Factory.define :Rick, :class => User do |u|
   u.name                  "Rick"
@@ -44,20 +42,3 @@ Factory.define :Rick, :class => User do |u|
   u.password              "password"
   u.password_confirmation "password"
 end
-
-Factory.define :go, :class => Word do |w|
-  w.asscociation          :Figo
-  w.word                  "go"
-  w.translation           "进入"
-  w.created_at            Time.new
-  w.updated_at            Time.new
-end
-
-Factory.define :new, :class => Word do |w|
-  w.asscociation          :Figo
-  w.word                  "new"
-  w.translation           "新的"
-  w.created_at            Time.new
-  w.updated_at            Time.new
-end
->>>>>>> Stashed changes
