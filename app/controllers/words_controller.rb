@@ -48,9 +48,9 @@ class WordsController < ApplicationController
     puts user_path(@word.user)
     
     respond_to do |format|
-      format.html {redirect_to(user_path(@word.user).to_s)}
-      format.xml  { render :xml => @word, :status => :created, :locatoin => @word }
       format.json { render :json => @word, :status => :created }
+      format.html {redirect_to(user_path(@word.user).to_s)}
+      format.xml  { render :xml => @word, :status => :created, :location => @word }
     end
   end
   
