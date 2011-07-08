@@ -7,10 +7,7 @@ class UsersController < ApplicationController
       @words = @user.word.reverse;
       @title = "Settings"
       
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml #{ render :xml => @words, :template => "show.xml.erb" }
-      end
+      @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
   end
   
   def new
