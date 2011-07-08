@@ -1,10 +1,10 @@
 class Word < ActiveRecord::Base 
-  validates :word, :presence => true 
+  validates :word, :presence => true
   validates :translation, :presence => true
 
   belongs_to :user
   has_many :word_tag_relations
-  has_many :tags, :through => :word_tag_relations
+  has_many :tags, :through => :word_tag_relations, :limit => 2
   
   def translate!
     translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ word + '&langpair=en|zh-CN'
