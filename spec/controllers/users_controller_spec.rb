@@ -46,7 +46,7 @@ describe UsersController do
         response.should have_selector("item", :count => 2)
         @user.word.each do |word|
           response.should have_selector("rss channel item title", :content => "#{word.updated_at.to_date}")
-          response.should have_selector("rss channel item description", :content => "#{word.word} #{word.translation}")
+          response.should have_selector("rss channel item description", :content => "#{word.word} #{word.translation} #{word.sample}")
         end
       end
   end
