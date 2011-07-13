@@ -50,7 +50,6 @@ class WordsController < ApplicationController
         format.html {redirect_to(user_path(@word.user).to_s)}
       end
     end
-    respond_with(@word)
   end
   
   def add_tag
