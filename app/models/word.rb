@@ -1,5 +1,7 @@
 class Word < ActiveRecord::Base 
-  validates :word, :presence => true 
+  validates :word, :presence => true,
+            :uniqueness => { :case_sensitive => false }
+
   validates :translation, :presence => true
 
   belongs_to :user
