@@ -8,6 +8,7 @@ Keepin::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout',  :to => 'sessions#destroy'
+  match '/get_word_tags', :to => 'words#get_word_tags'
   
   match 'users/:id/words/:word', :to => 'words#show_word', :as => "show_word"
   

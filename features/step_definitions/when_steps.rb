@@ -7,3 +7,11 @@ end
 When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
   visit user_words_path(User.find_by_name(user), {:today=>DateTime.parse("2011-01-21"), :mode=>period})
 end
+
+# When I flipper the word "hello" 2 times
+When /^I flipper the word "([^"]*)" (\d+) times$/ do |word, times|
+  #class="sponsor" title="Click to flip"
+  div1 = page.find("div[@id=#{word}]").find("div[@class=sponsor]")
+  div1.click
+  div1.click
+end
