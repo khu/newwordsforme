@@ -1,0 +1,13 @@
+.popup-notification-icon[popupid="flashcard-add"] {
+	list-style-image: url("chrome://flashcard/skin/icon.png");
+	background-color: green;
+}
+
+.notification{
+	position: fixed;
+	padding:10px;
+	background: url("chrome://flashcard/skin/icon.png") no-repeat;
+	width:250;
+	height:250;
+	overflow: visible;
+}

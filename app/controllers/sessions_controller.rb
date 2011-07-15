@@ -19,6 +19,16 @@ class SessionsController < ApplicationController
       redirect_to user_path(user).to_s
     end
   end
+  
+  def userid
+    user = User.authenticate(params[:email],
+                             params[:password])
+    if user.nil?
+      render :json => {:state => "failed"}
+    else
+      render :json  => {:state => "success", :id => user.id}
+    end
+  end
 
   def destroy
     sign_out

@@ -1,0 +1,8 @@
+overlay		chrome://browser/content/browser.xul    chrome://flashcard/content/overlay.xul
+content		flashcard	chrome/content/flashcard/
+resource	flashcard	chrome/content/flashcard/
+skin	flashcard	classic	chrome/skin/classic/flashcard/
+
+
+locale	flashcard	en-US	chrome/locale/flashcard/en-US/
+style	chrome://global/content/customizeToolbar.xul	chrome://flashcard/skin/skin.css

@@ -23,6 +23,8 @@ Keepin::Application.routes.draw do
   resources :sessions
   
   post "words/add_tag"
+  
+  post "sessions/userid"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
