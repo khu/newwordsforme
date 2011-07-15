@@ -38,6 +38,16 @@ describe WordsController do
 
       response.should contain("attached")
     end
+    
+    it "should return all tags of the special word in format of JSON" do
+      @word.tags.create!(:name => "greeting")
+      @word.tags.create!(:name => "test")
+      get :get_word_tags, :id => @word.id, :format => :json
+      result = JSON.parse(response.body)
+
+      result[0]['tag']['name'].include?("greeting").should be_true      
+      result[1]['tag']['name'].include?("test").should be_true      
+    end
   end
 end
 

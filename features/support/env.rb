@@ -6,19 +6,11 @@
 
 require 'cucumber/rails'
 
-require 'webrat'
-require 'webrat/core/matchers'
-require 'factory_girl'
-require "factory_girl/step_definitions"
-
-Webrat.configure do |config|
-  config.mode = :rack
-  config.open_error_files = false # Set to true if you want error pages to pop up in the browser
-end
-
-require "#{Rails.root}/spec/factories"
-
-
+# Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
+# order to ease the transition to Capybara we set the default here. If you'd
+# prefer to use XPath just remove this line and adjust any selectors in your
+# steps to use the XPath syntax.
+Capybara.default_selector = :css
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
@@ -37,7 +29,22 @@ require "#{Rails.root}/spec/factories"
 #
 ActionController::Base.allow_rescue = false
 
-# Remove this line if your app doesn't have a database.
+# Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-DatabaseCleaner.strategy = :transaction
+begin
+  DatabaseCleaner.strategy = :transaction
+rescue NameError
+  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
 
+# You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
+# See the DatabaseCleaner documentation for details. Example:
+#
+#   Before('@no-txn,@selenium,@culerity,@celerity,@javascript') do
+#     DatabaseCleaner.strategy = :truncation, {:except => %w[widgets]}
+#   end
+#
+#   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript') do
+#     DatabaseCleaner.strategy = :transaction
+#   end
+#
