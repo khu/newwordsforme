@@ -1,0 +1,29 @@
+<dialog
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="dialog_login"
+  title="FlashCard"
+  persist="screenX screenY width height"
+  windowtype="DialogWindowType"
+  buttons="accept,cancel"
+	onload="window.sizeToContent();"
+	ondialogaccept="return login();">   
+	 
+<dialogheader title="Options" description="登陆到Keepin"/>
+<grid>
+    <columns><column/><column/></columns>
+    <rows>
+			<row>
+				<label control="lbl_flashcard_name" value="用户名"/>
+				<textbox id="txt_flashcard_name" type="autocomplete"/>
+			</row>
+			<row>
+				<label control="lbl_flascard_password" value="密码"/>
+				<textbox id="txt_flashcard_password" type="password"/>
+			</row>
+		</rows>
+  </grid>
+
+	<script type="application/x-javascript" src="chrome://flashcard/content/browser.js"></script>
+  <script type="application/x-javascript" src="chrome://flashcard/content/keepin.js"></script>
+  <script type="application/x-javascript" src="chrome://flashcard/content/flashcard.js"></script>
+</dialog>
