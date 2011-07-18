@@ -11,3 +11,9 @@ end
 When /^I click the "([^"]*)" tag$/ do |tag|
    click_link tag
 end
+When /^I flipper the word "([^"]*)" (\d+) times$/ do |word, times|
+  #class="sponsor" title="Click to flip"
+  div1 = page.find("div[@id=#{word}]").find("div[@class=sponsor]")
+  div1.click
+  div1.click
+end

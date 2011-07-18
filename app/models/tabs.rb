@@ -1,4 +1,5 @@
-include ActionController::UrlWriter
+#include ActionController::UrlWriter
+include Rails.application.routes.url_helpers
 
 class Tabs
   

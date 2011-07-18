@@ -5,14 +5,14 @@
 			<% @words.each { |word| %>
 				<div id='<%= word.word %>' style='float:left'>
 					<div class="sponsor" title="Click to flip">
-						<div class="sponsorFlip">
+						<div class="sponsorFlip" word_id='<%= word.id%>'>
 							<div id="name" style="padding: 10px 10px 40px">
 								<%= time_ago_in_words(word.created_at)%>								
 								<div class='word-content'>
 									<%=word.word%>
 								</div>
 							</div>
-							<div class='tag'>
+							<div class="tag">
 								<ul style="margin-left:10px; ">
 									<% word.tags.each do |tag| %>
 									 <li class='tag-item'>
@@ -66,21 +66,32 @@ $(document).ready(function(){
 		// $(this) point to the clicked .sponsorFlip element (caching it in elem for speed):
 		
 		var elem = $(this);
-		
+				
 		// data('flipped') is a flag we set when we flip the element:
 		
 		if(elem.data('flipped'))
 		{
 			// If the element has already been flipped, use the revertFlip method
 			// defined by the plug-in to revert to the default state automatically:
-			
 			elem.revertFlip();
-			
 			// Unsetting the flag:
 			elem.data('flipped',false)
 		}
 		else
 		{
+			word_id = elem.attr('word_id');
+
+			$.ajax({
+						url: "/words/add_tag",
+						type: "POST",
+						data: {"word": {"word_id" : word_id,"tag": "unfamiliar"}},
+						dataType: "json",
+						success :function(data){
+						},
+						error: function(){ 
+							window.log("error");
+						}
+					});
 			// Using the flip method defined by the plugin:
 			
 			elem.flip({
@@ -89,8 +100,25 @@ $(document).ready(function(){
 				onBefore: function(){
 					// Insert the contents of the .sponsorData div (hidden from view with display:none)
 					// into the clicked .sponsorFlip div before the flipping animation starts:
-					
 					elem.html(elem.siblings('.sponsorData').html());
+				},
+				onEnd: function(){
+					if(!elem.data('flipped'))
+					{
+						$.getJSON(
+								"/get_word_tags",
+								{ id : word_id },
+								function(result){
+									var ul = elem.children('.tag').children('ul');
+									ul.html('');
+									
+									for(var i=0; i<result.length; i++)
+									{
+										ul.append("<li class='tag-item'>"+result[i].tag.name+"</li>");
+									}
+								}
+							);
+					}
 				}
 			});
 			
@@ -110,6 +138,7 @@ $(document).ready(function(){
 					
 		user_id = $(this).attr('user_id');
 		word_id = $(this).attr('word_id');
+		
 		word = $(this).attr('word');
 		translation = $(this).attr('translation');
 		tag_count = $(this).attr('tag_count');
@@ -142,7 +171,7 @@ $(document).ready(function(){
 							{
 						if(data.state == "created"){
 							var ul = me.parent().prev().children('.sponsorFlip').children('.tag').children()[0];
-							var new_tag = $("<li class='tag-item'></li");
+							var new_tag = $("<li class='tag-item'></li>");
 							new_tag.text($('#tag').val());
 							new_tag.addClass('new-tag');
 							highlight(new_tag);

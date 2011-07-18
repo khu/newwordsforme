@@ -15,6 +15,8 @@ Scenario: Single Tag should be added to my specific word
    And I press "OK"
    Then I should see "greeting" tag
    
-   
-
-
+@javascript
+Scenario: Auto add tag "unfamiliar" to my specific word
+   Given I logged in as "Rick"
+   When I flipper the word "hello" 2 times
+   Then I should see "unfamiliar" tag

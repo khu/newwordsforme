@@ -10,8 +10,7 @@ class Word < ActiveRecord::Base
     translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ word + '&langpair=en|zh-CN'
     j = ActiveSupport::JSON
     encoded = j.decode(translated)
-    self.translation = encoded["responseData"]["translatedText"]
-    
+    self.translation = encoded["responseData"]["translatedText"]    
   end
   
   def self.create(hash)

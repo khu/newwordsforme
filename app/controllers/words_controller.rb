@@ -1,5 +1,6 @@
 require 'net/http'
 require 'uri'
+require 'json'
 
 class WordsController < ApplicationController
   before_filter :authorize, :except => :login
@@ -74,6 +75,15 @@ class WordsController < ApplicationController
     end
 
     render :json => {:state => "created"}
+  end
+  
+  def get_word_tags
+    word = Word.find(params[:id])
+    tags = word.tags
+  
+    respond_to do |format|
+      format.json { render :json => tags }
+    end
   end
   
   private
