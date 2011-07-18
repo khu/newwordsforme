@@ -7,3 +7,7 @@ end
 When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
   visit user_words_path(User.find_by_name(user), {:today=>DateTime.parse("2011-01-21"), :mode=>period})
 end
+
+When /^I click the "([^"]*)" tag$/ do |tag|
+   click_link tag
+end

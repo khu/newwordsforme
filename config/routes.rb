@@ -1,5 +1,7 @@
 Keepin::Application.routes.draw do
 
+  resources :goods
+
   match '/mobile',  :to => 'pages#mobile'
   match '/plugins', :to => 'pages#plugins'
   match '/contact', :to => 'pages#contact'
@@ -11,6 +13,11 @@ Keepin::Application.routes.draw do
   
   match 'users/:id/words/:word', :to => 'words#show_word', :as => "show_word"
   
+  # as---- you can use this path by alias
+  # the first 'users/:id/tag/:name'-----indicate the parameters and the url path
+  # to----- indicate the controller and the action, in the action ,you can use params to fetch the parameter in the first path
+  match 'users/:id/tag/:name', :to => 'users#show', :as => "show_tag_word"
+
   root :to => 'pages#home'
   
   get "users/new"

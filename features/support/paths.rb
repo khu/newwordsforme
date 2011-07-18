@@ -10,6 +10,8 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+    when /the index page/
+      user_path(@user.id)
     when /^(.*)'s page$/
       user_path(User.find_by_name($1))  
 

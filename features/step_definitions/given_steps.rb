@@ -1,6 +1,6 @@
 Given /^"([^"]*)" is user of keepin$/ do |name|
-  user = User.create(:name => name, :password => 'password', :email => "#{name}@gmail.com")
-  user.save
+  @user = User.create(:name => name, :password => 'password', :email => "#{name}@gmail.com")
+  @user.save
 end
 
 Given /^I logged in as "([^"]*)"$/ do |user_name|
@@ -13,4 +13,20 @@ end
 Given /^there exists a word "([^"]*)" for "([^"]*)"$/ do |word, user|
   rick = User.find_by_name(user)
   hello = rick.word.create!(:word => word, :translation => "hello")
+end
+
+Given /^"([^"]*)" has two words of the same tag which is "([^"]*)", the words are:$/ do |username, tag, words_table|
+  rick = User.find_by_name(username)
+  words_table.hashes.each {|hash|
+   add_word = rick.word.create!(:word => hash[:word], :translation => hash[:word])
+   # ! meaning no duplication
+   add_word.tags.create(:name => tag)
+  }
+end
+
+Given /^"([^"]*)" has not any tag$/ do |username|
+  rick = User.find_by_name(username)
+  rick.word.each do |word|
+    word.tags.delete_all
+  end
 end

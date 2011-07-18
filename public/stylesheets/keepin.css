@@ -118,3 +118,41 @@ ul li#link-signin.selected {
 	width:100%;height:34px;margin-bottom:19px;background:url(/images/signup.png) no-repeat;padding-right:2px;display:block;text-indent:-9999px;
 }
 
+
+div .tags {
+	height:300px;
+	top:0;
+	position:relative;
+	float:right;
+
+	width:30%;
+}
+
+
+#tags-box-header {
+    padding: 10px 10px 20px 10px ;
+	clear:both;
+	width:100%;
+	text-align:left;
+	font-family: verdana, arial, helvetica, sans-serif;
+    font-size:   18px;
+    line-height: 10px;
+    font-weight: bold;
+}
+
+#tags-list{
+	padding: 0 10px;
+	font-family: verdana, arial, helvetica, sans-serif;
+    font-size:   14px;
+    line-height: 10px;
+    font-weight: normal;
+    text-align:left;
+}
+#tags-list ul li{
+	margin : 10px;
+}
+#no-tag-message{
+	font-color:red;
+}
+.main-tweet-box{padding:15px 0 20px 0;  }
+.tweet-box{padding:0 5px; width:55%; float:left;}
