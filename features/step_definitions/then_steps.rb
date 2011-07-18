@@ -49,8 +49,6 @@ Then /^I should see "([^"]*)" tip message$/ do |tip|
   div.should have_content(tip)
 end
 
-
-=======
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
   page.body.should have_content(translation)
 end
