@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       @tabs = Tabs.new.logged_in @user
       @words = @user.word.reverse;
       @title = "Settings"
+      
       @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
   end
   

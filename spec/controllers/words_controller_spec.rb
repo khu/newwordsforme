@@ -47,7 +47,7 @@ describe WordsController do
       attrs = { :word_id => @word.id, :tag => 'greeting'}
       post :add_tag, :word => attrs
 
-      response.should contain("created")
+      response.should contain("add_new_tag")
     end
 
     it "should return failure given a tag with not existing word" do
