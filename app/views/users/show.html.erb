@@ -87,6 +87,7 @@ $(document).ready(function(){
 						data: {"word": {"word_id" : word_id,"tag": "unfamiliar"}},
 						dataType: "json",
 						success :function(data){
+						
 						},
 						error: function(){ 
 							window.log("error");
@@ -179,6 +180,7 @@ $(document).ready(function(){
 							$('#word').html('');
 							$('#translation').html('');
 							$(".dialog").dialog("close");
+							$(".")
 						
 						}else if(data.state == 'attached'){
 							$('.error-message').html('Sorry,existing tag has already attached');
