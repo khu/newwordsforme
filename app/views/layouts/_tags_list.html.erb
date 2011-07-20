@@ -1,28 +1,36 @@
 <div id="tag-box" class="tags">
   <div id="tags-box-header">All the tags of yourself:</div>
   <div id="tags-list">
-	<% @tag_count = 0 %>
-	<% @tags_hava = Array.new %>
-	<ul>
-    <% @user.word.each do | word | %>
-      <% @tag_count += word.tags.length %>
-      <% word.tags.each do | tag | %>
-		 <% if !@tags_hava.index(tag) %>
-	       <li>
-	       <% @tags_hava.push(tag) %>
-	       <%= link_to tag.name, show_tag_word_path(:id => @user.id, :name => "#{tag.name}")  %>
-	       </li>
-	     <% end %>
-	  <% end %>
+	
+	<% @user_tags = Array.new %>
+	<% @user.word.each do | word | %>
+    <%   word.tags.each do | tag |%>
+    <%	    @user_tags.push(tag) %>
+	<%   end  %>
 	<% end %>
-	<ul>
-	<div id='no-tag-message'>
-		<% if @tag_count == 0 %>
-		     <%= "There is no tag"%>
-		<%end%>
-    </div>
+	
+	<ul> 
+    <% @user_tags.uniq! %>
+	<% if @user_tags.length > 0 %>
+	<%   @user_tags.sort! do |tag_a, tag_b| %>
+	<%     tag_b.updated_at <=> tag_a.updated_at %>
+	<%   end %>	
+	 
+    <%   @user_tags.each do | tag | %>	
+    <li>
+	       <%= link_to tag.name, show_tag_word_path(:id => @user.id, :name => "#{tag.name}")  %>
+	</li>
+	<%   end %>
+    
+    </ul>
+
+    <% else %>
+          <div id='no-tag-message'>There is no tag</div>
+	<% end %>
+    
     <div>
-       <%= link_to 'All words', (@user)  %>
+       <%= link_to 'All words', (@user) ,:class => 'tag-all-link' %>
 	</div>
+	
   </div>
 </div>

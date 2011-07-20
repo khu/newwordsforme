@@ -27,7 +27,6 @@ end
 # end
 
 Then /^I should see all his tags:$/ do |tag_table|
-
   # In support/paths/rb to manage to route info, in feature , use go to to find which page
   div = page.find('div[@id=tags-list]')
   tag_table.hashes.each do  |hash|
