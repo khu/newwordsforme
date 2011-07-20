@@ -14,6 +14,8 @@ module NavigationHelpers
       user_path(@user.id)
     when /^(.*)'s page$/
       user_path(User.find_by_name($1))
+    when /sign in page/
+      signin_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -12,4 +12,10 @@ Before("@listing") do
    arden.word << Word.new(:word =>"month", :translation => "jintian", :created_at => last_month, :status=>1)
    arden.word << Word.new(:word =>"year", :translation => "jintian", :created_at => last_year, :status=>2)
    arden.save
+   
+    rick = Factory.create(:Rick)
+    jul2nd = Time.mktime(2011, 7, 2)
+
+    rick.word << Word.new(:word =>"tomato", :translation => "xhs", :created_at => friday, :status=>0)
+    rick.save
 end

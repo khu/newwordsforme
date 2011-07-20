@@ -6,6 +6,7 @@ module SessionsHelper
     #       :value => user.remember_token,
     #       :expires => 20.years.from_now.utc
     #     }
+    cookies.permanent.signed[:remember_token] = [user.id, user.password]
     self.current_user = user
   end
 
@@ -18,8 +19,11 @@ module SessionsHelper
   end
 
   def user_from_remember_token
-    remember_token = cookies[:remember_token]
-    User.find_by_remember_token(remember_token) unless remember_token.nil?
+    User.authenticate_with_password(*remember_token) unless remember_token[0].nil?
+  end
+  
+  def remember_token
+    cookies.signed[:remember_token] || [nil,nil]
   end
 
   def signed_in?

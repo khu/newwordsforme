@@ -1,5 +1,5 @@
 When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, wordx|
-  visit user_path(Factory.create(user))
+  visit user_path(User.find_by_name(user))
   fill_in "word_word", :with => wordx
   click_button "word_submit"
 end

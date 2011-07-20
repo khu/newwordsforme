@@ -16,7 +16,7 @@ end
 When /^"([^"]*)" post a word "([^"]*)" to the API with password "([^"]*)"$/ do |username, word, password|
   user = User.find_by_name(username)
   path = "/users/#{user.id}/words.json"
-  data = { "user_id" => user.id, "word" => { "word" => word } }.to_json
+  data = { "user_id" => user.id,"password" => password, "word" => { "word" => word } }.to_json
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   post path, data
