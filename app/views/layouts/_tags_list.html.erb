@@ -15,12 +15,13 @@
 	<%   @user_tags.sort! do |tag_a, tag_b| %>
 	<%     tag_b.updated_at <=> tag_a.updated_at %>
 	<%   end %>	 
+    
     <%   @user_tags.each do | tag | %>	
     <li>
 	       <%= link_to tag.name, show_tag_word_path(:id => @user.id, :name => "#{tag.name}")  %>
 	</li>
 	<%   end %>
-	
+    
     </ul>
 
     <% else %>
