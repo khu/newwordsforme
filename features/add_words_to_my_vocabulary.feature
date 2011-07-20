@@ -5,19 +5,22 @@ Feature: Live
 
 @Figo @done
   Scenario: Save single english word
-	Given "Figo" logged in
+	Given "Figo" is user of keepin
+	And "Figo" logged in
     When  "Figo" save "Apple" into vocabulary from home page
     Then  "Figo" should see "apple" with translation "苹果"
 
 @Figo
   Scenario: Save incorrect english word
-    Given "Figo" logged in
+	Given "Figo" is user of keepin
+	And "Figo" logged in
     When  "Figo" save "Apple" into vocabulary from home page
     Then  "Figo" should see "apple" with translation "苹果"
 
 @Figo @wip
 Scenario: Save the example sentence
-	 Given "Figo" logged in
+	Given "Figo" is user of keepin
+	And "Figo" logged in
 	 When  "Figo" save "apple@I love apple" into vocabulary from home page
 	 Then  "Figo" should see "apple" with translation "\u82f9\u679c"
 	 Then  "Figo" should see sample "I love apple"

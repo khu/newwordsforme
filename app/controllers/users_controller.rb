@@ -1,9 +1,16 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create, :show_word_by_tag]
+  before_filter :authenticate, :except => [:new, :create]
   
   def show
       tag_name = params[:name]
       @user = User.find(params[:id])
+      
+      if !current_user.id
+        deny_access
+      end
+      if @user.id != current_user.id
+        redirect_to(user_path(current_user))
+      end
       @tabs = Tabs.new.logged_in @user
       @words = @user.word.reverse;
       @title = "Settings"
@@ -36,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Sample App!"
+      flash[:success] = "Welcome to keepin!"
       redirect_to @user
     else
       @title = "Sign up"

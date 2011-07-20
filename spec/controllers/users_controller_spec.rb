@@ -2,10 +2,40 @@ require 'spec_helper'
 
 describe UsersController do
   render_views
-  
-  describe "GET 'show'" do
+  describe "unsign and GET 'show'" do
+    before(:each) do
+      @user = Factory(:Figo)
+    end 
+    it "should be successful" do
+      get :show, :id => @user
+      response.should_not be_success
+    end
+    
+    it "should deny access" do
+      get :show, :id => @user
+      response.should redirect_to(signin_path)
+    end
+  end
+  describe "sign and GET 'show' other user" do
+    before(:each) do
+      @user = Factory(:Figo)
+      test_sign_in(@user)
+      @other_user = Factory(:Rick)
+    end 
+    it "should be successful" do
+      get :show, :id => @other_user
+      response.should_not be_success
+    end
+    
+    it "should deny access" do
+      get :show, :id => @other_user
+      response.should redirect_to(user_path(@user))
+    end
+  end
+  describe "sign in and GET 'show'" do
       before(:each) do
         @user = Factory(:Figo)
+        test_sign_in(@user)
       end
 
       it "should be successful" do
@@ -86,6 +116,30 @@ describe UsersController do
         post :create, :user => @attr
         response.should render_template('new')
       end
+    end
+    
+    describe "success" do
+      
+      before(:each) do
+        @attr = { :name => "New User", :email => "user@example.com",
+                  :password => "foobar", :password_confirmation => "foobar" }
+        end
+
+      it "should create a user" do
+        lambda do
+          post :create, :user => @attr
+        end.should change(User, :count).by(1)
+      end
+
+      it "should redirect to the user show page" do
+        post :create, :user => @attr
+        response.should redirect_to(user_path(assigns(:user)))
+      end
+      
+      it "should sign the user in" do
+        post :create, :user => @attr
+        controller.should be_signed_in
+      end    
     end
   end
 end

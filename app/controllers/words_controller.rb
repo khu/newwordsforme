@@ -3,21 +3,24 @@ require 'uri'
 require 'json'
 
 class WordsController < ApplicationController
-  before_filter :authorize, :except => :login
+  before_filter :authenticate, :except => [:add_tag, :create]
   # GET /users
   # GET /users.xml
   def index
     today  = params[:today].nil? ? DateTime.now : DateTime.parse(params[:today])
     mode   = params[:mode].nil? ? "days7" : params[:mode]
     @user  =  User.find(params[:user_id])
-
-    @words = @user.method(mode).call(today);
-    @tabs = Tabs.new.logged_in(@user)
+    if @user.id != current_user.id
+      @user=current_user
+    else
+      @words = @user.method(mode).call(today);
+      @tabs = Tabs.new.logged_in(@user)
     
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-      format.json { render :json => @words, :content_type => "text/html"}
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @users }
+        format.json { render :json => @words, :content_type => "text/html"}
+      end
     end
   end
 
@@ -41,6 +44,12 @@ class WordsController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
+    if params[:format]==nil 
+      user=current_user
+    else
+      user=User.authenticate_with_password(params[:user_id], params[:password])
+      deny_access unless user.nil?
+    end
     userid = params[:user_id]
     single_word = params[:word][:word].lstrip()
     @word =  Word.create({:word=>single_word, :user_id => userid})
@@ -84,14 +93,6 @@ class WordsController < ApplicationController
   
     respond_to do |format|
       format.json { render :json => tags }
-    end
-  end
-  
-  private
-  def authorize
-    #unless User.find_by_id(session[:user_id]) flash[:notice] = "Please log in" redirect_to :controller => :admin, :action => :login
-    if not session[:user]
-      session[:user] = User.find_by_id(params[:user_id])
     end
   end
 end

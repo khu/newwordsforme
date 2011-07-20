@@ -5,7 +5,7 @@ Feature: Listing
 
 @arden @listing @done
   Scenario: list words for this week
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "days7"
 	Then "Arden" can see:
 	|word|
@@ -14,7 +14,7 @@ Feature: Listing
 
 @arden @listing	@done
   Scenario: list words for this month
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "days30"
 	Then "Arden" can see:
 	|word|
@@ -23,7 +23,7 @@ Feature: Listing
 	
 @arden @listing	@done
 Scenario: list words for this month
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "all"
 	Then "Arden" can see:
 	|word|
@@ -34,7 +34,7 @@ Scenario: list words for this month
 	
 @arden @listing	@done
 Scenario: list all words I mastered
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "mastered"
 	Then "Arden" can see all "mastered" words:
 	|word|
@@ -42,7 +42,7 @@ Scenario: list all words I mastered
 	
 @arden @listing @done
 Scenario: list all words I do not master
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "notmastered"
 	Then "Arden" can see all "notmastered" words:
 	|word|
@@ -51,7 +51,7 @@ Scenario: list all words I do not master
 
 @arden @listing @done
   Scenario: list all words I am unfamiliar with
-	Give "Arden" logged in
+	Given "Arden" logged in
 	When "Arden" visit new words for "unfamiliar"
 	Then "Arden" can see all "unfamiliar" words:
 	|word|
