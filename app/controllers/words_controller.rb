@@ -54,6 +54,7 @@ class WordsController < ApplicationController
     single_word = params[:word][:word].lstrip()
     @word =  Word.create({:word=>single_word, :user_id => userid})
     @word.translate!
+    puts '---------------', user_path(@word.user).to_s
     if @word.save
       respond_to do |format|
         format.json { render :json => @word, :status => :created }

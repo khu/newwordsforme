@@ -17,7 +17,7 @@ Keepin::Application.routes.draw do
   # as---- you can use this path by alias
   # the first 'users/:id/tag/:name'-----indicate the parameters and the url path
   # to----- indicate the controller and the action, in the action ,you can use params to fetch the parameter in the first path
-  match 'users/:id/tag/:name', :to => 'users#show', :as => "show_tag_word"
+  match 'users/:id/tag/:name', :to => 'users#show_word_by_tag', :as => "show_tag_word"
 
   root :to => 'pages#home'
   
