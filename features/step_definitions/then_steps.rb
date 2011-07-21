@@ -20,7 +20,7 @@ Then /^"([^"]*)"'s words for "([^"]*)" should sorted by updated time$/ do |usern
     words = user.method(period).call(today).order("updated_at");
     match_regex = ""
     words.all.each {|word|
-       match_regex+="#{word.word}.*"
+       match_regex="#{word.word}.*"+match_regex
     }
     page.body.should =~ Regexp.new(match_regex,Regexp::MULTILINE)
 end

@@ -13,7 +13,8 @@ class WordsController < ApplicationController
     if @user.id != current_user.id
       @user=current_user
     else
-      @words = @user.method(mode).call(today)#.order("updated_at")
+      @words = @user.method(mode).call(today).order("updated_at").reverse
+      puts @words
       @tabs = Tabs.new.logged_in(@user)
     
       respond_to do |format|
@@ -59,9 +60,10 @@ class WordsController < ApplicationController
       operation_success=@word.save
     else
       @word = old_word
-      operation_success=old_word.update_attribute(:updated_at, Time.now)
+      operation_success=@word.update_attribute(:updated_at, Time.now)
+      @word.save
     end
-    if 
+    if operation_success
       respond_to do |format|
         format.json { render :json => @word, :status => :created }
         format.html {redirect_to(user_path(@word.user).to_s)}
