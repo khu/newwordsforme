@@ -40,7 +40,7 @@ describe WordsController do
     before(:each) do
         @user = Factory(:Figo)
         test_sign_in(@user)
-        @word = @user.word.create!(:word => 'hello', :translation => '你好')
+        @word = @user.word.create!(:word => 'william', :translation => 'Ren Ming')
     end
 
     it "should return created given a correct tag with existing word" do

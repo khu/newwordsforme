@@ -14,6 +14,25 @@ Then /^"([^"]*)" can see all "([^"]*)" words:$/ do |user, status, words|
   }
 end
 
+Then /^"([^"]*)"'s words for "([^"]*)" should sorted by updated time$/ do |username, period|
+    user = User.find_by_name(username)
+    today = DateTime.parse("2011-01-21")
+    words = user.method(period).call(today).order("updated_at");
+    match_regex = ""
+    words.all.each {|word|
+       match_regex+="#{word.word}.*"
+    }
+    page.body.should =~ Regexp.new(match_regex,Regexp::MULTILINE)
+end
+
+Then /^"([^"]*)" should see only one "([^"]*)"$/ do |user, word|
+    array=page.body.scan(/word="#{word}"/)
+    # puts "-------->"+array.length.to_s
+    if(array.length != 1)
+      YOU SHALL NOT PASS
+    end
+end
+
 Then /^"([^"]*)" should see sample "([^"]*)"$/ do |user, sample|
     page.body.should have_content(sample)
 end

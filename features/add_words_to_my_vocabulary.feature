@@ -39,7 +39,15 @@ Scenario: Save the example sentence
     When  "Figo" logged in
     Then  "Figo" should see the first time video tutorial on the right side
 
-  
+@Figo
+  Scenario: list words for this week in time sequence
+	Given "Figo" is user of keepin
+	And "Figo" logged in
+	When "Figo" save "apple" into vocabulary from home page
+	And "Figo" save "pear" into vocabulary from home page
+	And "Figo" save "apple" into vocabulary from home page
+	Then "Figo" should see only one "apple"
+	And "Figo"'s words for "all" should sorted by updated time
 
 
   

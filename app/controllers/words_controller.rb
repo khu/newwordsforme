@@ -13,7 +13,7 @@ class WordsController < ApplicationController
     if @user.id != current_user.id
       @user=current_user
     else
-      @words = @user.method(mode).call(today);
+      @words = @user.method(mode).call(today)#.order("updated_at")
       @tabs = Tabs.new.logged_in(@user)
     
       respond_to do |format|
@@ -52,9 +52,16 @@ class WordsController < ApplicationController
     end
     userid = params[:user_id]
     single_word = params[:word][:word].lstrip()
-    @word =  Word.create({:word=>single_word, :user_id => userid})
-    @word.translate!
-    if @word.save
+    old_word = Word.find_by_word(single_word)
+    if old_word==nil
+      @word =  Word.create({:word=>single_word, :user_id => userid})
+      @word.translate!
+      operation_success=@word.save
+    else
+      @word = old_word
+      operation_success=old_word.update_attribute(:updated_at, Time.now)
+    end
+    if 
       respond_to do |format|
         format.json { render :json => @word, :status => :created }
         format.html {redirect_to(user_path(@word.user).to_s)}
