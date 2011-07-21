@@ -154,8 +154,8 @@ div .tags {
 #no-tag-message{
 	font-color:red;
 }
-.tag-all-link {
-	padding:10px;
+#tag-all-link {
+	padding:20px 0 0 0;
 }
 .main-tweet-box{padding:15px 0 20px 0;  }
 .tweet-box{padding:0 5px; width:55%; float:left;}

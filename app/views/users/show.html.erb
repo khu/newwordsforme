@@ -191,6 +191,8 @@ $(document).ready(function(){
 							$('#translation').html('');
 							$(".dialog").dialog("close");
 							$("#tags-list ul").prepend('<li><%= link_to "' + $('#tag').val() + '",@user %></li>');
+							if ($("#no-tag-message").length > 0)
+							   $("#no-tag-message").remove()
 						}else if(data.state == 'attached'){
 							$('.error-message').html('Sorry,existing tag has already attached');
 							$('#tag').addClass("error");
