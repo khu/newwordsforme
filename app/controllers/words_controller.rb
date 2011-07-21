@@ -78,13 +78,12 @@ class WordsController < ApplicationController
       end
       word.tags << Tag.find_by_name(params[:word][:tag])
       word.save
-      render :json => {:state => "created"}
+      
     else
       tag = word.tags.create(:name => params[:word][:tag])
       tag.save
-      render :json => {:state => "add_new_tag"}
     end
-    
+    render :json => {:state => "created"}
   end
   
   def get_word_tags

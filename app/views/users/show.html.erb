@@ -180,19 +180,9 @@ $(document).ready(function(){
 							$('#word').html('');
 							$('#translation').html('');
 							$(".dialog").dialog("close");
-						}else if(data.state == "add_new_tag"){
-							var ul = me.parent().prev().children('.sponsorFlip').children('.tag').children()[0];
-							var new_tag = $("<li class='tag-item'></li>");
-							new_tag.text($('#tag').val());
-							new_tag.addClass('new-tag');
-							highlight(new_tag);
-							$(ul).append(new_tag);
-							$('#word').html('');
-							$('#translation').html('');
-							$(".dialog").dialog("close");
 							$("#tags-list ul").prepend('<li><%= link_to "' + $('#tag').val() + '",@user %></li>');
 							if ($("#no-tag-message").length > 0)
-							   $("#no-tag-message").remove()
+								$("#no-tag-message").remove();
 						}else if(data.state == 'attached'){
 							$('.error-message').html('Sorry,existing tag has already attached');
 							$('#tag').addClass("error");
