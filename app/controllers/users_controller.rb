@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end
     @title = "Show words by tag"
     @words = @words.reverse
-    render :template => 'users/show'
+    render :template => 'users/show_slide'
   end
   
   def new
