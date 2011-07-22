@@ -12,6 +12,12 @@ Feature: Listing
 	|tomato|
 	|to|
 
+@arden @listing @done
+  Scenario: list words for this week in time sequence
+	Given "Arden" logged in
+	When "Arden" visit new words for "all"
+	Then "Arden"'s words for "all" should sorted by updated time
+
 @arden @listing	@done
   Scenario: list words for this month
 	Given "Arden" logged in

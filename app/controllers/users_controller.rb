@@ -11,7 +11,7 @@ class UsersController < ApplicationController
         redirect_to(user_path(current_user))
       end
       @tabs = Tabs.new.logged_in @user
-      @words = @user.word.reverse;
+      @words = @user.word.order("updated_at").reverse
       @title = "Settings"
       
       @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     tag_name = params[:name]
     @user = User.find(params[:id])
     @tabs = Tabs.new.logged_in @user
-    @words = @user.word.find_all do |word|
+    @words = @user.word.order("updated_at").find_all do |word|
       if word.tags.find_by_name(tag_name)
         word.id
       end
