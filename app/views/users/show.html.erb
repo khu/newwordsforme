@@ -12,6 +12,7 @@
 									<%=word.word%>
 								</div>
 							</div>
+							<!--
 							<div class="tag">
 								<ul style="margin-left:10px; ">
 									<% word.tags.each do |tag| %>
@@ -21,6 +22,7 @@
 									<% end%>
 								</ul>
 							</div>
+							-->
 						</div>
 					 	<div class="sponsorData">
 							<div class="sponsorDescription">
@@ -31,9 +33,11 @@
 							</div>
 						</div>
 					</div>					
+					<!-- cancel the edit tag
 					<div style='margin-left:10px'>
 						<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" tag_count="<%= word.tags.count%>" >edit</a>
 					</div>	
+					-->
 				</div>
 			<%}%>
 	<div>
@@ -80,7 +84,7 @@ $(document).ready(function(){
 		else
 		{
 			word_id = elem.attr('word_id');
-
+			/* cancel the flip ajax
 			$.ajax({
 						url: "/words/add_tag",
 						type: "POST",
@@ -94,7 +98,7 @@ $(document).ready(function(){
 						}
 					});
 			// Using the flip method defined by the plugin:
-			
+			*/
 			elem.flip({
 				direction:'lr',
 				speed: 350,
@@ -104,8 +108,10 @@ $(document).ready(function(){
 					elem.html(elem.siblings('.sponsorData').html());
 				},
 				onEnd: function(){
+					/* ******************************************Cancel the get_tags
 					if(!elem.data('flipped'))
 					{
+						
 						$.getJSON(
 								"/get_word_tags",
 								{ id : word_id },
@@ -119,7 +125,9 @@ $(document).ready(function(){
 									}
 								}
 							);
+						
 					}
+					******************************************/
 				}
 			});
 			
@@ -181,8 +189,7 @@ $(document).ready(function(){
 							$('#translation').html('');
 							$(".dialog").dialog("close");
 							$("#tags-list ul").prepend('<li><%= link_to "' + $('#tag').val() + '",@user %></li>');
-							if ($("#no-tag-message").length > 0)
-								$("#no-tag-message").remove();
+							
 						}else if(data.state == 'attached'){
 							$('.error-message').html('Sorry,existing tag has already attached');
 							$('#tag').addClass("error");

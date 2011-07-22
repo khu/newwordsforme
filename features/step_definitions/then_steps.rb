@@ -1,7 +1,3 @@
-Then /^I should see "([^"]*)" tag$/ do |tag|
-    page.body.should have_content(tag)
-end
-
 Then /^"([^"]*)" can see:$/ do |arg1, words_table|
   words_table.hashes.each {|hash| 
     page.body.should have_content(hash[:word])
