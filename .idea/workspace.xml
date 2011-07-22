@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="049d0334-67e1-4e6e-8de8-ca1e73943c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/arrow-next.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/arrow-prev.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/background.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/example-frame.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/new-ribbon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/pagination.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide-7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/img/slide_images/slide.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/show_slide.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/slides.min.jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/stylesheets/slide.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/keepin.iml" afterPath="$PROJECT_DIR$/.idea/keepin.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jquery.flip.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show_slide.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show_slide.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/slide.css" afterPath="$PROJECT_DIR$/public/stylesheets/slide.css" />
     </list>
     <ignored path="keepin.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,7 +32,16 @@
       <file leaf-file-name="show_slide.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/show_slide.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="12" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.15228426">
+            <state line="57" column="27" selection-start="2034" selection-end="2034" vertical-scroll-proportion="0.6472081">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.flip.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.flip.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -59,16 +50,7 @@
       <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="43" selection-start="576" selection-end="576" vertical-scroll-proportion="-8.75">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="slides.min.jquery.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/javascripts/slides.min.jquery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="615" selection-start="1324" selection-end="1328" vertical-scroll-proportion="-10.961538">
+            <state line="13" column="52" selection-start="538" selection-end="538" vertical-scroll-proportion="-8.125">
               <folding />
             </state>
           </provider>
@@ -77,7 +59,7 @@
       <file leaf-file-name="slide.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/slide.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="11" selection-start="990" selection-end="1000" vertical-scroll-proportion="0.0">
+            <state line="62" column="13" selection-start="874" selection-end="874" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,9 +80,9 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/app/controllers/words_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/show_slide.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/public/stylesheets/slide.css" />
         <option value="$PROJECT_DIR$/app/views/users/show_slide.html.erb" />
       </list>
@@ -400,8 +382,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/stylesheets/img/slide_images" />
       <recent name="$PROJECT_DIR$/public/javascripts" />
+      <recent name="$PROJECT_DIR$/public/stylesheets/img/slide_images" />
     </key>
   </component>
   <component name="RunManager" selected="Cucumber.list words for this week in time sequence">
@@ -803,20 +785,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_tags_list.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/img/slide_images/example-frame.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -885,30 +853,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.flip.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="3930" selection-start="3920" selection-end="3930" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascripts/jquery.flip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascripts/slides.min.jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="615" selection-start="1324" selection-end="1328" vertical-scroll-proportion="-10.961538">
+        <state line="19" column="615" selection-start="1324" selection-end="1328" vertical-scroll-proportion="0.766129">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="43" selection-start="576" selection-end="576" vertical-scroll-proportion="-8.75">
+        <state line="13" column="52" selection-start="538" selection-end="538" vertical-scroll-proportion="-8.125">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/slide.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="11" selection-start="990" selection-end="1000" vertical-scroll-proportion="0.0">
+        <state line="62" column="13" selection-start="874" selection-end="874" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/show_slide.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="12" selection-start="1754" selection-end="1754" vertical-scroll-proportion="0.15228426">
+        <state line="57" column="27" selection-start="2034" selection-end="2034" vertical-scroll-proportion="0.6472081">
           <folding />
         </state>
       </provider>
