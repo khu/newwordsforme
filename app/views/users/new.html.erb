@@ -1,26 +1,29 @@
+<link rel=StyleSheet href="stylesheets/signup.css" type="text/css" media=screen>
+<div id="iphone">
+	<div id="sign-up">
 <h1>Sign up</h1>
 <%= form_for(@user) do |f| %>
-	<% @user.errors.full_messages.each do |msg| %>
-	  <p><%=msg%></p>
-    <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :name %><%= @user.errors[:name][0]%><br />
+    <%= f.text_field :name , :autocomplete => :off %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.label :email %><%= @user.errors[:email][0]%><br />
+    <%= f.text_field :email , :autocomplete => :off %>
   </div>
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+    <%= f.label :password %><%= @user.errors[:password][0]%><br />
+    <%= f.password_field :password , :autocomplete => :off %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation , :autocomplete => :off %>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="action">
+    <%= f.submit "Sign up", :autocomplete => :off %>
+	or<button>Cancel</button>
   </div>
 <% end %>
+</div>
+</div>

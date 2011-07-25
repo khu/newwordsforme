@@ -42,11 +42,19 @@ body #wrapper #chart .fourth h2{background-position:center -55px !important;}
 body #wrapper #chart .fifth{background-image:-moz-linear-gradient(center bottom,#0c2265,#0c2265,#174dab);background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#174dab),to(#0c2265));border-left:1px solid #062860;-moz-border-radius:0 28px 28px 0;-webkit-border-top-right-radius:28px;-webkit-border-bottom-right-radius:28px;}
 body #wrapper #chart .fifth h2{background-position:center -73px !important;}
 
-#chart-panel{
+#left-panel{
 	float:left;
 	width:600px;
-	padding-top:7em;
 	height:300px;
+}
+#right-panel{
+	float:right;
+	width:350px;
+	top:-100px;
+}
+#chart-panel{
+	padding-top:7em;
+	padding-right:20px;
 }
 
 #signup-panel{
@@ -114,7 +122,7 @@ ul li#link-signin.selected {
     font-weight: bold;
 }
 
-.signup{
+.info{
 	width:100%;height:34px;margin-bottom:19px;background:url(/images/signup.png) no-repeat;padding-right:2px;display:block;text-indent:-9999px;
 }
 
