@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
   skip_before_filter :authenticate, :if => Proc.new {|c| c.request.format == 'rss'}
-  
+
   def show
       @user = User.find(params[:id])
       if (request.format != 'rss' && @user.id != current_user.id)
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to keepin!"
-      redirect_to "users/#{@user.id}"
+      redirect_to @user
     else
       @title = "Sign up"
       ## Reset password input after failed password attempt
