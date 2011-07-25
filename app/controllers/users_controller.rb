@@ -12,6 +12,10 @@ class UsersController < ApplicationController
       @title = "Settings"
       
       @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
+
+      if (request.format != 'rss')
+        render 'show'
+      end
   end
   
   def show_word_by_tag
