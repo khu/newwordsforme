@@ -6,12 +6,11 @@ xml.rss :version => "2.0" do
     xml.link user_url(@user.id, :rss)
     
     def create_description(word)
-      description = "#{word.word} #{word.translation} #{word.sample} "
+      description = "#{word.word} #{word.translation}"
       unless word.link == nil then  
         description += "<a href=#{word.link}>link</a>"
       end
-      description += "<br>"
-      description
+      return description
     end    
     
     description = ""
@@ -20,19 +19,14 @@ xml.rss :version => "2.0" do
     end
     
     for word in @word_list
-      if updated_date == word.updated_at.to_date then
-        description +=  create_description(word)
-      else
         xml.item do
-          xml.title "#{updated_date}"
-          xml.description "#{description}"
+          xml.title "#{word.word}"
+          xml.description create_description(word)
+          xml.pubDate "#{word.updated_at}"
         end
-        description = create_description(word)
-        updated_date = word.updated_at.to_date
-      end 
     end
     
-    unless @word_list.empty? then
+    unless !@word_list.empty? then
       xml.item do
         xml.title "#{updated_date}"
         xml.description "#{description}"

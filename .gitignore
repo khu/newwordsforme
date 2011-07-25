@@ -1,0 +1,12 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+*.log
+.gitignore
+<<<<<<< HEAD
+.rvmrc
+=======
+.idea/*
+.idea/**/*
+>>>>>>> d09c5ccdb4bbfe88b1fd25f1c38ca6609ddc9a3f
