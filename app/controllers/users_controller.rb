@@ -1,35 +1,40 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
   skip_before_filter :authenticate, :if => Proc.new {|c| c.request.format == 'rss'}
-
+  
   def show
-      @user = User.find(params[:id])
-      if (request.format != 'rss' && @user.id != current_user.id)
-        redirect_to(user_path(current_user))
-      end
-      @tabs = Tabs.new.logged_in @user
-      @words = @user.word.order("updated_at").reverse
-      @title = "Settings"
-      
-      @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
+    @user = User.find(params[:id])
+    if (request.format != 'rss' && @user.id != current_user.id)
+      redirect_to(user_path(current_user))
+    end
+    @tabs = Tabs.new.logged_in @user
+    @words = @user.word.order("updated_at").reverse
+    @title = "Settings"
 
-      if (request.format != 'rss')
-        render 'show'
-      end
-  end
+    @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
+    end
+  
   
   def show_word_by_tag
-    tag_name = params[:name]
+    
     @user = User.find(params[:id])
+    if (request.format != 'rss' && @user.id != current_user.id)
+      redirect_to(user_path(current_user))
+    end
     @tabs = Tabs.new.logged_in @user
-    @words = @user.word.order("updated_at").find_all do |word|
-      if word.tags.find_by_name(tag_name)
-        word.id
+    
+    if params[:name] == "all"
+      @words = @user.word.order("updated_at")
+    else
+      @words = @user.word.order("updated_at").find_all do |word|
+        if word.tags.find_by_name(params[:name])
+          word.id
+        end
       end
     end
     @title = "Show words by tag"
     @words = @words.reverse
-    render :template => 'users/show'
+    render :template => 'users/show_slide'
   end
   
   def new

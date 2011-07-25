@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
       render 'new'
     else
       sign_in user
-      #puts "==========================> #{user_path(user.id)}"
       redirect_to user_path(user.id)
     end
   end
@@ -33,7 +32,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    #puts "------------------> #{root_path}"
     redirect_to root_path
   end
 
