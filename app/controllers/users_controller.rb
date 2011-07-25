@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       @words = @user.word.order("updated_at").reverse
       @title = "Settings"
       
-      @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "´ DESC")
+      @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
   end
   
   def show_word_by_tag

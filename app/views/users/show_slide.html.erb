@@ -5,15 +5,19 @@
 
                 <div class="slide">
                   <div class="word">One</div>
+                  <div class="slide_back">一</div>
                 </div>
                 <div class="slide">
                   <div class="word">Two</div>
+                  <div class="slide_back">二</div>
                 </div>
                 <div class="slide">
                   <div class="word">Three</div>
+                  <div class="slide_back">三</div>
                 </div>
                 <div class="slide">
                   <div class="word">Four</div>
+                  <div class="slide_back">四</div>
                 </div>
             </div>
             <a href="#" class="prev"><img src="/stylesheets/img/slide_images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
@@ -35,7 +39,7 @@ $(function(){
         preload: true,
         preloadImage: '/stylesheets/img/slide_images/loading.gif',
         generatePagination: true,
-        play: 5000,
+        play: 0,
         pause: 2500,
         hoverPause: true,
         // Get the starting slide
@@ -46,28 +50,21 @@ $(function(){
         }
     });
 
-    $('.slide').click(function(){
+    $('.word').click(function(){
         var elem = $(this);
         if(elem.data('flipped')){
 
-            //elem.revertFlip();
-            elem.flip({
-                direction: 'tb',
-                speed:350,
-                onBefore:function(){
-                    elem.html('ee');
-                },
-                onEnd: function(){
-                }
-            });
+            elem.revertFlip();
+            elem.addClass('word');
             elem.data('flipped', false);
         }else
         {
             elem.flip({
                 direction: 'tb',
+                color:'#F3F1E5',
                 speed:350,
                 onBefore:function(){
-                    elem.html("hh");
+                    elem.html(elem.siblings('.slide_back').html());
                 },
                 onEnd: function(){
                 }
@@ -75,7 +72,6 @@ $(function(){
             elem.data('flipped', true);
         }
     });
-
 
 
     $(document).keydown(function(event) {
