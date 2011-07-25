@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
       render 'new'
     else
       sign_in user
+      puts "==========================> go"
       redirect_to user_path(user).to_s
     end
   end
