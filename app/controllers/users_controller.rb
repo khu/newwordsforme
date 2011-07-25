@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to keepin!"
-      redirect_to @user
+      redirect_to "users/#{@user.id}"
     else
       @title = "Sign up"
       ## Reset password input after failed password attempt
