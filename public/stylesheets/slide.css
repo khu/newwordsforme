@@ -1,5 +1,5 @@
 #container {
-	width:580px;
+	width:520px;
 	padding:10px;
 	margin:0 auto;
 	position:relative;
@@ -10,15 +10,18 @@
 #frame {
 	position:absolute;
 	z-index:0;
-	width:739px;
-	height:351px;
+	width:690px;
+	height:371px;
 	top:-1px;
 	left:-80px;
+	
 }
 #example {
 	width:600px;
 	height:370px;
 	position:relative;
+	
+	
 }
 
 /*
@@ -27,8 +30,8 @@
 
 #slides {
 	position:absolute;
-	top:51px;
-	left:-5px;
+	top:56px;
+	left:-10px;
 	z-index:100;
 	
 }
@@ -42,12 +45,12 @@
 */
 
 .slides_container {
-	width:596px;
-	height:212px;
+	width:550px;
+	height:216px;
 	overflow:hidden;
 	position:relative;
 	display:none;
-	background:url("/images/iphone_inner.png") 0 0 no-repeat;
+	background:url("/images/white-iphone.jpg") 0 0  repeat;
 }
 
 /*
@@ -61,8 +64,8 @@
 
 #slides .slide {
 	padding:0px;
-	width:596px;
-	height:212px;
+	width:550px;
+	height:216px;
 	display:block;
     text-align:center;
 }
@@ -95,7 +98,7 @@
 }
 
 #slides .next {
-	left:606px;
+	left:560px;
 }
 
 /*

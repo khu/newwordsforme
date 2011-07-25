@@ -85,15 +85,13 @@ $(function(){
                 $(".next").trigger("click");
                 break;
             case 38 :
-            case 40 :
-                
+            case 40 :  
                 $('#word' + current_word_number).trigger("click");
                 break;
             default:
                 break;
         }
-    });
-    
+    }); 
    $(".prev").bind('click', function(){
 	  if (--current_word_number <= 0)
          current_word_number =  total_words;
@@ -104,8 +102,5 @@ $(function(){
          current_word_number =  1;
       $('#current_word').html(current_word_number);
    });
-   
-});
-
- 
+}); 
 </script>
