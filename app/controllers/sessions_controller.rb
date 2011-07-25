@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    puts "------------------> #{root_path}"
+    #puts "------------------> #{root_path}"
     redirect_to root_path
   end
 
