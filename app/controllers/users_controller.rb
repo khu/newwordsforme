@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
+  skip_before_filter :authenticate, :if => Proc.new {|c| c.request.format == 'rss'}
   
   def show
       @user = User.find(params[:id])
-      
-      if !current_user.id
-        deny_access
-      end
-      if @user.id != current_user.id
+      if (request.format != 'rss' && @user.id != current_user.id)
         redirect_to(user_path(current_user))
       end
       @tabs = Tabs.new.logged_in @user
