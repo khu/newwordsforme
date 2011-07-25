@@ -29,7 +29,7 @@
 	<% end %>
     
     <div id = 'tag-all-link'>
-       <%= link_to 'All words', (@user) %>
+       <%= link_to 'All words', show_tag_word_path(:id => @user.id, :name => "all") %>
 	</div>
 	
   </div>

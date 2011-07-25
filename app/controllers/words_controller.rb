@@ -53,11 +53,12 @@ class WordsController < ApplicationController
     end
     userid = params[:user_id]
     single_word = params[:word][:word].lstrip()
-    old_word = Word.find_by_word(single_word)
+    old_word = Word.find_by_word_and_user_id(single_word,userid)
     if old_word==nil
       @word =  Word.create({:word=>single_word, :user_id => userid})
       @word.translate!
       operation_success=@word.save
+      add_unfamiliar_tag_when_word_create(@word)
     else
       @word = old_word
       operation_success=@word.update_attribute(:updated_at, Time.now)
@@ -68,6 +69,14 @@ class WordsController < ApplicationController
         format.json { render :json => @word, :status => :created }
         format.html {redirect_to(user_path(@word.user).to_s)}
       end
+    end
+  end
+  
+  def add_unfamiliar_tag_when_word_create(word)
+    if Tag.find_by_name('unfamiliar')
+      word.tags.push(Tag.find_by_name('unfamiliar'))
+    else
+      word.tags.create!(:name => 'unfamiliar')
     end
   end
   

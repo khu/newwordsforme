@@ -1,7 +1,5 @@
 Keepin::Application.routes.draw do
 
-  resources :goods
-
   match '/mobile',  :to => 'pages#mobile'
   match '/plugins', :to => 'pages#plugins'
   match '/contact', :to => 'pages#contact'

@@ -1,7 +1,3 @@
-Then /^I should see "([^"]*)" tag$/ do |tag|
-    page.body.should have_content(tag)
-end
-
 Then /^"([^"]*)" can see:$/ do |arg1, words_table|
   words_table.hashes.each {|hash| 
     page.body.should have_content(hash[:word])
@@ -56,7 +52,8 @@ Then /^I should see all his tags:$/ do |tag_table|
 end
 
 Then /^I should see the words belongs to the tag:$/ do |word_table|
-  div = page.find('div[@id=cards]')
+
+  div = page.find('div[@class=slides_container]')
   word_table.hashes.each {  |hash|
     div.should have_content(hash[:word])
   }
