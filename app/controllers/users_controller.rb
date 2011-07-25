@@ -1,34 +1,38 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
+  before_filter :login_create_tab, :only =>[:show, :show_word_by_tag]
+  
+  def login_create_tab
+    
+    @user = User.find(params[:id])
+    if !current_user.id
+      deny_access
+    end
+    if @user.id != current_user.id
+      redirect_to(user_path(current_user))
+    end
+    @tabs = Tabs.new.logged_in @user
+  end
   
   def show
-      @user = User.find(params[:id])
-      
-      if !current_user.id
-        deny_access
-      end
-      if @user.id != current_user.id
-        redirect_to(user_path(current_user))
-      end
-      @tabs = Tabs.new.logged_in @user
       @words = @user.word.order("updated_at").reverse
       @title = "Settings"
-      
       @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
   end
   
   def show_word_by_tag
-    tag_name = params[:name]
-    @user = User.find(params[:id])
-    @tabs = Tabs.new.logged_in @user
-    @words = @user.word.order("updated_at").find_all do |word|
-      if word.tags.find_by_name(tag_name)
-        word.id
+    if params[:name] == "all"
+      @words = @user.word.order("updated_at")
+    else
+      @words = @user.word.order("updated_at").find_all do |word|
+        if word.tags.find_by_name(params[:name])
+          word.id
+        end
       end
     end
     @title = "Show words by tag"
     @words = @words.reverse
-    render :template => 'users/show'
+    render :template => 'users/show_slide'
   end
   
   def new

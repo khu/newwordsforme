@@ -56,6 +56,13 @@ class WordsController < ApplicationController
     old_word = Word.find_by_word(single_word)
     if old_word==nil
       @word =  Word.create({:word=>single_word, :user_id => userid})
+      
+      if Tag.find_by_name('unfamiliar')
+        @word.tags.push(Tag.find_by_name('unfamiliar'))
+      else
+        @word.tags.create!(:name => 'unfamiliar')
+      end
+      
       @word.translate!
       operation_success=@word.save
     else

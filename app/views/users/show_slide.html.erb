@@ -2,34 +2,36 @@
     <div id="example">
         <div id="slides">
             <div class="slides_container">
-
-                <div class="slide">
-                  <div class="word">One</div>
-                  <div class="slide_back">一</div>
-                </div>
-                <div class="slide">
-                  <div class="word">Two</div>
-                  <div class="slide_back">二</div>
-                </div>
-                <div class="slide">
-                  <div class="word">Three</div>
-                  <div class="slide_back">三</div>
-                </div>
-                <div class="slide">
-                  <div class="word">Four</div>
-                  <div class="slide_back">四</div>
-                </div>
+	            <% @word_index = 0%>
+	            <% @words.each do | word | %>
+	              <% @word_index += 1 %>
+	              <div class="slide">
+                    <div class="word" id='word<%=@word_index%>'><%=word.word%></div>
+                    <div class="slide_back"><%= word.translation%></div>
+                  </div>
+	            <% end %>
             </div>
             <a href="#" class="prev"><img src="/stylesheets/img/slide_images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
             <a href="#" class="next"><img src="/stylesheets/img/slide_images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
         </div>
-        <img src="/stylesheets/img/slide_images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">
+        <!-- <img src="/stylesheets/img/slide_images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">-->
+        <img src="/images/iphone.png" width="739" height="341" alt="Example Frame" id="frame">
     </div>
+    <div class="bottom_navigator"><span id="current_word"></span>/<span id="total_words"></span></div>
+    <div class="bottom_back"><%= link_to 'Go Back', user_path(@user) %></div>
 </div>
 
 <script type="text/javascript">
+
 $(function(){
     var startSlide = 1;
+    
+	var current_word_number = 1;
+	var total_words = parseInt('<%=@words.length%>');
+
+    $('#current_word').html(current_word_number);
+    $('#total_words').html(total_words);
+
     // Get slide number if it exists
     if (window.location.hash) {
         startSlide = window.location.hash.replace('#','');
@@ -38,7 +40,7 @@ $(function(){
     $('#slides').slides({
         preload: true,
         preloadImage: '/stylesheets/img/slide_images/loading.gif',
-        generatePagination: true,
+        generatePagination: false,
         play: 0,
         pause: 2500,
         hoverPause: true,
@@ -53,9 +55,7 @@ $(function(){
     $('.word').click(function(){
         var elem = $(this);
         if(elem.data('flipped')){
-
             elem.revertFlip();
-
             elem.data('flipped', false);
         }else
         {
@@ -84,10 +84,28 @@ $(function(){
             case 39 :
                 $(".next").trigger("click");
                 break;
+            case 38 :
+            case 40 :
+                
+                $('#word' + current_word_number).trigger("click");
+                break;
             default:
                 break;
         }
     });
+    
+   $(".prev").bind('click', function(){
+	  if (--current_word_number <= 0)
+         current_word_number =  total_words;
+      $('#current_word').html(current_word_number);
+   });
+   $(".next").bind('click', function(){
+	  if (++current_word_number > total_words)
+         current_word_number =  1;
+      $('#current_word').html(current_word_number);
+   });
+   
 });
 
+ 
 </script>
