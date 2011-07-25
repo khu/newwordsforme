@@ -1,26 +1,28 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
-  before_filter :login_create_tab, :only =>[:show, :show_word_by_tag]
+  skip_before_filter :authenticate, :if => Proc.new {|c| c.request.format == 'rss'}
   
-  def login_create_tab
-    
+  def show
     @user = User.find(params[:id])
-    if !current_user.id
-      deny_access
-    end
-    if @user.id != current_user.id
+    if (request.format != 'rss' && @user.id != current_user.id)
       redirect_to(user_path(current_user))
     end
     @tabs = Tabs.new.logged_in @user
-  end
+    @words = @user.word.order("updated_at").reverse
+    @title = "Settings"
+
+    @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
+    end
   
-  def show
-      @words = @user.word.order("updated_at").reverse
-      @title = "Settings"
-      @word_list = Word.find(:all, :conditions => "user_id = #{@user.id}", :order => "updated_at DESC")
-  end
   
   def show_word_by_tag
+    
+    @user = User.find(params[:id])
+    if (request.format != 'rss' && @user.id != current_user.id)
+      redirect_to(user_path(current_user))
+    end
+    @tabs = Tabs.new.logged_in @user
+    
     if params[:name] == "all"
       @words = @user.word.order("updated_at")
     else
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to keepin!"
-      redirect_to @user
+      redirect_to user_path(@user.id)
     else
       @title = "Sign up"
       ## Reset password input after failed password attempt

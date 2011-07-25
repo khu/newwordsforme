@@ -4,5 +4,6 @@ log/*.log
 tmp/**/*
 *.log
 .gitignore
+.rvmrc
 .idea/*
 .idea/**/*
