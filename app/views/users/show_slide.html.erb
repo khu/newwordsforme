@@ -78,7 +78,7 @@ $(function(){
        }
     });
     $(document).keydown(function(event){
-        if( event.which == 38 || event.which == 40 || eventCode < 0  )
+        if( eventCode < 0  )
           eventCode = event.which;
         else
           return;
@@ -112,7 +112,7 @@ function operateKeyCode()
          default:
             break;
      }
-     setTimeout("resetEventCode()",600);
+     setTimeout("resetEventCode()",1000);
 }
 
 function resetEventCode(){
