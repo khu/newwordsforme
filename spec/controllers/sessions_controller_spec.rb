@@ -31,14 +31,9 @@ describe SessionsController do
           and_return(nil) # ".and_return(...)" is a guarantee, not an expectation!
       end
 
-      it "should re-render the new page" do
+      it "should redirect to home page" do
         post :create, :session => @attr
-        response.should render_template('new')
-      end
-
-      it "should have the right title" do
-        post :create, :session => @attr
-        response.should contain("Sign in")
+        redirect_to root_path
       end
 
     end # "invalid signin"
