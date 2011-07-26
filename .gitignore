@@ -4,3 +4,7 @@ log/*.log
 tmp/
 .idea/**/*
 .rvmrc
+spork/
+.idea
+.DS_Store
+.gitignore

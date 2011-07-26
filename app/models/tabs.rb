@@ -20,7 +20,7 @@ class Tabs
     @tabs = []
     @tabs << Tab.new(:plugins, 'Plugins', plugins_path)
     @tabs << Tab.new(:mobiles, 'Mobiles', mobile_path)
-    @tabs << Tab.new(:signin, 'Sign in', signin_path)
+    #@tabs << Tab.new(:signin, 'Sign in', root_path)
     @tabs.reverse!
     return self
   end

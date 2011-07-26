@@ -24,12 +24,12 @@
 <script type="text/javascript">
 
 var eventCode = -1;
-var eventState = true;
+var current_word_number = 1;
+var total_words = parseInt('<%=@words.length%>');
 $(function(){
     var startSlide = 1;
 
-	var current_word_number = 1;
-    var total_words = parseInt('<%=@words.length%>');
+
 	$('#current_word').html(current_word_number);
 	$('#total_words').html(total_words);
     // Let slides_container be visible when there is just one child
@@ -78,7 +78,7 @@ $(function(){
        }
     });
     $(document).keydown(function(event){
-        if(eventCode < 0  )
+        if( event.which == 38 || event.which == 40 || eventCode < 0  )
           eventCode = event.which;
         else
           return;
@@ -98,7 +98,7 @@ $(function(){
 
 function operateKeyCode()
 {
-     switch(eventCode){
+    switch(eventCode){
          case 37 :
             $(".prev").trigger("click");
             break;
@@ -107,8 +107,8 @@ function operateKeyCode()
             break;
          case 38 :
          case 40 :
-            $('#word' + current_word_number).trigger("click");
-            break;
+             $('#word' + current_word_number).trigger("click");
+             break;
          default:
             break;
      }

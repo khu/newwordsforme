@@ -47,9 +47,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to keepin!"
-      redirect_to user_path(@user.id)
+      user = User.authenticate(@user.email,@user.password)
+      sign_in user
+      #flash[:success] = "Welcome to keepin!"
+      redirect_to user_path(user.id)
     else
       @title = "Sign up"
       ## Reset password input after failed password attempt
