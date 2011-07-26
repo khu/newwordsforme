@@ -23,9 +23,11 @@
 
 <script type="text/javascript">
 
+var eventCode = -1;
+var eventState = true;
 $(function(){
     var startSlide = 1;
-    
+
 	var current_word_number = 1;
     var total_words = parseInt('<%=@words.length%>');
 	$('#current_word').html(current_word_number);
@@ -76,21 +78,12 @@ $(function(){
        }
     });
     $(document).keydown(function(event){
-       switch(event.which){
-         case 37 :
-            $(".prev").trigger("click");
-            break;
-         case 39 :
-            $(".next").trigger("click");
-            break;
-         case 38 :
-         case 40 :  
-            $('#word' + current_word_number).trigger("click");
-            break;
-         default:
-            break;
-       }
-     }); 
+        if(eventCode < 0  )
+          eventCode = event.which;
+        else
+          return;
+        operateKeyCode();
+     });
      $(".prev").bind('click', function(){
 	 	  if (--current_word_number <= 0)
              current_word_number =  total_words;
@@ -101,5 +94,28 @@ $(function(){
              current_word_number =  1;
           $('#current_word').html(current_word_number);
      });
-}); 
+});
+
+function operateKeyCode()
+{
+     switch(eventCode){
+         case 37 :
+            $(".prev").trigger("click");
+            break;
+         case 39 :
+            $(".next").trigger("click");
+            break;
+         case 38 :
+         case 40 :
+            $('#word' + current_word_number).trigger("click");
+            break;
+         default:
+            break;
+     }
+     setTimeout("resetEventCode()",600);
+}
+
+function resetEventCode(){
+    eventCode = -1 ;
+}
 </script>
