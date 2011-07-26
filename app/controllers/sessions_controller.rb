@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       flash.now[:error] = "Invalid email/password combination."
       @title = "Sign in"
       @tabs = Tabs.new.logged_out
-      render 'new'
+      redirect_to root_path
     else
       sign_in user
       redirect_to user_path(user.id)

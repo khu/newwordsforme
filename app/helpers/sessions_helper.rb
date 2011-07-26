@@ -27,9 +27,6 @@ module SessionsHelper
   end
 
   def signed_in?
-    if remember_token[0]
-      puts remember_token[0]
-    end
     !self.current_user.nil?
   end
 
