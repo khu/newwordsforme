@@ -52,7 +52,7 @@ class WordsController < ApplicationController
       deny_access unless user.nil?
     end
     userid = params[:user_id]
-    single_word = params[:word][:word].lstrip()
+    single_word = params[:word][:word].strip()
     old_word = Word.find_by_word_and_user_id(single_word,userid)
     if old_word==nil
       @word =  Word.create({:word=>single_word, :user_id => userid})
