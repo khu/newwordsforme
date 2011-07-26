@@ -1,0 +1,60 @@
+#iphone{
+background-image:url("/images/iPhone4Shape.png");
+padding-left:42px;
+padding-top:120px;
+height:510px;
+width:300px;
+overflow:hidden;
+}
+#sign-up{
+padding-left:20px;
+padding-top:0px;
+color:white;
+}
+.field {
+position:relative;
+height:70px;
+width:195px;
+}
+.field label{
+font-size:16px;
+}
+.field .pointer{
+position:absolute;
+top:20px;
+left:5px;
+background:url("/images/bg-pointer-black.png");
+background-position:left bottom;
+height:35px;
+width:17px;
+}
+.field input{
+float:right;
+margin-top:10px;
+padding-left:20px;
+font-size:16px;
+height:20px;
+width:170px;
+background-color:white !important;
+border:1px solid #000000;
+border-radius:25px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+}
+.action *{
+margin-top:10px;
+margin-left:3px;
+padding-left:10px;
+font-size:18px;
+height:30px;
+width:100px;
+border:none;
+border-radius:25px;
+-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#AAAAAA),to(#222222));
+}
+.action *:hover{
+background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#CCCCCC), to(#444444));
+}
+.action *:active{
+background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#222222),to(#AAAAAA));
+}
