@@ -6,4 +6,5 @@ tmp/
 .rvmrc
 spork/
 .idea
+.DS_Store
 .gitignore
