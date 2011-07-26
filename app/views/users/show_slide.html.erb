@@ -15,7 +15,7 @@
             <a href="#" class="next"><img src="/stylesheets/img/slide_images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
         </div>
         <!-- <img src="/stylesheets/img/slide_images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">-->
-        <img src="/images/iphone.png" width="739" height="341" alt="Example Frame" id="frame">
+        <img src="/images/iphone5.png" width="739" height="341" alt="Example Frame" id="frame">
     </div>
     <div class="bottom_navigator"><span id="current_word"></span>/<span id="total_words"></span></div>
     <div class="bottom_back"><%= link_to 'Go Back', user_path(@user) %></div>
@@ -37,26 +37,33 @@ $(function(){
     {
 	  $('.slides_container').css("display","block");
     }
-    // Get slide number if it exists
-    if (window.location.hash) {
-        startSlide = window.location.hash.replace('#','');
-    }
-    // Initialize Slides
+//    // Get slide number if it exists
+//    if (window.location.hash) {
+//        startSlide = window.location.hash.replace('#','');
+//    }
+//    // Initialize Slides
+//    $('#slides').slides({
+//        preload: true,
+//        preloadImage: '/stylesheets/img/slide_images/loading.gif',
+//        generatePagination: false,
+//        play: 0,
+//        pause: 2500,
+//        hoverPause: true,
+//        // Get the starting slide
+//        start: startSlide,
+//        animationComplete: function(current){
+//            // Set the slide number as a hash
+//            window.location.hash = '#' + current;
+//        }
+//    });
     $('#slides').slides({
         preload: true,
         preloadImage: '/stylesheets/img/slide_images/loading.gif',
-        generatePagination: false,
         play: 0,
         pause: 2500,
-        hoverPause: true,
-        // Get the starting slide
-        start: startSlide,
-        animationComplete: function(current){
-            // Set the slide number as a hash
-            window.location.hash = '#' + current;
-        }
+        hoverPause: true ,
+        generatePagination: false
     });
-
     $('.word').click(function(){
         var elem = $(this);
         if(elem.data('flipped')){
@@ -105,10 +112,10 @@ function operateKeyCode()
          case 39 :
             $(".next").trigger("click");
             break;
-         case 38 :
-         case 40 :
-             $('#word' + current_word_number).trigger("click");
-             break;
+//         case 38 :
+//         case 40 :
+//             $('#word' + current_word_number).trigger("click");
+//             break;
          default:
             break;
      }
