@@ -28,7 +28,6 @@ class SessionsController < ApplicationController
         }
         format.all{
           sign_in user
-          puts @current_user.inspect
           redirect_to user_path(user.id)
         }
       end
