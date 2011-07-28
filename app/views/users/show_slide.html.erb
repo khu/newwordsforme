@@ -1,128 +1,142 @@
 <div id="container">
-    <div id="example">
-        <div id="slides">
-            <div class="slides_container">
-	            <% @word_index = 0%>
-	            <% @words.each do | word | %>
-	              <% @word_index += 1 %>
-	              <div class="slide">
-                    <div class="word" id='word<%=@word_index%>'><%=word.word%></div>
-                    <div class="slide_back"><%= word.translation%></div>
-                  </div>
-	            <% end %>	            
+  <div id="example">
+    <div id="slides">
+      <div class="slides_container">
+        <% @words.each do |word| %>
+            <div class="slide">
+              <div class="word" id='word<%= word.id %>'><%= word.word %></div>
+              <div class="slide_back"><%= word.translation %></div>
             </div>
-            <a href="#" class="prev"><img src="/stylesheets/img/slide_images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-            <a href="#" class="next"><img src="/stylesheets/img/slide_images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-        </div>
-        <!-- <img src="/stylesheets/img/slide_images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">-->
-        <img src="/images/iphone5.png" width="739" height="341" alt="Example Frame" id="frame">
+        <% end %>
+      </div>
+      <a href="#" class="prev"><img src="/stylesheets/img/slide_images/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+      <a href="#" class="next"><img src="/stylesheets/img/slide_images/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
     </div>
-    <div class="bottom_navigator"><span id="current_word"></span>/<span id="total_words"></span></div>
-    <div class="bottom_back"><%= link_to 'Go Back', user_path(@user) %></div>
+    <!-- <img src="/stylesheets/img/slide_images/example-frame.png" width="739" height="341" alt="Example Frame" id="frame">-->
+    <img src="/images/iphone5.png" width="739" height="341" alt="Example Frame" id="frame">
+  </div>
+  <div class="bottom_navigator"><span id="current_word"></span>/<span id="total_words"></span></div>
+  <div class="bottom_back"><%= link_to 'Go Back', user_path(@user) %></div>
 </div>
 
 <script type="text/javascript">
 
-var eventCode = -1;
-var current_word_number = 1;
-var total_words = parseInt('<%=@words.length%>');
-$(function(){
-    var startSlide = 1;
+    var eventCode = -1;
+    var current_word_number = 1;
+    var total_words = parseInt('<%=@words.length%>');
+    var clickedWords = new Array;
+    $(function() {
+        var startSlide = 1;
 
+        $('#current_word').html(current_word_number);
+        $('#total_words').html(total_words);
 
-	$('#current_word').html(current_word_number);
-	$('#total_words').html(total_words);
-    // Let slides_container be visible when there is just one child
-    if( $('.slide').length > 0 ) 
-    {
-	  $('.slides_container').css("display","block");
-    }
-//    // Get slide number if it exists
-//    if (window.location.hash) {
-//        startSlide = window.location.hash.replace('#','');
-//    }
-//    // Initialize Slides
-//    $('#slides').slides({
-//        preload: true,
-//        preloadImage: '/stylesheets/img/slide_images/loading.gif',
-//        generatePagination: false,
-//        play: 0,
-//        pause: 2500,
-//        hoverPause: true,
-//        // Get the starting slide
-//        start: startSlide,
-//        animationComplete: function(current){
-//            // Set the slide number as a hash
-//            window.location.hash = '#' + current;
-//        }
-//    });
-    $('#slides').slides({
-        preload: true,
-        preloadImage: '/stylesheets/img/slide_images/loading.gif',
-        play: 0,
-        pause: 2500,
-        hoverPause: true ,
-        generatePagination: false
-    });
-    $('.word').click(function(){
-        var elem = $(this);
-        if(elem.data('flipped')){
-            elem.revertFlip();
-            elem.data('flipped', false);
-        }else
-        {
-            elem.flip({
-            direction: 'tb',
-            color:'#F3F1E5',
-            speed:350,
-            onBefore:function(){
-                elem.html(elem.siblings('.slide_back').html());
-            },
-            onEnd: function(){
+        // Let slides_container be visible when there is just one child
+        if ($('.slide').length > 0) {
+            $('.slides_container').css("display", "block");
+        }
+        $('#slides').slides({
+            preload: true,
+            preloadImage: '/stylesheets/img/slide_images/loading.gif',
+            play: 0,
+            pause: 2500,
+            hoverPause: true ,
+            generatePagination: false
+        });
+        $('.word').click(function() {
+            var elem = $(this);
+            var word_id = elem.attr('id').replace(/[^\d]/g, '');
+            clickedWords.push(word_id);
+            update_tag_via_ajax(word_id, "familiar", "unfamiliar");
+            if (elem.data('flipped')) {
+                elem.revertFlip();
+                elem.data('flipped', false);
+            } else {
+                elem.flip({
+                    direction: 'tb',
+                    color:'#F3F1E5',
+                    speed:350,
+                    onBefore:function() {
+                        elem.html(elem.siblings('.slide_back').html());
+                    },
+                    onEnd: function() {
+                    }
+                });
+                elem.data('flipped', true);
             }
-           });
-        elem.data('flipped', true);
-       }
-    });
-    $(document).keydown(function(event){
-        if( eventCode < 0  )
-          eventCode = event.which;
-        else
-          return;
-        operateKeyCode();
-     });
-     $(".prev").bind('click', function(){
-	 	  if (--current_word_number <= 0)
-             current_word_number =  total_words;
-          $('#current_word').html(current_word_number);
-     });
-     $(".next").bind('click', function(){
-    	  if (++current_word_number > total_words)
-             current_word_number =  1;
-          $('#current_word').html(current_word_number);
-     });
-});
+        });
+        $(document).keydown(function(event) {
+            if (eventCode < 0)
+                eventCode = event.which;
+            else
+                return;
+            operateKeyCode();
+        });
+        $(".prev").bind('click', function() {
+            if (--current_word_number <= 0)
+                current_word_number = total_words;
+            $('#current_word').html(current_word_number);
+        });
+        $(".prev").mousedown(function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+        $(".next").bind('click', function() {
+            if (++current_word_number > total_words)
+                current_word_number = 1;
+            $('#current_word').html(current_word_number);
+        });
+        $(".next").mousedown(function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
 
-function operateKeyCode()
-{
-    switch(eventCode){
-         case 37 :
-            $(".prev").trigger("click");
-            break;
-         case 39 :
-            $(".next").trigger("click");
-            break;
-//         case 38 :
-//         case 40 :
-//             $('#word' + current_word_number).trigger("click");
-//             break;
-         default:
-            break;
-     }
-     setTimeout("resetEventCode()",1000);
-}
+        $(".bottom_back > a").mousedown(function() {
+            if (total_words == 1 && clickedWords.length == 0) {
+                var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            } else if ( current_word_number == total_words && clickedWords.indexOf(current_word_number) < 0) {
 
-function resetEventCode(){
-    eventCode = -1 ;
-}
+                var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+    })
+    function operateKeyCode() {
+        switch (eventCode) {
+            case 37 :
+                $(".prev").trigger("mousedown");
+                $(".prev").trigger("click");
+                break;
+            case 39 :
+                $(".next").trigger("mousedown");
+                $(".next").trigger("click");
+                break;
+            default:
+                break;
+        }
+        setTimeout("resetEventCode()", 1000);
+    }
+
+    function resetEventCode() {
+        eventCode = -1;
+    }
+
+    function update_tag_via_ajax(word_id, oldTag, newTag) {
+        $.ajax({
+            url: "/words/update_tag",
+            type: "POST",
+            data: {"word": {"word_id" : word_id,"oldTag": oldTag, "newTag": newTag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
 </script>

@@ -1,4 +1,4 @@
-Given /^"([^"]*)" is user of keepin$/ do |name|
+  Given /^"([^"]*)" is user of keepin$/ do |name|
   @user = User.create(:name => name, :password => 'password', :email => "#{name}@gmail.com")
   @user.save
 end
@@ -37,4 +37,12 @@ Given /^"([^"]*)" has two words of the same tag which is "([^"]*)", the words ar
       word.tags.create!(:name => tag)
     end
   }
+end
+
+Given /^"([^"]*)" add two words, the words are:$/ do |user, word_table|
+  rick = User.find_by_name(user)
+  word_table.hashes.each do | hash |
+    word = rick.word.create(:word => hash[:word], :translation => hash[:word])
+    word.add_tag_by_name('unfamiliar')
+  end
 end
