@@ -1,4 +1,4 @@
-  Given /^"([^"]*)" is user of keepin$/ do |name|
+Given /^"([^"]*)" is user of keepin$/ do |name|
   @user = User.create(:name => name, :password => 'password', :email => "#{name}@gmail.com")
   @user.save
 end

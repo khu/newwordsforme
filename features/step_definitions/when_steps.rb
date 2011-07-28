@@ -9,7 +9,7 @@ When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
 end
 
 When /^I click the "([^"]*)" tag$/ do |tag|
-  click_link tag
+    click_link tag
 end
 When /^I flipper the word "([^"]*)" (\d+) times$/ do |word, times|
   #class="sponsor" title="Click to flip"

@@ -7,16 +7,30 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:session][:email],
                              params[:session][:password])
-
     if user.nil?
-      # Create an error message and re-render the signin form.
-      flash.now[:error] = "Invalid email/password combination."
-      @title = "Sign in"
-      @tabs = Tabs.new.logged_out
-      redirect_to root_path
-    else
-      sign_in user
-      redirect_to user_path(user.id)
+      respond_to do |format|
+        format.json {
+          render :json => {:state => "failed"}
+        }
+        format.all{
+          # Create an error message and re-render the signin form.
+          flash.now[:error] = "Invalid email/password combination."
+          @title = "Sign in"
+          @tabs = Tabs.new.logged_out
+          redirect_to root_path  
+        }
+      end
+    else  
+      respond_to do |format|
+        format.json {
+          sign_in user
+          render :json  => {:state => "success", :token => remember_token} 
+        }
+        format.all{
+          sign_in user
+          redirect_to user_path(user.id)
+        }
+      end
     end
   end
   

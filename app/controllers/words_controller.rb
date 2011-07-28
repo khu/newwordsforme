@@ -14,7 +14,6 @@ class WordsController < ApplicationController
       @user=current_user
     else
       @words = @user.method(mode).call(today).order("updated_at").reverse
-      puts @words
       @tabs = Tabs.new.logged_in(@user)
     
       respond_to do |format|
@@ -49,7 +48,7 @@ class WordsController < ApplicationController
       user=current_user
     else
       user=User.authenticate_with_password(params[:user_id], params[:password])
-      deny_access unless user.nil?
+      deny_access if user.nil?
     end
     userid = params[:user_id]
     single_word = params[:word][:word].strip()
@@ -64,13 +63,14 @@ class WordsController < ApplicationController
       operation_success=@word.update_attribute(:updated_at, Time.now)
       @word.save
     end
-    if operation_success
-      respond_to do |format|
-        format.json { render :json => @word, :status => :created }
-        format.html {redirect_to(user_path(@word.user).to_s)}
-      end
-    end
-  end
+        
+          if operation_success
+            respond_to do |format|
+              format.json {render :json => @word, :status => :created }
+              format.html {redirect_to(user_path(@word.user).to_s)}
+            end
+          end
+        end
   
   def add_tag
    if (not Word.exists? params[:word][:word_id]) || params[:word][:tag].length == 0
