@@ -60,7 +60,25 @@ describe SessionsController do
         redirect_to user_path(@user)
       end
 
-    end 
+    end
+    
+    describe "valid signin json" do
+
+        before(:each) do
+          @user = Factory(:Rick)
+          @attr = { :email => @user.email, :password => @user.password }
+          end
+
+          it "should redirect to home page" do
+            post :create, :session => @attr ,:format => :json
+            controller.should be_signed_in
+            result = JSON.parse(response.body)
+            result['state'].include?("success").should be_true
+            result['token'][0].should == @user.id
+            result['token'][1].should == @user.password
+          end
+        end # "valid signin json"
+     
 
   end # "POST create"
 

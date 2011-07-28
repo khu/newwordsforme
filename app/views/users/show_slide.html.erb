@@ -99,10 +99,10 @@
             if (total_words == 1 && clickedWords.length == 0) {
                 var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
                 update_tag_via_ajax(word_id, "unfamiliar", "familiar");
-            } else if ( current_word_number == total_words && clickedWords.indexOf(current_word_number) < 0) {
-
+            } else if ( current_word_number == total_words ) {
                 var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
-                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+                if (clickedWords.indexOf(word_id) < 0 )
+                    update_tag_via_ajax(word_id, "unfamiliar", "familiar");
             }
         });
     })
