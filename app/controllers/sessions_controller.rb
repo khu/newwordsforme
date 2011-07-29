@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user.nil?
       respond_to do |format|
         format.json {
-          render :json => {:state => "failed"}
+          head :forbidden
         }
         format.all{
           # Create an error message and re-render the signin form.
