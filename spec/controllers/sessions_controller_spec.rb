@@ -74,8 +74,8 @@ describe SessionsController do
             controller.should be_signed_in
             result = JSON.parse(response.body)
             result['state'].include?("success").should be_true
-            result['token'][0].should == @user.id
-            result['token'][1].should == @user.password
+            result['data']['user']['id'].should == @user.id
+            result['data']['user']['name'].should == @user.name
           end
         end # "valid signin json"
      

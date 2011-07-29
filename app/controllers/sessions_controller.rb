@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       respond_to do |format|
         format.json {
           sign_in user
-          render :json  => {:state => "success", :token => remember_token} 
+          render :json  => {:state => "success", :data => user } 
         }
         format.all{
           sign_in user
