@@ -6,7 +6,7 @@ xml.rss :version => "2.0" do
     xml.link user_url(@user.id, :rss)
     
     def create_description(word)
-      description = "#{word.word} #{word.translation}"
+      description = "#{word.translation}"
       unless word.link == nil then  
         description += "<a href=#{word.link}>link</a>"
       end
