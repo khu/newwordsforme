@@ -23,6 +23,8 @@ xml.rss :version => "2.0" do
           xml.title "#{word.word}"
           xml.description create_description(word)
           xml.pubDate "#{word.updated_at}"
+          xml.category("#{word.id}", :domain => "id")  
+          # "#{word.id}"
         end
     end
     
