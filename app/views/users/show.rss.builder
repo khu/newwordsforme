@@ -24,11 +24,7 @@ xml.rss :version => "2.0" do
           xml.description create_description(word)
           xml.pubDate "#{word.updated_at}"
           xml.category("#{word.id}", :domain => "id")  
-          tags = ""
-          for tag in word.tags
-            tags += tag.name + ", "
-          end
-          xml.category("#{tags}", :domain => "tags")  
+          xml.category(word.tag_names.join(",") , :domain => "tags")  
         end
     end
     

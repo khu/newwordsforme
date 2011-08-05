@@ -52,9 +52,10 @@ describe UsersController do
         word1 = @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
         word2 = @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
         test_sign_in(@user)
-        word1.tags.create!(:name => "unfamilier")
-        word2.tags.create!(:name => "familier")
+        word1.tags.create!(:name => "unfamiliar")
+        word2.tags.create!(:name => "familiar")
         get :show, :id => @user.id, :format => :rss
+        
         
         @user.word.each do |word|
           response.should have_selector("rss channel item title", :content => "#{word.word}")
@@ -63,10 +64,10 @@ describe UsersController do
           response.should have_selector("rss channel item category", :content => "#{word.id}")
           response.should have_selector("rss channel item category", :domain => 'id')
           response.should have_selector("rss channel item category", :domain => 'tags')
-          response.should have_selector("rss channel item category", :content => 'unfamilier')
         end
+         
+        response.body.include?("<category domain=\"tags\">familiar</category>").should be_true
       end
-                                                                              
   end
   
   describe "sign and GET 'show' other user" do

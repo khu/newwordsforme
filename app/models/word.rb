@@ -33,6 +33,15 @@ class Word < ActiveRecord::Base
     end
   end
 
+  def tag_names
+    tag_names = []
+
+    tags.each do |tag|
+      tag_names << tag.name
+    end
+    tag_names
+  end
+  
   def update_tag_by_new_name(hash)
     oldTag = tags.find_by_name(hash[:oldTag])
     tags.delete(oldTag)  if oldTag != nil

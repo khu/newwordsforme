@@ -21,4 +21,17 @@ class WordTest < ActiveSupport::TestCase
     assert_equal "http://google.com", word.link
   end
   
+  test "should return emptry array when there is no tag names" do
+    word = Word.create({:word => "Apple@http://google.com"})
+    assert_equal [], word.tag_names
+  end
+
+  test "should return array to contain all tag names" do
+    word = Word.create({:word => "Apple@http://google.com"})
+    word.tags = [Tag.create(:name=>"familiar"), Tag.create(:name=>"unfamiliar")]
+
+    assert_equal ["familiar", "unfamiliar"], word.tag_names
+  end
+
+  
 end
