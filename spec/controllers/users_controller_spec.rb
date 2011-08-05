@@ -17,7 +17,7 @@ describe UsersController do
     end
     
      it "should subscribe the rss results" do
-        get :show, :id => @user.id, :format => :rss
+        get :show, :id => @user.id, :format => :rss 
         response.should be_success
         response.should have_selector("rss[version='2.0']")
         response.should have_selector("channel")
@@ -25,18 +25,48 @@ describe UsersController do
         response.should have_selector("description", :content => "All the words which #{@user.name} is learning")
       end
       
+      
+    it "should display the all rss feed when given date is very old" do
+     @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => DateTime.civil(2010, 2, 14, 11, 12, 13, 0))
+     @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => DateTime.civil(2010, 2, 14, 10, 12, 13, 0))
+
+      get :show, :id => @user.id, :format => :rss, :date => DateTime.civil(2010, 2, 14, 10, 12, 12, 0).to_s
+      response.should be_success
+      @user.word.each do |word|
+        response.should have_selector("rss channel item title", :content => "#{word.word}")
+      end
+    end
+
+    it "should display the specific rss feed newer than the provided date" do
+      @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => DateTime.civil(2010, 2, 14, 11, 12, 13, 0))
+      @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => DateTime.civil(2010, 2, 14, 10, 12, 13, 0))
+
+      get :show, :id => @user.id, :format => :rss, :date => DateTime.civil(2010, 2, 14, 10, 30, 12, 0).to_s
+      response.should be_success
+
+      response.should have_selector("rss channel item title", :content => "new")
+      response.should_not have_selector("rss channel item title", :content => "go")
+     end
+         
       it "should subscribe all the words" do
-        @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
-        @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
+        word1 = @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
+        word2 = @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
+        test_sign_in(@user)
+        word1.tags.create!(:name => "unfamilier")
+        word2.tags.create!(:name => "familier")
         get :show, :id => @user.id, :format => :rss
         
         @user.word.each do |word|
           response.should have_selector("rss channel item title", :content => "#{word.word}")
           response.should have_selector("rss channel item description", :content => "#{word.translation}")
           response.should have_selector("rss channel item pubdate", :content => "#{word.updated_at}")
+          response.should have_selector("rss channel item category", :content => "#{word.id}")
+          response.should have_selector("rss channel item category", :domain => 'id')
+          response.should have_selector("rss channel item category", :domain => 'tags')
+          response.should have_selector("rss channel item category", :content => 'unfamilier')
         end
       end
-    
+                                                                              
   end
   
   describe "sign and GET 'show' other user" do

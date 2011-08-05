@@ -14,21 +14,25 @@ xml.rss :version => "2.0" do
     end    
     
     description = ""
-    unless @word_list.empty? then
-      updated_date = @word_list.first.updated_at.to_date 
+    unless @words.empty? then
+      updated_date = @words.first.updated_at.to_date 
     end
     
-    for word in @word_list
+    for word in @words
         xml.item do
           xml.title "#{word.word}"
           xml.description create_description(word)
           xml.pubDate "#{word.updated_at}"
           xml.category("#{word.id}", :domain => "id")  
-          # "#{word.id}"
+          tags = ""
+          for tag in word.tags
+            tags += tag.name + ", "
+          end
+          xml.category("#{tags}", :domain => "tags")  
         end
     end
     
-    unless !@word_list.empty? then
+    unless !@words.empty? then
       xml.item do
         xml.title "#{updated_date}"
         xml.description "#{description}"
