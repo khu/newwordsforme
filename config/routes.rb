@@ -33,6 +33,8 @@ Keepin::Application.routes.draw do
   post "sessions/userid"
 
   post "words/update_tag"
+  
+  post "words/update_words"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

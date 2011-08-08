@@ -113,4 +113,18 @@ class WordsController < ApplicationController
       format.json { render :json => 'updated' }
     end
   end
+  
+  def update_words
+    words = params[:words]
+    words.each do |upLoadWord|
+      word = Word.find(upLoadWord[:id])
+      if word.updated_at < upLoadWord[:updated_at]
+        word.update_attribute(:updated_at, upLoadWord[:updated_at])
+        hash = {:oldTag => word.tag_names.join(","), :newTag => upLoadWord[:tag]}
+        word.update_tag_by_new_name(hash)
+      end
+    end
+    
+    render :json => {:state => "updated"}
+  end
 end
