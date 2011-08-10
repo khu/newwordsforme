@@ -81,6 +81,10 @@ function popup(title, text) {
             getService(Components.interfaces.nsIAlertsService).
             showAlertNotification("chrome://flashcard/skin/icon.png", title, text, false, '', null);
     } catch(e) {
-        // prevents runtime error on platforms that don't implement nsIAlertsService
+        var image = "chrome://flashcard/skin/icon.png";
+	    var win = Components.classes['@mozilla.org/embedcomp/window-watcher;1'].
+			getService(Components.interfaces.nsIWindowWatcher).
+		    openWindow(null, 'chrome://global/content/alerts/alert.xul', '_blank', 'chrome,titlebar=no,popup=yes', null);
+		win.arguments = [image, title, text, false, '']; 
     }
 }
