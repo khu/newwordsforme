@@ -67,3 +67,7 @@ end
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
   page.body.should have_content(translation)
 end
+
+Then /^Rick can get a response with HTTP status code "([^"]*)" \(success\)$/ do |code_wanted|
+  last_response.status.should == code_wanted.to_i
+end

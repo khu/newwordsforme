@@ -31,3 +31,11 @@ When /^I flip the word "([^"]*)"$/ do |word_name|
   div = page.find("div[@id=word#{word.id}]")
   div.click
 end
+
+When /^"([^"]*)" post a sign in information with email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
+  path = "/sessions/userid.json"
+  data = { "email" => email,"password" => password }.to_json
+  header 'Accept', 'application/json'
+  header 'Content-Type', 'application/json'
+  post path, data
+end
