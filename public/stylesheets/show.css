@@ -90,3 +90,84 @@
     font: 12px/14px "Helvetica Neue", Arial, sans-serif;
 }
 /******** Keepin input box end ******/
+
+/**************** for tabs *************/
+
+.words-stream-tabs {
+    clear: both;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 20px;
+    height: 35px;
+    background-color: #0084B4;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
+}
+.words-stream-tabs .words-stream-tab {
+    cursor: pointer;
+    float: left;
+    margin: 0;
+    padding-top: 3px;
+    border-width: 1px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-width: 80px;
+    margin-left: 16px;
+}
+
+.words-stream-tab .words-tab-text{
+    cursor: pointer;
+    display: block;
+    line-height: 28px;
+    outline: medium none;
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: inherit;
+    padding: 4px 20px 4px;
+    font-size: 16px;
+    text-align: center;
+    color: #ccc;
+}
+#play-button {
+    float:right;
+    background-image: url("/images/show/glossy_rectangle-button.jpg");
+    width: 100px;
+    height: 28px;
+}
+.words-stream-tabs .words-stream-tab.active .words-tab-text, .words-stream-tabs .words-stream-tab.active .words-tab-text:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #ccc #ccc #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    font-weight: bold;
+    outline: medium none;
+    padding-top: 3px;
+}
+
+ul.words-stream-tabs .words-tab-text:hover {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #EEEEEE;
+    color: #000000;
+}
+
+ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-stream-tabs li.open .words-tab-text, ul.words-stream-tabs li.open .words-tab-text:hover {
+    background: none repeat scroll 0 0 #999999;
+    border-color: #999999;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+
+
+/*************** for tabs end ***********/
