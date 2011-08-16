@@ -53,7 +53,8 @@ class UsersController < ApplicationController
       user = User.authenticate(@user.email, @user.password)
       sign_in user
       #flash[:success] = "Welcome to keepin!"
-      redirect_to user_path(user.id)
+      #redirect_to user_path(user.id)
+      redirect_to "/users/#{user.id}"
     else
       @title = "Sign up"
       ## Reset password input after failed password attempt

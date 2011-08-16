@@ -1,0 +1,97 @@
+<div>
+	<div id="left-panel">
+		<div id="info-panel">
+			<h1>Start learning</h1>
+			<div class="subtag">
+			<span>Start today to put yourself into different learning experience:<br /> Smart facilitating/Efficient/Fun</span>
+			</div>
+		</div>
+		<div id="chart-panel">
+			<div id="chart-wrapper">
+				<div id="chart">
+					<div id="bars">
+						<div class="bar first">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Capture<br>
+									<%= image_tag("plugin.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("safari.png",  :width=>'48', :height=>'48') %>
+								</p>
+							</div>
+						</div>
+						<div class="bar second">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									<%= image_tag("iphone.png", :width=>'48', :height=>'48') %>
+									<%= image_tag("android.png",  :width=>'48', :height=>'48') %><br>
+									Sync
+								</p>
+							</div>
+						</div>
+						<div class="bar third">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Learn<br>
+									<%= image_tag("train.png", :width=>'48', :height=>'48') %> <%= image_tag("bus.png",  :width=>'48', :height=>'48') %><br>
+
+								</p>
+							</div>
+						</div>
+						<div class="bar fourth">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									<%= image_tag("bar_chart.png", :width=>'48', :height=>'48') %> <%= image_tag("line_chart.png",  :width=>'48', :height=>'48') %>
+									Track<br>
+								</p>
+							</div>
+						</div>
+						<div class="bar fifth">
+							<div class="pointer"></div>
+							<div class="description">
+								<p>
+									Share<br>
+									<%= image_tag("community.png", :width=>'48', :height=>'48') %>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="right-panel">
+		<link rel=StyleSheet href="stylesheets/home_sign_in.css" type="text/css" media=screen>
+		<div id="sign-in">
+			<h2>Start Study? </h2>
+			<div class="sign-in-info">Sign in with your Email and Password.
+			</div>
+			<%= form_for(:session, :url => sessions_path ) do |f| %>
+
+			<div class="field">
+			  <%= f.label :email %>
+			  <%= f.text_field :email , :autocomplete => :off %>
+			<div class="pointer"></div>
+			</div>
+
+			<div class="field">
+			  <%= f.label :password %>
+			  <%= f.password_field :password ,:autocomplete => :off %>
+			<div class="pointer"></div>
+			</div>
+
+			<div class="action">
+			  <%= f.submit "Sign in" ,:autocomplete => :off%>
+			</div>
+			<% end %>
+
+			<p>New user? <%= link_to "Sign up!", signup_path %></p>
+
+		  <% if !@user.nil? %>
+		  <% end %>
+		</div>
+	</div>
+</div>

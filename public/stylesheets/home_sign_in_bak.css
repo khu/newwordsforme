@@ -1,0 +1,55 @@
+#sign-in{
+padding:50px;
+background:#BBBBBB;
+border-radius:50px;
+box-shadow: 10px 10px 5px #888888;
+-webkit-box-shadow: 10px 10px 5px #888888; /* Safari */
+-moz-border-radius:50px; /* Firefox 3.6 and earlier */
+color:black;
+}
+.field {
+	position:relative;
+	height:70px;
+	width:195px;
+}
+.field label{
+	font-size:16px;
+}
+.field .pointer{
+	position:absolute;
+	top:20px;
+	left:5px;
+	background:url("/images/bg-pointer-black.png");
+	background-position:left bottom;
+	height:35px;
+	width:17px;
+}
+.field input{
+	float:right;
+	margin-top:10px;
+	padding-left:20px;
+	font-size:16px;
+	height:20px;
+	width:170px;
+	background-color:white !important;
+	border:1px solid #000000;
+	border-radius:25px;
+	-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+}
+.action input{
+	margin: 10px 20px ;
+	padding-left:10px;
+	font-size:18px;
+	height:30px;
+	width:150px;
+	border:none;
+	border-radius:25px;
+	-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+	background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#1b70b8),to(#154086));
+}
+.action input:hover{
+	background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#2084D9), to(#165A94));
+}
+.action input:active{
+	background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#0a2f56),to(#1b70b8));
+}

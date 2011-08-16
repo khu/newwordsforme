@@ -1,55 +1,108 @@
-#sign-in{
-padding:50px;
-background:#BBBBBB;
-border-radius:50px;
-box-shadow: 10px 10px 5px #888888;
--webkit-box-shadow: 10px 10px 5px #888888; /* Safari */
--moz-border-radius:50px; /* Firefox 3.6 and earlier */
-color:black;
+#signin-container {
+    padding-top: 4px;
 }
-.field {
-	position:relative;
-	height:70px;
-	width:195px;
+
+#signin-container .formcont {
+    height: 220px;
+    margin-bottom: 10px;
+    margin-top: -20px;
+    overflow: hidden;
+    padding-top: 30px;
 }
-.field label{
-	font-size:16px;
+
+#signin-container .form {
+    background: url("/stylesheets/img/signin-formbg.png") no-repeat scroll 0 0 transparent;
+    height: 215px;
+    margin: 0 auto;
+    padding-top: 24px;
+    position: relative;
 }
-.field .pointer{
-	position:absolute;
-	top:20px;
-	left:5px;
-	background:url("/images/bg-pointer-black.png");
-	background-position:left bottom;
-	height:35px;
-	width:17px;
+
+.sign-in-title {
+    color: #F05127;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 22px;
+    margin: 0 80px 0px;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+    font-family: 'Kreon', serif;
 }
-.field input{
-	float:right;
-	margin-top:10px;
-	padding-left:20px;
-	font-size:16px;
-	height:20px;
-	width:170px;
-	background-color:white !important;
-	border:1px solid #000000;
-	border-radius:25px;
-	-moz-border-radius:25px; /* Firefox 3.6 and earlier */
+
+#signin-container .form .email {
+    background: url("/stylesheets/img/signin-form-email.png") no-repeat scroll 0 13px transparent;
+    height: 50px;
+    margin: 0 16px;
 }
-.action input{
-	margin: 10px 20px ;
-	padding-left:10px;
-	font-size:18px;
-	height:30px;
-	width:150px;
-	border:none;
-	border-radius:25px;
-	-moz-border-radius:25px; /* Firefox 3.6 and earlier */
-	background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#1b70b8),to(#154086));
+
+#signin-container .form .passwd {
+    background: url("/stylesheets/img/signin-form-passwd.png") no-repeat scroll 0 13px transparent;
+    height: 50px;
+    margin: 0 16px 16px;
+
 }
-.action input:hover{
-	background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#2084D9), to(#165A94));
+
+#signin-container .form .email input, #signin-container .form .passwd input {
+    background: url("/stylesheets/img/signin-form-lines.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #272727;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 24px;
+    height: 50px;
+    margin-left: 100px;
+    outline: medium none;
+    padding-left: 14px;
+    text-indent: 9px;
+    width: 383px;
 }
-.action input:active{
-	background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#0a2f56),to(#1b70b8));
+
+
+.signin-button {
+    background: url("/stylesheets/img/signin_img/button.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    bottom: -16px;
+    color: #333333;
+    font-size: 12px;
+    height: 50px;
+    line-height: 14px;
+    padding: 0 0 18px 28px;
+    right: 60px;
+    text-align: left;
+    width: 105px;
+    float: right;
+    margin-right: 16px;
 }
+
+.signin-button:hover {
+    background-position: 0 100%;
+    bottom: -17px;
+    padding-bottom: 16px;
+}
+
+.to-signup {
+    color: #333333;
+    font-size: 12px;
+    line-height: 14px;
+    padding-top: 10px;
+    padding-left: 70px;
+    float: left;
+    width: 120px;
+}
+
+.to-signup label {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.to-signup a {
+    color: #000099;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.to-signup a:hover {
+    color: #ff0000;
+}
+

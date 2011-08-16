@@ -1,60 +1,98 @@
-#iphone{
-background-image:url("/images/iPhone4Shape.png");
-padding-left:42px;
-padding-top:120px;
-height:510px;
-width:300px;
-overflow:hidden;
+
+
+#signup-container {
+    height: 343px;
+    padding-top: 10px;
 }
-#sign-up{
-padding-left:20px;
-padding-top:0px;
-color:white;
+.error {
+    background: none repeat scroll 0 0 rgba(234, 29, 44, 0.17);
+    border: 1px solid #C69486;
+    border-radius: 3px 3px 3px 3px;
+    color: #612322;
+    font-size: 18px;
+    line-height: 26px;
+    margin: 0 auto 2px;
+    padding: 5px 0 0;
+    text-align: center;
+    width: 590px;
 }
-.field {
-position:relative;
-height:70px;
-width:195px;
+#signup-container .formcont {
+    height: 220px;
+    margin-bottom: 10px;
+    margin-top: -40px;
+    overflow: hidden;
+    padding-top: 40px;
 }
-.field label{
-font-size:16px;
+#signup-container .form {
+    background: url("/stylesheets/img/signup-formbg.png") no-repeat scroll 0 0 transparent;
+    height: 215px;
+    margin: 0 auto;
+    padding-top: 7px;
+    position: relative;
+    width: 604px;
 }
-.field .pointer{
-position:absolute;
-top:20px;
-left:5px;
-background:url("/images/bg-pointer-black.png");
-background-position:left bottom;
-height:35px;
-width:17px;
+
+#sign-up-title {
+    color: #000066;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 22px;
+    margin: 0 80px 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+    font-family: 'Kreon',serif;
 }
-.field input{
-float:right;
-margin-top:10px;
-padding-left:20px;
-font-size:16px;
-height:20px;
-width:170px;
-background-color:white !important;
-border:1px solid #000000;
-border-radius:25px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
+#signup-container .form .name {
+    background: url("/stylesheets/img/signup-form-name.png") no-repeat scroll 0 13px transparent;;
+    height: 50px;
+    margin: 0 50px;
 }
-.action *{
-margin-top:10px;
-margin-left:3px;
-padding-left:10px;
-font-size:18px;
-height:30px;
-width:100px;
-border:none;
-border-radius:25px;
--moz-border-radius:25px; /* Firefox 3.6 and earlier */
-background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#AAAAAA),to(#222222));
+#signup-container .form .email {
+    background: url("/stylesheets/img/signup-form-email.png") no-repeat scroll 0 13px transparent;
+    height: 50px;
+    margin: 0 50px;
 }
-.action *:hover{
-background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#CCCCCC), to(#444444));
+#signup-container .form .passwd {
+    background: url("/stylesheets/img/signup-form-passwd.png") no-repeat scroll 0 13px transparent;
+    height: 50px;
+    margin: 0 50px;
 }
-.action *:active{
-background-image:-webkit-gradient(linear,0% 0%,0% 100%,from(#222222),to(#AAAAAA));
+#signup-container .form .passwd-confirm {
+    background: url("/stylesheets/img/signup-form-passwdag.png") no-repeat scroll 0 13px transparent;
+    height: 50px;
+    margin: 0 50px;
 }
+.name input , .email input, .passwd input, .passwd-confirm input{
+    background: url("/stylesheets/img/signup-form-lines.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: #272727;
+    font-family: 'Homemade Apple',cursive;
+    font-size: 24px;
+    height: 50px;
+    margin-left: 100px;
+    outline: medium none;
+    padding-left: 14px;
+    text-indent: 9px;
+    width: 383px;
+}
+#signup-container .form input.femail {
+    font-size: 24px;
+}
+#signup-container .signup-button {
+    background: url("/stylesheets/img/signup-from-button2.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    cursor: pointer;
+    display: block;
+    height: 68px;
+    margin: 0 auto;
+    outline: medium none;
+    text-indent: -8888px;
+    width: 231px;
+}
+#signup-container .signup-button:hover {
+    background-position: 0 -68px;
+}
+#signup-container .signup-button:active {
+    background-position: 0 -136px;
+}
+
