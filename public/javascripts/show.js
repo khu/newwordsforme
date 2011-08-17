@@ -10,10 +10,30 @@
 $(function() {
 
     $("#play-button").click(function() {
-          switchPlayAndStop();
+        switchPlayAndStop();
     });
+    $('.sponsorFlip').bind("click", function() {
 
-    function switchPlayAndStop(){
+        var elem = $(this);
+
+        if (elem.data('flipped')) {
+            elem.revertFlip();
+            elem.data('flipped', false)
+        } else {
+            var word_id = elem.attr('word_id');
+            elem.flip({
+                direction:'lr',
+                speed: 350,
+                onBefore: function() {
+                    elem.html(elem.siblings('.sponsorData').html());
+                },
+                onEnd: function() {
+                }
+            });
+            elem.data('flipped', true);
+        }
+    });
+    function switchPlayAndStop() {
 
         if ($("#play-image").css("display") == "none") {
 
@@ -31,6 +51,13 @@ $(function() {
                 display:""
             });
         }
+    }
+
+    function highlight(element) {
+        $(element).addClass("highlight");
+        window.setTimeout(function() {
+            $(element).removeClass('highlight');
+        }, 1000);
     }
 
 })
