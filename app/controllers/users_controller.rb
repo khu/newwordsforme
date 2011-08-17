@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
   skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
@@ -11,10 +12,11 @@ class UsersController < ApplicationController
     @title = "Settings"
 
     if params[:date].nil?
-      @words = Word.find(:all, :conditions => ["user_id = ?", @user.id], :order => "updated_at DESC")    
+      @words = Word.find(:all, :conditions => ["user_id = ?", @user.id], :order => "updated_at DESC")
     else
       @words = Word.find(:all, :conditions => ["user_id = ? and updated_at > ?", @user.id, DateTime.parse(params[:date])], :order => "updated_at DESC")
-    end 
+    end
+    @wordsList = @words.paginate(:per_page => 8, :page => params[:page])
   end
 
 

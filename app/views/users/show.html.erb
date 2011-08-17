@@ -37,7 +37,7 @@
 
     <div id="cards">
       <div class="new-sponsorListHolder">
-        <% @words.each { |word| %>
+        <% @wordsList.each { |word| %>
 
             <div id='<%= word.word %>' style='float:left'>
 
@@ -69,7 +69,12 @@
 
       </div>
     </div>
-
+    <div>
+      <%= will_paginate @wordsList %>
+    </div>
   </div>
+
+
 </div>
+
 
