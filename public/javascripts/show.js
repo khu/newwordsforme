@@ -9,6 +9,7 @@
 
 $(function() {
 
+
     $("#play-button").click(function() {
         switchPlayAndStop();
     });

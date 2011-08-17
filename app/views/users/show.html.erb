@@ -35,43 +35,12 @@
       </li>
     </ul>
 
-    <div id="cards">
-      <div class="new-sponsorListHolder">
-        <% @wordsList.each { |word| %>
-
-            <div id='<%= word.word %>' style='float:left'>
-
-              <div class="sponsor" title="Click to flip">
-
-                <div class="sponsorFlip" word_id='<%= word.id %>'>
-                  <div style="padding: 10px 10px 40px">
-                    <%= time_ago_in_words(word.updated_at) %>
-                    <div class='word-content'>
-                      <%= word.word %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="sponsorData">
-                  <div class="sponsorDescription">
-                    <div style="font-size:30px;text-align:center;margin-top:20px"><%= word.translation %></div>
-                  </div>
-                  <div class="sponsorURL">
-                    <a href="<%= word.link %>"><%= (word.sample || word.link) %></a>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-        <% } %>
-
-      </div>
+    <div id="cards-container">
+        <%= render 'layouts/cards' %>
     </div>
-    <div>
-      <%= will_paginate @wordsList %>
-    </div>
+
+
+
   </div>
 
 
