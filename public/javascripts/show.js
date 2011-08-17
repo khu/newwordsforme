@@ -13,7 +13,7 @@ $(function() {
     $("#play-button").click(function() {
         switchPlayAndStop();
     });
-    $('.sponsorFlip').bind("click", function() {
+    $('.sponsorFlip').live("click", function() {
 
         var elem = $(this);
 
