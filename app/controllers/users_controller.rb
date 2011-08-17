@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       redirect_to(user_path(current_user))
     end
     @tabs = Tabs.new.logged_in @user
-    @title = "Settings"
+    @title = "Show words"
 
     if params[:date].nil?
       @words = Word.find(:all, :conditions => ["user_id = ?", @user.id], :order => "updated_at DESC")
