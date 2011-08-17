@@ -1,4 +1,5 @@
 require 'will_paginate/array'
+
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:new, :create]
   skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
