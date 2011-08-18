@@ -7,6 +7,14 @@
           <div class="sponsor" title="Click to flip">
 
             <div class="sponsorFlip box-shadow" word_id='<%= word.id %>'>
+              <ul class="star-ul">
+                <li>
+                  <div class="star" title="Click to mark Stared"></div>
+                </li>
+                <li>
+                  <div class="important" title="Click to mark Important"></div>
+                </li>
+              </ul>
 
               <div style="padding: 10px 10px 40px">
                 <%= time_ago_in_words(word.updated_at) %>
@@ -25,15 +33,6 @@
               </div>
             </div>
 
-
-            <ul class="star-ul">
-              <li>
-                <div class="star" title="Click to mark Stared"></div>
-              </li>
-              <li>
-                <div class="star"></div>
-              </li>
-            </ul>
 
           </div>
 
