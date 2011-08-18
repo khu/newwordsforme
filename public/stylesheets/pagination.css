@@ -1,10 +1,49 @@
+
 #Pagination {
-    clear: both;
-    float: right;
-    margin-top: 10px;
-    margin-right: 15px;
+    display: block;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 18px;
+
+    position: absolute;
+
+    right: 10px;
+    bottom: 14px;
 }
 
+.wp-pagenavi .pagination {
+    width:100%;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.wp-pagenavi a, .wp-pagenavi em, .wp-pagenavi span {
+    float: left;
+    padding: 0 5px;
+    position: relative;
+    z-index: 99;
+    margin: 4px 2px 0;
+}
+.wp-pagenavi a, .wp-pagenavi a:link {
+    color: #790000;
+    text-decoration: none;
+}
+.wp-pagenavi a:visited {
+    color: #790000;
+    text-decoration: none;
+}
+.wp-pagenavi a:hover {
+    color: #DB9849;
+}
+.wp-pagenavi a:active {
+    color: #0066CC;
+    text-decoration: none;
+}
+
+.wp-pagenavi .next_page, .wp-pagenavi .span {
+    color: #000000;
+}
+
+/**************   for official example */
 .digg_pagination {
     background: #ffffcc;
     cursor: default;
@@ -76,3 +115,5 @@
 *:first-child + html .digg_pagination {
     overflow: hidden;
 }
+
+/**************   for official example  end */

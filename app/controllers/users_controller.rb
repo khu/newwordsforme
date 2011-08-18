@@ -40,7 +40,10 @@ class UsersController < ApplicationController
     end
     @title = "Show words by tag"
     @words = @words.reverse
-    render :template => 'users/show_slide'
+    respond_to do |format|
+      format.json { render :json => @words, :content_type => "text/html" }
+    end
+
   end
 
   def new

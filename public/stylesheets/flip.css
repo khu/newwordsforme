@@ -1,19 +1,23 @@
-.sponsorListHolder {
-    margin-bottom: 30px;
-    width: 60%;
+.one-word-div {
+    float:left;
+    margin-bottom: 10px;
 }
-
 .sponsor {
     width: 180px;
     height: 180px;
     float: left;
-    margin: 4px;
+    margin: 6px;
 
     /* Giving the sponsor div a relative positioning: */
     position: relative;
     cursor: pointer;
+    border: 0px;
 }
-
+.box-shadow {
+    /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);*/
+    -webkit-box-shadow:0 3px 4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:0 3px 4px rgba(0, 0, 0, 0.5);
+}
 .sponsorFlip {
     /*  The sponsor div will be positioned absolutely with respect
          to its parent .sponsor div and fill it in entirely */
@@ -23,21 +27,26 @@
     top: 0;
     width: 100%;
     height: 100%;
-    border: 1px solid #ddd;
-    background: url("img/background.jpg") no-repeat center center #f9f9f9;
+    border: 1px solid #DDDDDD;
+    /*background-color: #FFFFFF;*/
+    border-radius: 6px 6px 6px 6px;
+    /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);*/
+    border-radius: 6px 6px 6px 6px;
+    background: url("img/background.jpg") no-repeat center center #ffffff;
 }
 
 .sponsorFlip:hover {
     border: 1px solid #999;
-
+    color:#663300;
     /* CSS3 inset shadow: */
-    -moz-box-shadow: 0 0 30px #999 inset;
-    -webkit-box-shadow: 0 0 30px #999 inset;
+    /*-moz-box-shadow: 0 0 30px #999 inset;*/
+    /*-webkit-box-shadow: 0 0 30px #999 inset;*/
     box-shadow: 0 0 30px #999 inset;
+
 }
 
 .sponsorFlip img {
-    /* Centering the logo image in the middle of the sponsorFlip div */
+     /*Centering the logo image in the middle of the sponsorFlip div*/
 
     position: absolute;
     top: 50%;
@@ -92,10 +101,9 @@ a img {
 /***************** new flip **********/
 
 .new-sponsorListHolder {
-    margin-bottom: 30px;
-    margin-left: 30px;
-    margin-right: 30px;
-    width: 100%;
+    margin-top: 14px;
+    margin-left: 24px;
+    width: 800px;
 }
 
 /***************** new flip end **********/

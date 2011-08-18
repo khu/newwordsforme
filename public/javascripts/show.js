@@ -9,17 +9,28 @@
 
 $(function() {
 
+    $("#play-button").live("click", function() {
 
-    $("#play-button").click(function() {
+
+
+//        var ids = "";
+//        $(".sponsor").find("div[word_id]").each(function(){
+//             ids += $(this).attr("word_id") + ","
+//        });
+//        alert(ids);
+        ajax_get_words();
         switchPlayAndStop();
     });
     $('.sponsorFlip').live("click", function() {
 
         var elem = $(this);
 
+//        alert(elem.offset().top + "," + elem.height());
+
         if (elem.data('flipped')) {
             elem.revertFlip();
-            elem.data('flipped', false)
+            elem.data('flipped', false);
+//            elem.addClass("box-shadow");
         } else {
             var word_id = elem.attr('word_id');
             elem.flip({
@@ -28,16 +39,18 @@ $(function() {
                 onBefore: function() {
                     elem.html(elem.siblings('.sponsorData').html());
                 },
-                onEnd: function() {
+                onEnd:function() {
+//                    elem.addClass("box-shadow");
                 }
             });
             elem.data('flipped', true);
         }
     });
+
     function switchPlayAndStop() {
 
         if ($("#play-image").css("display") == "none") {
-
+            stopCards();
             $("#play-image").css({
                 display:""
             });
@@ -45,6 +58,7 @@ $(function() {
                 display:"none"
             });
         } else {
+            playCards();
             $("#play-image").css({
                 display:"none"
             });
@@ -59,6 +73,37 @@ $(function() {
         window.setTimeout(function() {
             $(element).removeClass('highlight');
         }, 1000);
+    }
+
+    function playCards() {
+        $("#cards-container").animate({
+            "opacity":"hide"
+        }, 600, function() {
+            $("#featured-box").show("scale", {}, 1000);
+        });
+    }
+
+    function stopCards() {
+        $("#featured-box").hide("scale", {}, 800, function() {
+            $("#cards-container").animate({
+                "opacity": "show"
+            }, 500);
+        });
+    }
+
+    function ajax_get_words() {
+
+        $.ajax({
+            url: "/users/" + '<%= @user.id %>' + "/tag/all",
+            type: "POST",
+            dataType: "json",
+            success :function(data) {
+                alert(date.toString());
+            },
+            error: function() {
+                window.log("error");
+            }
+        });
     }
 
 })

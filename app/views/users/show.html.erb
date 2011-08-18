@@ -11,7 +11,7 @@
           <div class="box-text">
             <%= f.text_area :word, :class=> "box-text-input" %>
             <div class="box_bottom">
-              <span>try this formate apple@i love apple <b>or</b> apple@http://google.com </span>
+              <span>try this format apple@i love apple <b>or</b> apple@http://google.com </span>
             </div>
             <%= f.submit "Keep In Mind", :class=> "box-submit-button" %>
           </div>
@@ -39,8 +39,106 @@
       <%= render 'layouts/cards' %>
     </div>
 
+    <!--<div id="cartoon" style="width: 200px;height:200px;background-color: #0066CC;display: none">-->
+    <!--cartoon-->
+    <!--</div>-->
+    <%= render 'layouts/slider' %>
 
   </div>
 </div>
+
+<script type="text/javascript">
+
+    $(function() {
+
+        $("#play-button").live("click", function() {
+            ajax_get_words();
+            switchPlayAndStop();
+        });
+        $('.sponsorFlip').live("click", function() {
+
+            var elem = $(this);
+
+            if (elem.data('flipped')) {
+                elem.revertFlip();
+                elem.data('flipped', false);
+            } else {
+                var word_id = elem.attr('word_id');
+                elem.flip({
+                    direction:'lr',
+                    speed: 350,
+                    onBefore: function() {
+                        elem.html(elem.siblings('.sponsorData').html());
+                    },
+                    onEnd:function() {
+                    }
+                });
+                elem.data('flipped', true);
+            }
+        });
+
+        function switchPlayAndStop() {
+
+            if ($("#play-image").css("display") == "none") {
+                stopCards();
+                $("#play-image").css({
+                    display:""
+                });
+                $("#stop-image").css({
+                    display:"none"
+                });
+            } else {
+                playCards();
+                $("#play-image").css({
+                    display:"none"
+                });
+                $("#stop-image").css({
+                    display:""
+                });
+            }
+        }
+
+        function highlight(element) {
+            $(element).addClass("highlight");
+            window.setTimeout(function() {
+                $(element).removeClass('highlight');
+            }, 1000);
+        }
+
+        function playCards() {
+            $("#cards-container").animate({
+                "opacity":"hide"
+            }, 600, function() {
+                $("#featured-box").show("scale", {}, 1000);
+            });
+        }
+
+        function stopCards() {
+            $("#featured-box").hide("scale", {}, 800, function() {
+                $("#cards-container").animate({
+                    "opacity": "show"
+                }, 500);
+            });
+        }
+
+        function ajax_get_words() {
+
+            $.ajax({
+                url: "/users/" + '<%= @user.id %>' + "/tag/all",
+                type: "POST",
+                dataType: "json",
+                success :function(data) {
+                    $.each(data, function(i, word){
+                      // alert(word.word.id + "," + word.word.word + "," + word.word.translation);
+                    });
+                },
+                error: function() {
+                    window.log("error");
+                }
+            });
+        }
+
+    })
+</script>
 
 

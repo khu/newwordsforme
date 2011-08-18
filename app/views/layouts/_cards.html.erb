@@ -1,13 +1,12 @@
-<%  %>
 <div id="cards">
   <div class="new-sponsorListHolder">
     <% @wordsList.each { |word| %>
 
-        <div id='<%= word.word %>' style='float:left'>
+        <div id='<%= word.word %>' class='one-word-div'>
 
           <div class="sponsor" title="Click to flip">
 
-            <div class="sponsorFlip" word_id='<%= word.id %>'>
+            <div class="sponsorFlip box-shadow" word_id='<%= word.id %>'>
               <div style="padding: 10px 10px 40px">
                 <%= time_ago_in_words(word.updated_at) %>
                 <div class='word-content'>
@@ -33,6 +32,6 @@
 
   </div>
 </div>
-<div id="Pagination" class="digg_pagination">
+<div id="Pagination" class="wp-pagenavi">
   <%= will_paginate @wordsList %>
 </div>

@@ -20,14 +20,14 @@
 }
 
 #mainbox {
-    background: none repeat scroll 0 0 #ffffcc;
+    background: none repeat scroll 0 0 #cccc99;
     border: 1px solid #C5C1B6;
     margin: 0 auto;
     position: relative;
     width: 820px;
     min-height: 680px;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.7);
 
 }
 
@@ -181,3 +181,14 @@ ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-strea
 
 
 /*************** for tabs end ***********/
+
+
+/************** for cartton *************/
+
+#cartoon {
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+    display: none;
+}
+/************** for cartoon end *********/
