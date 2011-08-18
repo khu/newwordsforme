@@ -39,9 +39,6 @@
       <%= render 'layouts/cards' %>
     </div>
 
-    <!--<div id="cartoon" style="width: 200px;height:200px;background-color: #0066CC;display: none">-->
-    <!--cartoon-->
-    <!--</div>-->
     <%= render 'layouts/slider' %>
 
   </div>
@@ -49,11 +46,15 @@
 
 <script type="text/javascript">
 
+    var eventCode = -1;
+    var current_word_number = 1;
+    var total_words = 0;
+    var clickedWords = new Array;
+
     $(function() {
 
         $("#play-button").live("click", function() {
             ajax_get_words();
-            switchPlayAndStop();
         });
         $('.sponsorFlip').live("click", function() {
 
@@ -77,68 +78,198 @@
             }
         });
 
-        function switchPlayAndStop() {
-
-            if ($("#play-image").css("display") == "none") {
-                stopCards();
-                $("#play-image").css({
-                    display:""
-                });
-                $("#stop-image").css({
-                    display:"none"
-                });
-            } else {
-                playCards();
-                $("#play-image").css({
-                    display:"none"
-                });
-                $("#stop-image").css({
-                    display:""
-                });
-            }
-        }
-
-        function highlight(element) {
-            $(element).addClass("highlight");
-            window.setTimeout(function() {
-                $(element).removeClass('highlight');
-            }, 1000);
-        }
-
-        function playCards() {
-            $("#cards-container").animate({
-                "opacity":"hide"
-            }, 600, function() {
-                $("#featured-box").show("scale", {}, 1000);
-            });
-        }
-
-        function stopCards() {
-            $("#featured-box").hide("scale", {}, 800, function() {
-                $("#cards-container").animate({
-                    "opacity": "show"
-                }, 500);
-            });
-        }
-
-        function ajax_get_words() {
-
-            $.ajax({
-                url: "/users/" + '<%= @user.id %>' + "/tag/all",
-                type: "POST",
-                dataType: "json",
-                success :function(data) {
-                    $.each(data, function(i, word){
-                      // alert(word.word.id + "," + word.word.word + "," + word.word.translation);
-                    });
-                },
-                error: function() {
-                    window.log("error");
-                }
-            });
-        }
 
     })
+
+    function switchPlayAndStop() {
+
+        if ($("#play-image").css("display") == "none") {
+            stopCards();
+            $("#play-image").css({
+                display:""
+            });
+            $("#stop-image").css({
+                display:"none"
+            });
+        } else {
+            playCards();
+            $("#play-image").css({
+                display:"none"
+            });
+            $("#stop-image").css({
+                display:""
+            });
+        }
+    }
+
+    function highlight(element) {
+        $(element).addClass("highlight");
+        window.setTimeout(function() {
+            $(element).removeClass('highlight');
+        }, 1000);
+    }
+
+    function playCards() {
+        $("#cards-container").animate({
+            "opacity":"hide"
+        }, 600, function() {
+            $("#featured-box").show("scale", {}, 1000);
+        });
+    }
+
+    function stopCards() {
+        $("#featured-box").hide("scale", {}, 800, function() {
+            $("#cards-container").animate({
+                "opacity": "show"
+            }, 500);
+        });
+    }
+
+    function ajax_get_words() {
+
+        $.ajax({
+            url: "/users/" + '<%= @user.id %>' + "/tag/all",
+            type: "POST",
+            dataType: "json",
+            success :function(data) {
+                $(".slides_container").empty();
+                $.each(data, function(i, word) {
+
+                    total_words++;
+
+                    var div_string = '<div class="slide"><div class="word" id="word' + word.word.id + '">' + word.word.word
+                            + '</div><div class="slide_back">' + word.word.translation + '</div></div>';
+                    $(".slides_container").append(div_string);
+
+                });
+                activeSlide();
+                switchPlayAndStop();
+
+            },
+            error: function() {
+                window.log("error");
+            }
+        });
+    }
+
+    function activeSlide() {
+        if ($('.slide').length > 0) {
+            $('.slides_container').css("display", "block");
+        }
+        $('#slides').slides({
+            preload: true,
+            preloadImage: '/stylesheets/img/slide_images/loading.gif',
+            play: 0,
+            pause: 2500,
+            hoverPause: true ,
+            generatePagination: false
+        });
+        addListenerForSlider();
+    }
+
+
+    function addListenerForSlider() {
+
+        $('.word').live("click", function() {
+            var elem = $(this);
+            var word_id = elem.attr('id').replace(/[^\d]/g, '');
+            clickedWords.push(word_id);
+            update_tag_via_ajax(word_id, "familiar", "unfamiliar");
+            if (elem.data('flipped')) {
+                elem.revertFlip();
+                elem.data('flipped', false);
+            } else {
+                elem.flip({
+                    direction: 'tb',
+                    color:'#F3F1E5',
+                    speed:350,
+                    onBefore:function() {
+                        elem.html(elem.siblings('.slide_back').html());
+                    },
+                    onEnd: function() {
+                    }
+                });
+                elem.data('flipped', true);
+            }
+        });
+        $(document).keydown(function(event) {
+            if (eventCode < 0)
+                eventCode = event.which;
+            else
+                return;
+            operateKeyCode();
+        });
+        $(".prev").live('click', function() {
+            if (--current_word_number <= 0)
+                current_word_number = total_words;
+            $('#current_word').html(current_word_number);
+        });
+        $(".prev").live("mousedown", function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+        $(".next").live('click', function() {
+            if (++current_word_number > total_words)
+                current_word_number = 1;
+            $('#current_word').html(current_word_number);
+        });
+        $(".next").live("mousedown", function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+
+        /***    for bottom navigation
+        $(".bottom_back > a").live("mousedown", function() {
+            if (total_words == 1 && clickedWords.length == 0) {
+                var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            } else if (current_word_number == total_words) {
+                var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+                if (clickedWords.indexOf(word_id) < 0)
+                    update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+        ***/
+
+    }
+
+    function operateKeyCode() {
+        switch (eventCode) {
+            case 37 :
+                $(".prev").trigger("mousedown");
+                $(".prev").trigger("click");
+                break;
+            case 39 :
+                $(".next").trigger("mousedown");
+                $(".next").trigger("click");
+                break;
+            default:
+                break;
+        }
+        setTimeout("resetEventCode()", 1000);
+    }
+
+    function resetEventCode() {
+        eventCode = -1;
+    }
+
+    function update_tag_via_ajax(word_id, oldTag, newTag) {
+        $.ajax({
+            url: "/words/update_tag",
+            type: "POST",
+            data: {"word": {"word_id" : word_id,"oldTag": oldTag, "newTag": newTag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
 </script>
 
 
