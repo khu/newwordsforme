@@ -61,7 +61,7 @@
 
 .sponsorDescription {
     font-size: 11px;
-    padding: 50px 10px 20px 20px;
+    padding: 43px 10px 20px 20px;
     font-style: italic;
 }
 
@@ -108,11 +108,32 @@ a img {
 
 /***************** new flip end **********/
 
-.sponsor .star{
+
+/****************** for star **************/
+.star-ul {
     position: absolute;
     top: 5px;
     right: 5px;
     margin: 0;
+    display: block;
+    list-style-type: none;
+
+}
+.star-ul li {
+    display: block;
+    cursor: pointer;
+    float: left;
+    margin: 0 0 0 8px;
+    padding: 0px;
+
+}
+.sponsor .star{
+    background: url("/stylesheets/img/star.png") no-repeat 0 0 scroll transparent;
+    height: 20px;
+    width: 20px;
     /*background-repeat: no-repeat;*/
     /*background-image  : url(/stylesheets/img/star.png)*/
 }
+
+
+/*************for star end ***********/

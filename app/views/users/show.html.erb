@@ -79,6 +79,20 @@
             }
         });
 
+        $('.sponsor .star').live("click", function() {
+
+            if ($(this).css("background-position") == "0px 0px") {
+                $(this).css({
+                    "background-position": "0 100%"
+                });
+            } else {
+                $(this).css({
+                    "background-position": "0 0"
+                });
+            }
+            return false;
+        })
+
         addListenerForSlider();
     })
 
@@ -119,7 +133,7 @@
             });
             has_fetched_words = false;
 //            ajax_get_words();
-            setTimeout("ajax_get_words();",2000);
+            setTimeout("ajax_get_words();", 2000);
             $("#featured-box").show("scale", {}, 1000, function() {
                 if (!has_fetched_words) {
                     $(".words-loading-img").fadeIn();
@@ -304,15 +318,6 @@
             }
         });
     }
-
-    $(function() {
-        $('.sponsor .star').live("click", function() {
-            $('.sponsor .star').animate({
-                width: "20px",
-                height: "20px"
-            })
-        })
-    })
 
 </script>
 
