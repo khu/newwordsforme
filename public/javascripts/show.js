@@ -11,13 +11,6 @@ $(function() {
 
     $("#play-button").live("click", function() {
 
-
-
-//        var ids = "";
-//        $(".sponsor").find("div[word_id]").each(function(){
-//             ids += $(this).attr("word_id") + ","
-//        });
-//        alert(ids);
         ajax_get_words();
         switchPlayAndStop();
     });
