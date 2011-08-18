@@ -96,7 +96,8 @@
 
             if ($(this).css("background-position") == "0px 0px") {
                 $(this).css({
-                    "background-position": "0 100%"
+                    "background-position": "0 95%",
+                    "bottom" : "-20px"
                 });
             } else {
                 $(this).css({
@@ -236,10 +237,7 @@
             } else {
                 elem.flip({
                     direction: 'tb',
-//                    color:'#F3F1E5',
-                    color:'#663300',
-                    bgColor: '#663300',
-//                    content: ,
+                    color:'#F3F1E5',
                     speed:350,
                     onBefore:function() {
                         elem.html(elem.siblings('.slide_back').html());
