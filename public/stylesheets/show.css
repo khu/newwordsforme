@@ -31,7 +31,6 @@
 
 }
 
-
 /****************** Keepin input box ****/
 
 .keepin_input_box {
@@ -42,28 +41,25 @@
     /*border-bottom: 2px solid #900;*/
 }
 
-
-
 .keepin_input_box .box-text {
-    left:140px;
-    top:30px;
-    width:560px;
+    left: 140px;
+    top: 20px;
+    width: 560px;
     position: relative;
+    background-color: #cccc99;
 }
 
-
-
 .keepin_input_box .box-text .box-text-input {
-    border: 1px solid #C5C1B6;
+    border: 0px;
     border-radius: 5px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    padding: 2px;
+    padding: 0px;
     -webkit-box-shadow: 0 1px #fff;
     -moz-box-shadow: 0 1px #fff;
     /*box-shadow: 0 3px 4px  rgba(0, 0, 0, 0.3);*/
     width: 100%;
-    height: 80px;
+    height: 90px;
     color: #222;
     font: 18px/22px "Helvetica Neue", Arial, sans-serif;
     outline: none;
@@ -72,6 +68,8 @@
     overflow-y: auto;
     white-space: pre-wrap;
     word-wrap: break-word;
+    background-color: #F3F1E5;
+    resize:none;
 }
 
 .keepin_input_box .box-text .box_bottom {
@@ -83,12 +81,14 @@
     margin-left: 50px;
     font: 14px/16px "Helvetica Neue", Arial, sans-serif;
 }
+
 .keepin_input_box .box-text .box-submit-button {
     margin-top: 12px;
-    float:right;
+    float: right;
     margin-right: -30px;
     font: 12px/14px "Helvetica Neue", Arial, sans-serif;
 }
+
 /******** Keepin input box end ******/
 
 /**************** for tabs *************/
@@ -109,6 +109,7 @@
     margin-left: -2px;
     margin-right: -2px;
 }
+
 .words-stream-tabs .words-stream-tab {
     cursor: pointer;
     float: left;
@@ -121,16 +122,18 @@
     min-width: 80px;
     margin-left: 16px;
 }
+
 .words-stream-tab-button {
     float: right;
     margin: 0;
     padding: 0;
     min-width: 50px;
-    height:35px;
+    height: 35px;
     display: block;
     cursor: pointer;
 }
-.words-stream-tab .words-tab-text{
+
+.words-stream-tab .words-tab-text {
     cursor: pointer;
     display: block;
     line-height: 26px;
@@ -143,6 +146,7 @@
     text-align: center;
     color: #ccc;
 }
+
 #play-button {
     float: right;
     padding: 0;
@@ -150,6 +154,7 @@
 
     /*background: url("/images/show/play.png") no-repeat 0 0  transparent;*/
 }
+
 .words-stream-tabs .words-stream-tab.active .words-tab-text, .words-stream-tabs .words-stream-tab.active .words-tab-text:hover {
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -179,9 +184,7 @@ ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-strea
     text-shadow: none;
 }
 
-
 /*************** for tabs end ***********/
-
 
 /************** for cartton *************/
 
@@ -191,4 +194,5 @@ ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-strea
     left: 30%;
     display: none;
 }
+
 /************** for cartoon end *********/

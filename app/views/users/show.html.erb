@@ -50,11 +50,12 @@
     var current_word_number = 1;
     var total_words = 0;
     var clickedWords = new Array;
-
+    var has_fetched_words = false;
     $(function() {
 
         $("#play-button").live("click", function() {
-            ajax_get_words();
+            switchPlayAndStop();
+
         });
         $('.sponsorFlip').live("click", function() {
 
@@ -78,7 +79,7 @@
             }
         });
 
-
+        addListenerForSlider();
     })
 
     function switchPlayAndStop() {
@@ -92,7 +93,7 @@
                 display:"none"
             });
         } else {
-            playCards();
+            openCards();
             $("#play-image").css({
                 display:"none"
             });
@@ -109,24 +110,52 @@
         }, 1000);
     }
 
-    function playCards() {
+    function openCards() {
         $("#cards-container").animate({
             "opacity":"hide"
         }, 600, function() {
-            $("#featured-box").show("scale", {}, 1000);
+            $("#slides").css({
+                display:"none"
+            });
+            has_fetched_words = false;
+//            ajax_get_words();
+            setTimeout("ajax_get_words();",2000);
+            $("#featured-box").show("scale", {}, 1000, function() {
+                if (!has_fetched_words) {
+                    $(".words-loading-img").fadeIn();
+                }
+
+            });
         });
+    }
+
+    function playCards() {
+        $(".words-loading-img").fadeOut();
+        $("#slides").css({
+            display:""
+        });
+        $(".slider-nav").css({
+            display:""
+        });
+        activeSlide();
     }
 
     function stopCards() {
-        $("#featured-box").hide("scale", {}, 800, function() {
-            $("#cards-container").animate({
-                "opacity": "show"
-            }, 500);
+
+        $(".slider-nav").fadeOut();
+        $(".slides_container").fadeOut("slow", function() {
+
+            $("#featured-box").hide("scale", {}, 800, function() {
+                $("#cards-container").animate({
+                    "opacity": "show"
+                }, 500);
+            });
         });
+
     }
 
     function ajax_get_words() {
-
+        has_fetched_words = false;
         $.ajax({
             url: "/users/" + '<%= @user.id %>' + "/tag/all",
             type: "POST",
@@ -134,16 +163,15 @@
             success :function(data) {
                 $(".slides_container").empty();
                 $.each(data, function(i, word) {
-
+                    has_fetched_words = true;
                     total_words++;
-
                     var div_string = '<div class="slide"><div class="word" id="word' + word.word.id + '">' + word.word.word
                             + '</div><div class="slide_back">' + word.word.translation + '</div></div>';
                     $(".slides_container").append(div_string);
 
                 });
-                activeSlide();
-                switchPlayAndStop();
+
+                playCards();
 
             },
             error: function() {
@@ -164,7 +192,7 @@
             hoverPause: true ,
             generatePagination: false
         });
-        addListenerForSlider();
+        // addListenerForSlider();
     }
 
 
