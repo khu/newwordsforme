@@ -158,14 +158,16 @@
     }
 
     function playCards() {
-        $(".words-loading-img").fadeOut();
-        $("#slides").css({
-            display:""
+        $(".words-loading-img").fadeOut("slow", function() {
+            $("#slides").css({
+                display:""
+            });
+            $(".slider-nav").css({
+                display:""
+            });
+            activeSlide();
         });
-        $(".slider-nav").css({
-            display:""
-        });
-        activeSlide();
+
     }
 
     function stopCards() {
