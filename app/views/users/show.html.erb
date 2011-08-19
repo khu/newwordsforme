@@ -59,8 +59,7 @@
                 alert('Please input a word!');
             } else {
                 add_word_via_ajax(word, user_id);
-                $('#all-tab').click();
-                $('textarea#word_word').val('');
+                $('textarea#word_word').val(word +" (is being added to server...)");
             }
         });
 
@@ -404,7 +403,8 @@
             data: {"word": {"word":word}, "user_id":user_id},
             dataType: "json",
             success :function(data) {
-
+                $('#all-tab').click();
+                $('textarea#word_word').val('');
             },
             error: function() {
             }
