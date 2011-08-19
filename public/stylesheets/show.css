@@ -164,11 +164,9 @@
     background: none repeat scroll 0 0 #FFFFFF;
     border-color: #ccc #ccc #FFFFFF;
     border-style: solid;
-    border-width: 1px;
     color: #333333;
-    font-weight: bold;
+    font-weight: normal;
     outline: medium none;
-    padding-top: 3px;
 }
 
 ul.words-stream-tabs .words-tab-text:hover {
@@ -176,6 +174,7 @@ ul.words-stream-tabs .words-tab-text:hover {
     border-color: #EEEEEE;
     color: #000000;
 }
+
 
 ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-stream-tabs li.open .words-tab-text, ul.words-stream-tabs li.open .words-tab-text:hover {
     background: none repeat scroll 0 0 #999999;
