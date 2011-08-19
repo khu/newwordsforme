@@ -38,10 +38,12 @@ class UsersController < ApplicationController
         end
       end
     end
-    @title = "Show words by tag"
-    @words = @words.reverse
+    # @title = "Show words by tag"
+    @wordsReverse = @words.reverse
+    @wordsList = @wordsReverse.paginate(:per_page => 8, :page => params[:page])
     respond_to do |format|
-      format.json { render :json => @words, :content_type => "text/html" }
+      format.json { render :json => @wordsReverse, :content_type => "text/html" }
+      format.js
     end
 
   end

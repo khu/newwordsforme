@@ -18,21 +18,20 @@
 
         </div>
     <% end %>
-
     <ul class="words-stream-tabs">
-      <li class="words-stream-tab active">
-        <a class="words-tab-text" href="">All</a>
-      </li>
-      <li class="words-stream-tab">
-        <a class="words-tab-text" href="">Stared</a>
-      </li>
-      <li class="words-stream-tab">
-        <a class="words-tab-text" href="">Important</a>
-      </li>
-      <li class="words-stream-tab-button" id="play-button">
-        <img src="/images/show/Button-Up.png" id="play-image" width="50px" height="50px"/>
-        <img src="/images/show/Button-Stop.png" id="stop-image" style="display:none; margin-top: -1px; margin-left: -1px;" width="50px" height="50px"/>
-      </li>
+          <li class="words-stream-tab active">
+            <a class="words-tab-text" id="all-tab" href="">All</a>
+          </li>
+          <li class="words-stream-tab">
+            <a class="words-tab-text" id="stared-tab" href="">Stared</a>
+          </li>
+          <li class="words-stream-tab">
+            <a class="words-tab-text" id="important-tab" href="">Important</a>
+          </li>
+          <li class="words-stream-tab-button" id="play-button">
+            <img src="/images/show/Button-Up.png" id="play-image" width="50px" height="50px"/>
+            <img src="/images/show/Button-Stop.png" id="stop-image" style="display:none; margin-top: -1px; margin-left: -1px;" width="50px" height="50px"/>
+          </li>
     </ul>
 
     <div id="cards-container">
@@ -51,8 +50,9 @@
     var total_words = 0;
     var clickedWords = new Array;
     var has_fetched_words = false;
+	var current_tab_name = "all";
     $(function() {
-
+		
         $("#play-button").live("click", function() {
             switchPlayAndStop();
 
@@ -107,6 +107,7 @@
             return false;
         })
 
+		addListenerForTab();
         addListenerForSlider();
     })
 
@@ -187,7 +188,7 @@
     function ajax_get_words() {
         has_fetched_words = false;
         $.ajax({
-            url: "/users/" + '<%= @user.id %>' + "/tag/all",
+            url: "/users/" + '<%= @user.id %>' + "/tag/" + current_tab_name,
             type: "POST",
             dataType: "json",
             success :function(data) {
@@ -225,7 +226,28 @@
         // addListenerForSlider();
     }
 
-
+	function addListenerForTab(){
+		$("#all-tab").live("click", function(){
+			current_tab_name = "all";
+			$.get("/users/" + '<%= @user.id %>' + "/tag/all", null, null, "script");
+	        return false;
+		});
+		$("#stared-tab").live("click", function(){
+			current_tab_name = "unfamiliar";
+			$.get("/users/" + '<%= @user.id %>' + "/tag/unfamiliar", null, null, "script");
+	        return false;
+		});
+		$("#important-tab").live("click", function(){
+			current_tab_name = "familiar";
+			$.get("/users/" + '<%= @user.id %>' + "/tag/familiar", null, null, "script");
+	        return false;
+		});
+		$(".words-stream-tab").click(function(){
+			$(this).addClass("active");
+			$(this).siblings().removeClass("active");
+		});
+	}
+	
     function addListenerForSlider() {
 
         $('.word').live("click", function() {
