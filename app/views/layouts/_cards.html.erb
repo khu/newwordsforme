@@ -9,10 +9,18 @@
             <div class="sponsorFlip box-shadow" word_id='<%= word.id %>'>
               <ul class="star-ul">
                 <li>
-                  <div class="star" title="Click to mark Stared"></div>
+                  <% if (word.tags.find_by_name("starred") != nil) %>
+                      <div class="star" title="Click to mark Starred" style="background-position: 0px 100%"></div>
+                  <% else %>
+                      <div class="star" title="Click to mark Starred" style="background-position: 0px 0px"></div>
+                  <% end %>
                 </li>
                 <li>
-                  <div class="important" title="Click to mark Important"></div>
+                  <% if (word.tags.find_by_name("important") != nil) %>
+                      <div class="important" title="Click to mark Important" style="background-position: 0px 95%"></div>
+                  <% else %>
+                      <div class="important" title="Click to mark Important" style="background-position: 0px 0px"></div>
+                  <% end %>
                 </li>
               </ul>
 
