@@ -6,24 +6,24 @@
     <img id="dictionary_img" src="/images/show/dictionary.png"/>
     <img id="dictionary_title_img" src="/images/show/title.png"/>
 
-    <%= form_for([@user, Word.new]) do |f| %>
-        <div class="keepin_input_box">
-          <div class="box-text">
-            <%= f.text_area :word, :class=> "box-text-input" %>
-            <div class="box_bottom">
-              <span>try this format apple@i love apple <b>or</b> apple@http://google.com </span>
-            </div>
-            <%= f.submit "Keep In Mind", :class=> "box-submit-button" %>
-          </div>
+    <div class="keepin_input_box">
+      <div class="box-text">
+        <textarea class="box-text-input" cols="40" id="word_word" name="word[word]" rows="20"></textarea>
 
+        <div class="box_bottom">
+          <span>try this format apple@i love apple <b>or</b> apple@http://google.com </span>
         </div>
-    <% end %>
+        <input class="box-submit-button" id="word_submit" name="commit" type="submit" value="Keep In Mind">
+      </div>
+
+    </div>
+
     <ul class="words-stream-tabs">
       <li class="words-stream-tab active">
         <a class="words-tab-text" id="all-tab" href="">All</a>
       </li>
       <li class="words-stream-tab">
-        <a class="words-tab-text" id="stared-tab" href="">Stared</a>
+        <a class="words-tab-text" id="stared-tab" href="">Starred</a>
       </li>
       <li class="words-stream-tab">
         <a class="words-tab-text" id="important-tab" href="">Important</a>
@@ -52,6 +52,17 @@
     var has_fetched_words = false;
     var current_tab_name = "all";
     $(function() {
+        $('input#word_submit').live("click", function() {
+            var word = $('textarea#word_word').val();
+            var user_id = '<%= @user.id %>';
+            if (word == '') {
+                alert('Please input a word!');
+            } else {
+                add_word_via_ajax(word, user_id);
+                $('#all-tab').click();
+                $('textarea#word_word').val('');
+            }
+        });
 
         $("#play-button").live("click", function() {
             switchPlayAndStop();
@@ -377,6 +388,20 @@
             url: "/words/delete_tag",
             type: "POST",
             data: {"word": {"word_id" : word_id,"tag": tag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
+
+    function add_word_via_ajax(word, user_id) {
+        $.ajax({
+            url: "/users/" + user_id + "/words",
+            type: "POST",
+            data: {"word": {"word":word}, "user_id":user_id},
             dataType: "json",
             success :function(data) {
 

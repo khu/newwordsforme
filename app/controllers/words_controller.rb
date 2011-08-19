@@ -50,6 +50,10 @@ class WordsController < ApplicationController
       user=User.authenticate_with_password(params[:user_id], params[:password])
       deny_access if user.nil?
     end
+    puts params[:word], params[:word].nil?
+    if params[:word].nil?
+      return
+    end
     userid = params[:user_id]
     single_word = params[:word][:word].strip()
     old_word = Word.find_by_word_and_user_id(single_word, userid)
