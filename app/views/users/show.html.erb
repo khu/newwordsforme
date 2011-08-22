@@ -56,7 +56,15 @@
             var word = $('textarea#word_word').val();
             var user_id = '<%= @user.id %>';
             if (word == '') {
-                alert('Please input a word!');
+				$('textarea#word_word').animate({backgroundColor:'#fbc'}, 150, function() {
+				                   $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150, function() {
+				                       $('textarea#word_word').animate({backgroundColor :'#fbc'}, 150, function() {
+				                           $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150)
+				                       })
+				                   })
+					               }) 
+               
+								// alert('Please input a word!');
             } else {
                 add_word_via_ajax(word, user_id);
                 $('textarea#word_word').val(word +" (is being added to server...)");
