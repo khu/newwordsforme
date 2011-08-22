@@ -1,0 +1,197 @@
+#words-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+#dictionary_img {
+    top: -50px;
+    left: -20px;
+    position: absolute;
+    z-index: 100;
+    width: 120px;
+    height: 120px;
+}
+
+#dictionary_title_img {
+    top: -45px;
+    right: 120px;
+    position: absolute;
+    z-index: 100;
+}
+
+#mainbox {
+    background: none repeat scroll 0 0 #cccc99;
+    border: 1px solid #C5C1B6;
+    margin: 0 auto;
+    position: relative;
+    width: 820px;
+    min-height: 680px;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.7);
+
+}
+
+/****************** Keepin input box ****/
+
+.keepin_input_box {
+    padding: 10px;
+    display: block;
+    height: 160px
+    /*border-right: 2px solid #0084B4;*/
+    /*border-bottom: 2px solid #900;*/
+}
+
+.keepin_input_box .box-text {
+    left: 140px;
+    top: 20px;
+    width: 560px;
+    position: relative;
+    background-color: #cccc99;
+}
+
+.keepin_input_box .box-text .box-text-input {
+    border: 0px;
+    border-radius: 5px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    padding: 0px;
+    -webkit-box-shadow: 0 1px #fff;
+    -moz-box-shadow: 0 1px #fff;
+    /*box-shadow: 0 3px 4px  rgba(0, 0, 0, 0.3);*/
+    width: 100%;
+    height: 90px;
+    color: #222;
+    font: 18px/22px "Helvetica Neue", Arial, sans-serif;
+    outline: none;
+    _width: 442px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background-color: #F3F1E5;
+    resize:none;
+}
+
+.keepin_input_box .box-text .box_bottom {
+    height: 29px;
+    margin-top: 12px;
+    /*margin-right: 30%;*/
+    text-align: right;
+    float: left;
+    margin-left: 50px;
+    font: 14px/16px "Helvetica Neue", Arial, sans-serif;
+}
+
+.keepin_input_box .box-text .box-submit-button {
+    margin-top: 12px;
+    float: right;
+    margin-right: -30px;
+    font: 12px/14px "Helvetica Neue", Arial, sans-serif;
+}
+
+/******** Keepin input box end ******/
+
+/**************** for tabs *************/
+
+.words-stream-tabs {
+    clear: both;
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 20px;
+    height: 35px;
+    /*background-color: #0084B4;*/
+    background-color: #663300;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-left: -2px;
+    margin-right: -2px;
+}
+
+.words-stream-tabs .words-stream-tab {
+    cursor: pointer;
+    float: left;
+    margin: 0;
+    padding-top: 3px;
+    border-width: 1px;
+    position: relative;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-width: 80px;
+    margin-left: 16px;
+}
+
+.words-stream-tab-button {
+    float: right;
+    margin: 0;
+    padding: 0;
+    min-width: 50px;
+    height: 35px;
+    display: block;
+    cursor: pointer;
+}
+
+.words-stream-tab .words-tab-text {
+    cursor: pointer;
+    display: block;
+    line-height: 26px;
+    outline: medium none;
+    overflow: hidden;
+    text-decoration: none;
+    border-radius: inherit;
+    padding: 4px 20px 2px;
+    font-size: 16px;
+    text-align: center;
+    color: #ccc;
+}
+
+#play-button {
+    float: right;
+    padding: 0;
+    margin-top: -7px;
+
+    /*background: url("/images/show/play.png") no-repeat 0 0  transparent;*/
+}
+
+.words-stream-tabs .words-stream-tab.active .words-tab-text, .words-stream-tabs .words-stream-tab.active .words-tab-text:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: #ccc #ccc #FFFFFF;
+    border-style: solid;
+    color: #333333;
+    font-weight: normal;
+    outline: medium none;
+}
+
+ul.words-stream-tabs .words-tab-text:hover {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-color: #EEEEEE;
+    color: #000000;
+}
+
+
+ul.words-stream-tabs li.open, ul.words-stream-tabs li.open:hover, ul.words-stream-tabs li.open .words-tab-text, ul.words-stream-tabs li.open .words-tab-text:hover {
+    background: none repeat scroll 0 0 #999999;
+    border-color: #999999;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+
+/*************** for tabs end ***********/
+
+/************** for cartton *************/
+
+#cartoon {
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+    display: none;
+}
+
+/************** for cartoon end *********/

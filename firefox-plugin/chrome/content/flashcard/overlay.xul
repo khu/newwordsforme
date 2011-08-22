@@ -8,7 +8,7 @@
     <script type="application/x-javascript" src="chrome://flashcard/content/keepin.js"></script>
 
     <script type="application/x-javascript" src="chrome://flashcard/content/flashcard.js"></script>
-    
+
     <menupopup id="contentAreaContextMenu">
         <menuseparator id="separator_flashcard"/>
         <menuitem id="menuitem_flashcard_add" class="menuitem-iconic" image="chrome://flashcard/skin/word.png"/>

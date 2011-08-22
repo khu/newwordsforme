@@ -1,28 +1,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
-	<head>
-		<title>
-			<%= @title %>
-		</title>
-		<%= csrf_meta_tag %>
-		<%= stylesheet_link_tag 'reset', :media => 'screen' %>
-		<%= stylesheet_link_tag 'keepin', :media => 'screen' %>
-		<%= stylesheet_link_tag 'flip', :media => 'screen' %>
-		<%= stylesheet_link_tag 'word', :media => 'screen' %>
-        <%= stylesheet_link_tag 'slide', :media => 'screen' %>
-		<%= stylesheet_link_tag 'jquery-ui-1.8.14.custom', :media => 'screen' %>
-		<%= javascript_include_tag 'jquery-1.4.4' %>
-        <%= javascript_include_tag 'jquery.flip' %>
-		<%= javascript_include_tag 'jquery-ui-1.8.14.custom.min' %>
-        <%= javascript_include_tag 'slides.min.jquery' %>
-	</head>
-	<body class="home">
-		<%= render 'layouts/header' %>
-		<div id="wrapper">
-			<div id="main">
-				<%= yield %>
-			</div>
-		</div>
-	</body>
+<head>
+  <title>
+    <%= @title %>
+  </title>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'reset', :media => 'screen' %>
+  <%= stylesheet_link_tag 'keepin', :media => 'screen' %>
+  <%= stylesheet_link_tag 'flip', :media => 'screen' %>
+  <%= stylesheet_link_tag 'word', :media => 'screen' %>
+  <%= stylesheet_link_tag 'show', :media => 'screen' %>
+  <%= stylesheet_link_tag 'show_slider', :media => 'screen' %>
+  <%= stylesheet_link_tag 'pagination', :media => 'screen' %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.14.custom', :media => 'screen' %>
+  <%= javascript_include_tag 'jquery-1.4.4' %>
+  <%= javascript_include_tag 'jquery.flip' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.14.custom.min' %>
+  <%= javascript_include_tag 'slides.min.jquery' %>
+  <%= javascript_include_tag 'pagination' %>
+
+</head>
+<body class="home">
+<%= render 'layouts/header' %>
+<div id="wrapper">
+  <div id="main">
+    <%= yield %>
+  </div>
+</div>
+</body>
 </html>
 

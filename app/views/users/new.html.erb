@@ -1,29 +1,26 @@
 <link rel=StyleSheet href="stylesheets/signup.css" type="text/css" media=screen>
-<div id="iphone">
-	<div id="sign-up">
-<h1>Sign up</h1>
-<%= form_for(@user) do |f| %>
+<div id="signup-container" style="opacity: 1;">
 
-  <div class="field">
-    <%= f.label :name %><%= @user.errors[:name][0]%><br />
-    <%= f.text_field :name , :autocomplete => :off %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><%= @user.errors[:email][0]%><br />
-    <%= f.text_field :email , :autocomplete => :off %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><%= @user.errors[:password][0]%><br />
-    <%= f.password_field :password , :autocomplete => :off %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirmation" %><br />
-    <%= f.password_field :password_confirmation , :autocomplete => :off %>
-  </div>
-  <div class="action">
-    <%= f.submit "Sign up", :autocomplete => :off %>
-	or<button type="button" onClick="location.href='<%= root_path%>'">Cancel</button>
-  </div>
-<% end %>
-</div>
+  <%= form_for(@user) do |f| %>
+      <div id="sign-up-title">Welcom to use keepin, it will help you remember words conveniently.</div>
+      <div class="formcont">
+        <div class="form">
+          <div class="name">
+            <%= f.text_field :name, :autocomplete => :off %>
+          </div>
+          <div class="email">
+            <%= f.text_field :email, :autocomplete => :off %>
+          </div>
+          <div class="passwd">
+            <%= f.password_field :password, :autocomplete => :off %>
+          </div>
+          <div class="passwd-confirm">
+            <%= f.password_field :password_confirmation, :autocomplete => :off %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Sign up", :autocomplete => :off, :class => "signup-button" %>
+  <% end %>
+
+
 </div>

@@ -1,0 +1,204 @@
+#featured-box {
+    /*margin: 24px 0 0 24px;*/
+    padding: 20px 32px 20px 32px;
+    background-color: #663300;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.7);
+    position: absolute;
+    bottom: 14%;
+    left: 20%;
+    width: 448px;
+    height: 292px;
+    display: none;
+
+}
+
+.words-loading-img {
+    display: none;
+    padding-left: 200px;
+    padding-top: 100px;
+
+}
+
+div.orbit-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.orbit-caption {
+    display: none;
+    font-family: "HelveticaNeue","Helvetica-Neue",Helvetica,Arial,sans-serif;
+}
+.orbit-wrapper .orbit-caption {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    padding: 7px 10px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1000;
+}
+#featured {
+    background: no-repeat scroll center center #FFFFFF;
+    overflow: hidden;
+    width: 448px;
+    height: 292px;
+}
+#featured img, #featured div {
+    display: none;
+}
+.clearfix {
+    display: block;
+}
+
+div.orbit img {
+    display: none;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+div.orbit a img {
+    border: medium none;
+}
+.orbit div {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+/*************** for pause or start icon *********/
+
+div.timer {
+    cursor: pointer;
+    height: 40px;
+    opacity: 0.6;
+    overflow: hidden;
+    position: absolute;
+    right: 30px;
+    top: 22px;
+    width: 40px;
+    z-index: 1001;
+}
+span.rotator {
+background: url("/images/show/slider/rotator-black.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 40px;
+    left: -20px;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    z-index: 3;
+}
+span.mask {
+    display: block;
+    height: 40px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    z-index: 2;
+}
+span.rotator.move {
+    left: 0;
+}
+span.mask.move {
+    background: url("/images/show/slider/timer-black.png") repeat scroll 0 0 transparent;
+    left: 0;
+    width: 40px;
+}
+span.pause {
+    background: url("/images/show/slider/pause-black.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 40px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+    z-index: 4;
+}
+span.pause.active {
+    background: url("/images/show/slider/pause-black.png") no-repeat scroll 0 -40px transparent;
+}
+div.timer:hover span.pause, span.pause.active {
+    opacity: 1;
+}
+/********** end *************/
+
+
+/************* silder nav ************/
+
+div.slider-nav {
+    display: block;
+}
+div.slider-nav span {
+    cursor: pointer;
+    height: 40px;
+    margin-top: -50px;
+    position: absolute;
+    text-indent: -9999px;
+    top: 60%;
+    width: 40px;
+    z-index: 1000;
+}
+div.slider-nav span.next {
+    background: url("/images/show/slider/bttn-arrow-next.png") no-repeat scroll 0 0 transparent;
+    right: -8px;
+}
+div.slider-nav span.next:hover {
+        background: url("/images/show/slider/bttn-arrow-next.png") no-repeat scroll 0 -40px transparent;
+}
+div.slider-nav span.prev {
+    background: url("/images/show/slider/bttn-arrow-prev.png") no-repeat scroll 0 0 transparent;
+    left: -8px;
+}
+div.slider-nav span.prev:hover {
+    background: url("/images/show/slider/bttn-arrow-prev.png") no-repeat scroll 0 -40px transparent;
+}
+
+/****************end********************/
+
+
+/*****************  slide *************/
+
+.slides_container {
+	overflow:hidden;
+	position:relative;
+	/*display:none;*/
+    background: no-repeat scroll center center #663300;
+    width: 448px;
+    height: 292px;
+    box-shadow: 0 0 35px #330000 inset;
+
+}
+#slides .slide {
+	padding:0px;
+	display:block;
+    width: 448px;
+    height: 292px;
+    text-align:center;
+}
+
+#slides .slide .word{
+    margin: 0px;
+    padding: 86px 0 0 0;
+    font-size: 500%;
+    width:100%;
+    height: 100%;
+    background-color: #F3F1E5;
+    text-align: center;
+    vertical-align: middle;
+}
+.slide_back {
+    display: none;
+    background-color: #F3F1E5
+}
+.slide-hidden{
+	display: none;
+}
+/********************end******************/

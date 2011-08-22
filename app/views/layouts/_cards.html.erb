@@ -1,0 +1,55 @@
+<div id="cards">
+  <div class="new-sponsorListHolder">
+    <% @wordsList.each { |word| %>
+
+        <div id='<%= word.word %>' class='one-word-div'>
+
+          <div class="sponsor" title="Click to flip">
+
+            <div class="sponsorFlip box-shadow" word_id='<%= word.id %>'>
+              <ul class="star-ul">
+                <li>
+                  <% if (word.tags.find_by_name("starred") != nil) %>
+                      <div class="star" title="Click to mark Starred" style="background-position: 0px 100%"></div>
+                  <% else %>
+                      <div class="star" title="Click to mark Starred" style="background-position: 0px 0px"></div>
+                  <% end %>
+                </li>
+                <li>
+                  <% if (word.tags.find_by_name("important") != nil) %>
+                      <div class="important" title="Click to mark Important" style="background-position: 0px 95%"></div>
+                  <% else %>
+                      <div class="important" title="Click to mark Important" style="background-position: 0px 0px"></div>
+                  <% end %>
+                </li>
+              </ul>
+
+              <div style="padding: 10px 10px 40px">
+                <%= time_ago_in_words(word.updated_at) %>
+                <div class='word-content'>
+                  <%= word.word %>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsorData">
+              <div class="sponsorDescription">
+                <div style="font-size:30px;text-align:center;margin-top:20px"><%= word.translation %></div>
+              </div>
+              <div class="sponsorURL">
+                <a href="<%= word.link %>"><%= (word.sample || word.link) %></a>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+    <% } %>
+
+  </div>
+</div>
+<div id="Pagination" class="wp-pagenavi">
+  <%= will_paginate @wordsList %>
+</div>

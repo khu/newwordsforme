@@ -1,214 +1,415 @@
-<%= render "layouts/keep-in-mind-box" %>
+<div id="words-container">
 
-<div id="cards">
-	<div class="sponsorListHolder">
-			<% @words.each { |word| %>
-				<div id='<%= word.word %>' style='float:left'>
-					<div class="sponsor" title="Click to flip">
-						<div class="sponsorFlip" word_id='<%= word.id%>'>
-							<div id="name" style="padding: 10px 10px 40px">
-								<%= time_ago_in_words(word.updated_at)%>
-								<div class='word-content'>
-									<%=word.word%>
-								</div>
-							</div>
-							<!--
-							<div class="tag">
-								<ul style="margin-left:10px; ">
-									<% word.tags.each do |tag| %>
-									 <li class='tag-item'>
-									 	<%= tag.name %>
-									 </li>	
-									<% end%>
-								</ul>
-							</div>
-							-->
-						</div>
-					 	<div class="sponsorData">
-							<div class="sponsorDescription">
-								<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.translation%></div>
-							</div>
-							<div class="sponsorURL">
-								<a href="<%= word.link%>"><%= (word.sample || word.link)%></a>
-							</div>
-						</div>
-					</div>					
-					<!-- cancel the edit tag
-					<div style='margin-left:10px'>
-						<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" tag_count="<%= word.tags.count%>" >edit</a>
-					</div>	
-					-->
-				</div>
-			<%}%>
-	<div>
+
+  <div id="mainbox">
+
+    <img id="dictionary_img" src="/images/show/dictionary.png"/>
+    <img id="dictionary_title_img" src="/images/show/title.png"/>
+
+    <div class="keepin_input_box">
+      <div class="box-text">
+        <textarea class="box-text-input" cols="40" id="word_word" name="word[word]" rows="20"></textarea>
+
+        <div class="box_bottom">
+          <span>try this format apple@i love apple <b>or</b> apple@http://google.com </span>
+        </div>
+        <input class="box-submit-button" id="word_submit" name="commit" type="submit" value="Keep In Mind">
+      </div>
+
+    </div>
+
+    <ul class="words-stream-tabs">
+      <li class="words-stream-tab active">
+        <a class="words-tab-text" id="all-tab" href="">All</a>
+      </li>
+      <li class="words-stream-tab">
+        <a class="words-tab-text" id="stared-tab" href="">Starred</a>
+      </li>
+      <li class="words-stream-tab">
+        <a class="words-tab-text" id="important-tab" href="">Important</a>
+      </li>
+      <li class="words-stream-tab-button" id="play-button">
+        <img src="/images/show/Button-Up.png" id="play-image" width="50px" height="50px"/>
+        <img src="/images/show/Button-Stop.png" id="stop-image" style="display:none; margin-top: -1px; margin-left: -1px;" width="50px" height="50px"/>
+      </li>
+    </ul>
+
+    <div id="cards-container">
+      <%= render 'layouts/cards' %>
+    </div>
+
+    <%= render 'layouts/slider' %>
+
+  </div>
 </div>
 
-<div class="dialog" style='display:none'>
-	<div id="name">
-		<div class='error-message'>
-		</div>
-		Word: <span id='word' ></span><br/>
-		Translation: <span id='translation'></span><br/>
-		Tags: <input type='text' id='tag'/>		
-	</div>
+<script type="text/javascript">
 
-</div>
+    var eventCode = -1;
+    var current_word_number = 1;
+    var total_words = 0;
+    var clickedWords = new Array;
+    var has_fetched_words = false;
+    var current_tab_name = "all";
+    $(function() {
+        $('input#word_submit').live("click", function() {
+            var word = $('textarea#word_word').val();
+            var user_id = '<%= @user.id %>';
+            if (word == '') {
+                alert('Please input a word!');
+            } else {
+                add_word_via_ajax(word, user_id);
+                $('textarea#word_word').val(word +" (is being added to server...)");
+            }
+        });
 
-<script>
-function highlight(element){
-	$(element).addClass("highlight");
-	window.setTimeout(function(){
-		$(element).removeClass('highlight');
-	}, 1000);
-}
+        $("#play-button").live("click", function() {
+            switchPlayAndStop();
 
-$(document).ready(function(){
-	/* The following code is executed once the DOM is loaded */
-	
-	$('.sponsorFlip').bind("click",function(){
-		
-		// $(this) point to the clicked .sponsorFlip element (caching it in elem for speed):
-		
-		var elem = $(this);
-				
-		// data('flipped') is a flag we set when we flip the element:
-		
-		if(elem.data('flipped'))
-		{
-			// If the element has already been flipped, use the revertFlip method
-			// defined by the plug-in to revert to the default state automatically:
-			elem.revertFlip();
-			// Unsetting the flag:
-			elem.data('flipped',false)
-		}
-		else
-		{
-			word_id = elem.attr('word_id');
-			/* cancel the flip ajax
-			$.ajax({
-						url: "/words/add_tag",
-						type: "POST",
-						data: {"word": {"word_id" : word_id,"tag": "unfamiliar"}},
-						dataType: "json",
-						success :function(data){
-						
-						},
-						error: function(){ 
-							window.log("error");
-						}
-					});
-			// Using the flip method defined by the plugin:
-			*/
-			elem.flip({
-				direction:'lr',
-				speed: 350,
-				onBefore: function(){
-					// Insert the contents of the .sponsorData div (hidden from view with display:none)
-					// into the clicked .sponsorFlip div before the flipping animation starts:
-					elem.html(elem.siblings('.sponsorData').html());
-				},
-				onEnd: function(){
-					/* ******************************************Cancel the get_tags
-					if(!elem.data('flipped'))
-					{
-						
-						$.getJSON(
-								"/get_word_tags",
-								{ id : word_id },
-								function(result){
-									var ul = elem.children('.tag').children('ul');
-									ul.html('');
-									
-									for(var i=0; i<result.length; i++)
-									{
-										ul.append("<li class='tag-item'>"+result[i].tag.name+"</li>");
-									}
-								}
-							);
-						
-					}
-					******************************************/
-				}
-			});
-			
-			// Setting the flag:
-			elem.data('flipped',true);
-		}
-	});
-	
-	$("#tag").bind("focus", function(){
-		$('#tag').removeClass("error") 
-		$('#tag').val("") 
-		$('.error-message').html('');
-	}),
-	
-	$('.edit').bind('click', function(){
-		var me = $(this);
-					
-		user_id = $(this).attr('user_id');
-		word_id = $(this).attr('word_id');
-		
-		word = $(this).attr('word');
-		translation = $(this).attr('translation');
-		tag_count = $(this).attr('tag_count');
-		
+        });
+        $('.sponsorFlip').live("click", function() {
 
-		$('.dialog').dialog({
+            var elem = $(this);
 
-			modal:true,
-			title : "Edit Word",
-			open : function(){
-				$('#word').html(word);
-				$('#translation').html(translation);
-			},
-			buttons: { "OK": function() { 
-				$.ajax({
-					url: "/words/add_tag",
-					type: "POST",
-					data: {"word": {"word_id" : word_id,"tag": $('#tag').val()}},
-					dataType: "json",
-					success :function(data){
-							if(tag_count > 1)
-							{
-								$('.error-message').html('Sorry,tag count exceeds 2');
-								$('#tag').addClass("error")
-								$('#word').html('');
-							    $('#translation').html('');
-							    //$(".dialog").dialog("close"); 
-							
-							}else
-							{
-						if(data.state == "created"){
-							var ul = me.parent().prev().children('.sponsorFlip').children('.tag').children()[0];
-							var new_tag = $("<li class='tag-item'></li>");
-							new_tag.text($('#tag').val());
-							new_tag.addClass('new-tag');
-							highlight(new_tag);
-							$(ul).append(new_tag);
-							$('#word').html('');
-							$('#translation').html('');
-							$(".dialog").dialog("close");
-							$("#tags-list ul").prepend('<li><%= link_to "' + $('#tag').val() + '",@user %></li>');
-							
-						}else if(data.state == 'attached'){
-							$('.error-message').html('Sorry,existing tag has already attached');
-							$('#tag').addClass("error");
-						}else{}
-				}	},
-					error: function(){ window.log("error");}
-				})
-			  },
-			  "Cancel": function(){
-				$('#word').html('');
-				$('#translation').html('');
+            if (elem.data('flipped')) {
+                elem.revertFlip();
+                elem.data('flipped', false);
+            } else {
+                var word_id = elem.attr('word_id');
+                elem.flip({
+                    direction:'lr',
+                    speed: 350,
+                    onBefore: function() {
+                        elem.html(elem.siblings('.sponsorData').html());
+                    },
+                    onEnd:function() {
+                    }
+                });
+                elem.data('flipped', true);
+            }
+        });
 
-				$('#tag').removeClass("error") 
-				$('#tag').val("") 
-				$('.error-message').html('');
-				$(".dialog").dialog("close");
-				}
-			}
-		});
-	});
-});
+        $('.sponsor .star').live("click", function() {
+
+            var word_id = $(this).parents(".sponsorFlip").attr("word_id");
+            if ($(this).css("background-position") == "0px 0px") {
+                $(this).css({
+                    "background-position": "0 100%"
+                });
+                add_tag_via_ajax(word_id, "starred");
+            } else {
+                $(this).css({
+                    "background-position": "0 0"
+                });
+                delete_tag_via_ajax(word_id, "starred");
+            }
+            return false;
+        })
+        $('.sponsor .important').live("click", function() {
+            var word_id = $(this).parents(".sponsorFlip").attr("word_id");
+            if ($(this).css("background-position") == "0px 0px") {
+                $(this).css({
+                    "background-position": "0 95%"
+                });
+                add_tag_via_ajax(word_id, "important");
+            } else {
+                $(this).css({
+                    "background-position": "0 0"
+                });
+                delete_tag_via_ajax(word_id, "important");
+            }
+            return false;
+        })
+
+        addListenerForTab();
+        addListenerForSlider();
+    })
+
+    function switchPlayAndStop() {
+
+        if ($("#play-image").css("display") == "none") {
+            stopCards();
+            $("#play-image").css({
+                display:""
+            });
+            $("#stop-image").css({
+                display:"none"
+            });
+        } else {
+            openCards();
+            $("#play-image").css({
+                display:"none"
+            });
+            $("#stop-image").css({
+                display:""
+            });
+        }
+    }
+
+    function highlight(element) {
+        $(element).addClass("highlight");
+        window.setTimeout(function() {
+            $(element).removeClass('highlight');
+        }, 1000);
+    }
+
+    function openCards() {
+        $("#cards-container").animate({
+            "opacity":"hide"
+        }, 600, function() {
+            $("#slides").css({
+                display:"none"
+            });
+            has_fetched_words = false;
+//            ajax_get_words();
+            setTimeout("ajax_get_words();", 2000);
+            $("#featured-box").show("scale", {}, 1000, function() {
+                if (!has_fetched_words) {
+                    $(".words-loading-img").fadeIn();
+                }
+
+            });
+        });
+    }
+
+    function playCards() {
+        $(".words-loading-img").fadeOut("slow", function() {
+            $("#slides").css({
+                display:""
+            });
+            $(".slider-nav").css({
+                display:""
+            });
+            activeSlide();
+        });
+
+    }
+
+    function stopCards() {
+
+        $(".slider-nav").fadeOut();
+        $(".slides_container").fadeOut("slow", function() {
+
+            $("#featured-box").hide("scale", {}, 800, function() {
+                $("#cards-container").animate({
+                    "opacity": "show"
+                }, 500);
+            });
+        });
+
+    }
+
+    function ajax_get_words() {
+        has_fetched_words = false;
+        $.ajax({
+            url: "/users/" + '<%= @user.id %>' + "/tag/" + current_tab_name,
+            type: "POST",
+            dataType: "json",
+            success :function(data) {
+                $(".slides_container").empty();
+                $.each(data, function(i, word) {
+                    has_fetched_words = true;
+                    total_words++;
+                    var div_string = '<div class="slide"><div class="word" id="word' + word.word.id + '">' + word.word.word
+                            + '</div><div class="slide_back">' + word.word.translation + '</div></div>';
+                    $(".slides_container").append(div_string);
+
+                });
+
+                playCards();
+
+            },
+            error: function() {
+                window.log("error");
+            }
+        });
+    }
+
+    function activeSlide() {
+        if ($('.slide').length > 0) {
+            $('.slides_container').css("display", "block");
+        }
+        $('#slides').slides({
+            preload: true,
+            preloadImage: '/stylesheets/img/slide_images/loading.gif',
+            play: 0,
+            pause: 2500,
+            hoverPause: true ,
+            generatePagination: false
+        });
+        // addListenerForSlider();
+    }
+
+    function addListenerForTab() {
+        $("#all-tab").live("click", function() {
+            current_tab_name = "all";
+            $.get("/users/" + '<%= @user.id %>' + "/tag/all", null, null, "script");
+            return false;
+        });
+        $("#stared-tab").live("click", function() {
+            current_tab_name = "starred";
+            $.get("/users/" + '<%= @user.id %>' + "/tag/starred", null, null, "script");
+            return false;
+        });
+        $("#important-tab").live("click", function() {
+            current_tab_name = "important";
+            $.get("/users/" + '<%= @user.id %>' + "/tag/important", null, null, "script");
+            return false;
+        });
+        $(".words-stream-tab").click(function() {
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+        });
+    }
+
+    function addListenerForSlider() {
+
+        $('.word').live("click", function() {
+            var elem = $(this);
+            var word_id = elem.attr('id').replace(/[^\d]/g, '');
+            clickedWords.push(word_id);
+            update_tag_via_ajax(word_id, "familiar", "unfamiliar");
+            if (elem.data('flipped')) {
+                elem.revertFlip();
+                elem.data('flipped', false);
+            } else {
+                elem.flip({
+                    direction: 'tb',
+                    color:'#F3F1E5',
+                    speed:350,
+                    onBefore:function() {
+                        elem.html(elem.siblings('.slide_back').html());
+                    },
+                    onEnd: function() {
+                    },
+                    onAnimation:function() {
+                        elem.css("background-color", "#663300");
+                    }
+                });
+                elem.data('flipped', true);
+            }
+        });
+        $(document).keydown(function(event) {
+            if (eventCode < 0)
+                eventCode = event.which;
+            else
+                return;
+            operateKeyCode();
+        });
+        $(".prev").live('click', function() {
+            if (--current_word_number <= 0)
+                current_word_number = total_words;
+            $('#current_word').html(current_word_number);
+        });
+        $(".prev").live("mousedown", function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+        $(".next").live('click', function() {
+            if (++current_word_number > total_words)
+                current_word_number = 1;
+            $('#current_word').html(current_word_number);
+        });
+        $(".next").live("mousedown", function() {
+            var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+            if (jQuery.inArray(word_id, clickedWords) < 0) {
+                update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+            }
+        });
+
+        /***    for bottom navigation
+         $(".bottom_back > a").live("mousedown", function() {
+         if (total_words == 1 && clickedWords.length == 0) {
+         var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+         update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+         } else if (current_word_number == total_words) {
+         var word_id = $('.slides_control > div:visible div[id]').attr('id').replace(/[^\d]/g, '');
+         if (clickedWords.indexOf(word_id) < 0)
+         update_tag_via_ajax(word_id, "unfamiliar", "familiar");
+         }
+         });
+         ***/
+
+    }
+
+    function operateKeyCode() {
+        switch (eventCode) {
+            case 37 :
+                $(".prev").trigger("mousedown");
+                $(".prev").trigger("click");
+                break;
+            case 39 :
+                $(".next").trigger("mousedown");
+                $(".next").trigger("click");
+                break;
+            default:
+                break;
+        }
+        setTimeout("resetEventCode()", 1000);
+    }
+
+    function resetEventCode() {
+        eventCode = -1;
+    }
+
+    function update_tag_via_ajax(word_id, oldTag, newTag) {
+        $.ajax({
+            url: "/words/update_tag",
+            type: "POST",
+            data: {"word": {"word_id" : word_id,"oldTag": oldTag, "newTag": newTag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
+
+    function add_tag_via_ajax(word_id, tag) {
+        $.ajax({
+            url: "/words/add_tag",
+            type: "POST",
+            data: {"word": {"word_id" : word_id,"tag": tag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
+
+    function delete_tag_via_ajax(word_id, tag) {
+        $.ajax({
+            url: "/words/delete_tag",
+            type: "POST",
+            data: {"word": {"word_id" : word_id,"tag": tag}},
+            dataType: "json",
+            success :function(data) {
+
+            },
+            error: function() {
+            }
+        });
+    }
+
+    function add_word_via_ajax(word, user_id) {
+        $.ajax({
+            url: "/users/" + user_id + "/words",
+            type: "POST",
+            data: {"word": {"word":word}, "user_id":user_id},
+            dataType: "json",
+            success :function(data) {
+                $('#all-tab').click();
+                $('textarea#word_word').val('');
+            },
+            error: function() {
+            }
+        });
+    }
 </script>
+
+

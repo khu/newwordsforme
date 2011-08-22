@@ -29,7 +29,9 @@ Keepin::Application.routes.draw do
   end
   resources :sessions
   
-  post "words/add_tag"
+  post "words/add_tag"  
+  
+  post "words/delete_tag"
   
   post "sessions/userid"
 
