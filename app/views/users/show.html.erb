@@ -8,14 +8,14 @@
 
     <div class="keepin_input_box">
       <div class="box-text">
-       <textarea class="box-text-input" cols="40" id="word_word" name="word[word]" rows="20"></textarea>
+        <textarea class="box-text-input" cols="40" id="word_word" name="word[word]" rows="20"></textarea>
 
         <div class="box_bottom">
           <span>Try this format apple@i love apple <b>or</b> apple@http://google.com </span>
         </div>
         <input class="box-submit-button" id="word_submit" name="commit" type="submit" value="Keep In Mind">
       </div>
-	  <div class="add_word_success_info">Add word succeed!</div>
+      <div class="add_word_success_info">Add word succeed!</div>
     </div>
 
     <ul class="words-stream-tabs">
@@ -56,19 +56,17 @@
             var word = $('textarea#word_word').val();
             var user_id = '<%= @user.id %>';
             if (word == '') {
-				$('textarea#word_word').animate({backgroundColor:'#ffc'}, 150, function() {
-				                   $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150, function() {
-				                       $('textarea#word_word').animate({backgroundColor :'#ffc'}, 150, function() {
-				                           $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150)
-				                       })
-				                   })
-					               }) 
-               
-								// alert('Please input a word!');
+                $('textarea#word_word').animate({backgroundColor:'#ffc'}, 150, function() {
+                    $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150, function() {
+                        $('textarea#word_word').animate({backgroundColor :'#ffc'}, 150, function() {
+                            $('textarea#word_word').animate({backgroundColor :'#F3F1E5'}, 150)
+                        })
+                    })
+                })
             } else {
-                $('textarea#word_word').attr("disabled","true");
-				$('input#word_submit').attr("disabled","true");
-				add_word_via_ajax(word, user_id);
+                $('textarea#word_word').attr("disabled", "true");
+                $('input#word_submit').attr("disabled", "true");
+                add_word_via_ajax(word, user_id);
             }
         });
 
@@ -413,16 +411,18 @@
             dataType: "json",
             success :function(data) {
                 $('#all-tab').click();
-				$('textarea#word_word').val('');
-				$('.add_word_success_info').show();
-				setTimeout(function(){$('.add_word_success_info').hide(200,function(){
-	                $('textarea#word_word').attr("disabled","");
-					$('input#word_submit').attr("disabled","");
-				});},1000);	
+                $('textarea#word_word').val('');
+                $('.add_word_success_info').show();
+                setTimeout(function() {
+                    $('.add_word_success_info').hide(0, function() {
+                        $('textarea#word_word').attr("disabled", "");
+                        $('input#word_submit').attr("disabled", "");
+                    });
+                }, 1000);
             },
             error: function() {
-	            $('textarea#word_word').attr("disabled","");
-				$('input#word_submit').attr("disabled","");
+                $('textarea#word_word').attr("disabled", "");
+                $('input#word_submit').attr("disabled", "");
             }
         });
     }
