@@ -5,11 +5,13 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
 
   # First try to load from a user install
   source "$HOME/.rvm/scripts/rvm"
+  printf "use user rvm----------"
 
 elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
 
   # Then try to load from a root install
   source "/usr/local/rvm/scripts/rvm"
+  printf "use root rvm----------"
 
 else
 	
@@ -20,6 +22,4 @@ fi
 rvm rvmrc trust
 rvm rvmrc load
 
-gem install bundler && bundle install
-
-gem list
+gem install bundler && bundle install && gem list
