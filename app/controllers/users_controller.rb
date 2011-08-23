@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:new, :create]
+  before_filter :authenticate, :except => [:new, :create, :sign_up]
   skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
 
   def show
@@ -79,5 +79,12 @@ class UsersController < ApplicationController
     else
       redirect_to root_path # unless current_user?(@user)
     end
+  end
+  
+  def sign_up
+    @tabs = Tabs.new.logged_in @user
+    @title = "Sign up"
+    print "This is sign_up method. \n"
+    render 'signup'
   end
 end
