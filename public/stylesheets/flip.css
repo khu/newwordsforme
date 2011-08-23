@@ -78,11 +78,11 @@
 
 /* The styles below are only necessary for the styling of the demo page: */
 
-#main {
-    position: relative;
-    margin: 0 auto;
-    width: 1000px;
-}
+/*#main {*/
+    /*position: relative;*/
+    /*margin: 0 auto;*/
+    /*width: 1000px;*/
+/*}*/
 
 a, a:visited {
     color: #0196e3;
