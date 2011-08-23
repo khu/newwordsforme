@@ -41,12 +41,24 @@
     /*border-bottom: 2px solid #900;*/
 }
 
+.keepin_input_box .add_word_success_info {
+    left: 280px;
+    bottom: 80px;
+    width: 400px;
+    position: relative;
+	font: 30px/32px "Helvetica Neue", Arial, sans-serif;
+	display: none;
+}
+
 .keepin_input_box .box-text {
     left: 140px;
     top: 20px;
     width: 560px;
     position: relative;
     background-color: #cccc99;
+	border-radius: 6px 6px 6px 6px;
+/*	border: 2px solid #003B62;*/
+
 }
 
 .keepin_input_box .box-text .box-text-input {
@@ -59,7 +71,7 @@
     -moz-box-shadow: 0 1px #fff;
     /*box-shadow: 0 3px 4px  rgba(0, 0, 0, 0.3);*/
     width: 100%;
-    height: 90px;
+    height: 95px;
     color: #222;
     font: 18px/22px "Helvetica Neue", Arial, sans-serif;
     outline: none;
@@ -74,20 +86,58 @@
 
 .keepin_input_box .box-text .box_bottom {
     height: 29px;
-    margin-top: 12px;
+    margin-top: 5px;
     /*margin-right: 30%;*/
     text-align: right;
     float: left;
-    margin-left: 50px;
+    margin-left: 1px;
     font: 14px/16px "Helvetica Neue", Arial, sans-serif;
 }
 
-.keepin_input_box .box-text .box-submit-button {
+/*.keepin_input_box .box-text .box-submit-button {
     margin-top: 12px;
     float: right;
     margin-right: -30px;
     font: 12px/14px "Helvetica Neue", Arial, sans-serif;
 }
+*/
+.keepin_input_box .box-text .box-submit-button{
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  float: right;
+  display: block;
+  text-decoration: none;
+  border: 1px solid #004e00;
+  -webkit-background-clip: padding-box;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.66);
+  color: #ffffff !important;
+  padding: 0 5px;
+  margin: 5px 1px;
+  font-weight: bold;
+  font-family: "Lucida Grande", "Verdana", sans-serif;
+  font-size: 13px;
+  line-height: 32px;
+  height: 32px;
+  cursor: pointer;
+  background: #008800;
+  background: -webkit-gradient(linear, left top, left bottom, from(#009e00), to(#006e00));
+  background: -moz-linear-gradient(#009e00, #006e00);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 1px #ffffff;
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 1px #ffffff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 1px #ffffff; 
+}
+
+.keepin_input_box .box-text .box-submit-button:hover {
+  background: #009900;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00ae00), to(#006e00));
+  background: -moz-linear-gradient(#00ae00, #006e00); }
+
+.keepin_input_box .box-text .box-submit-button:active {
+  background: #006600;
+  background: -webkit-gradient(linear, left top, left bottom, from(#009000), to(#006000));
+  background: -moz-linear-gradient(#009000, #006000); }
+
 
 /******** Keepin input box end ******/
 
