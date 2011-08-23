@@ -50,7 +50,6 @@ class WordsController < ApplicationController
       user=User.authenticate_with_password(params[:user_id], params[:password])
       deny_access if user.nil?
     end
-    puts params[:word], params[:word].nil?
     if params[:word].nil?
       return
     end

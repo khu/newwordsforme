@@ -17,6 +17,7 @@ group :development, :test do
   gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
   gem "cucumber-rails"
   gem "will_paginate", "3.0.pre4"
+  gem 'launchy'
 end
 
 # Bundle edge Rails instead:
