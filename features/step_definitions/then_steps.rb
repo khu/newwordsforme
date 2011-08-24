@@ -58,6 +58,22 @@ Then /^I should see the words belongs to the tag:$/ do |word_table|
   }
 end
 
+Then /^I should see the words under the tab:$/ do |word_table|
+
+  div = page.find('div[@id=cards-container]')
+  word_table.hashes.each {|hash|
+    div.should have_content(hash[:word])
+  }
+end
+
+Then /^I should not see the words under the tab:$/ do |word_table|
+
+  div = page.find('div[@id=cards-container]')
+  word_table.hashes.each {|hash|
+    div.should have_no_content(hash[:word])
+  }
+end
+
 Then /^I should see "([^"]*)" tip message$/ do |tip|
   div = page.find('div[@id=no-tag-message]')
   div.should have_content(tip)

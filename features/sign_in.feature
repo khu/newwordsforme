@@ -14,7 +14,7 @@ Scenario: go to index page before sign in
 Scenario: go to index page before sign in
 	Given "Arden" is user of keepin
 	When I go to Arden's page
-	Then I should be on sign in page
+	Then I should be on the home page
 
                                          	
 @arden @listing

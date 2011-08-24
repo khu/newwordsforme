@@ -127,7 +127,7 @@ a img {
     padding: 0px;
 
 }
-.sponsor .star{
+.sponsor .starred{
     background: url("/stylesheets/img/star.png") no-repeat 0 0 scroll transparent;
     height: 20px;
     width: 20px;
