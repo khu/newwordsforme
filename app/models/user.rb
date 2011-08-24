@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(email, submitted_password)
+    puts '----------------', email, '-------',submitted_password
     user = find_by_email(email)
     return nil  if user.nil?
     user.password=user.encrypted_password #hack
