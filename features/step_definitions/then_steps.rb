@@ -23,7 +23,6 @@ end
 
 Then /^"([^"]*)" should see only one "([^"]*)"$/ do |user, word|
   array=page.body.scan(/id="#{word}"/)
-  # puts "-------->"+array.length.to_s
   if (array.length != 1)
     YOU SHALL NOT PASS
   end

@@ -1,6 +1,7 @@
 <div id="cards">
   <div class="new-sponsorListHolder">
-    <% @wordsList.each { |word| %>
+    <% @words.reverse %>
+        <% @words.each { |word| %>
 
         <div id='<%= word.word %>' class='one-word-div'>
 
@@ -49,7 +50,4 @@
     <% } %>
 
   </div>
-</div>
-<div id="Pagination" class="wp-pagenavi">
-  <%= will_paginate @wordsList %>
 </div>

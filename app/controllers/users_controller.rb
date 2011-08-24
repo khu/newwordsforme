@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     else
       @words = Word.find(:all, :conditions => ["user_id = ? and updated_at > ?", @user.id, DateTime.parse(params[:date])], :order => "updated_at DESC")
     end
-    @wordsList = @words.paginate(:per_page => 8, :page => params[:page])
+    #@wordsList = @words.paginate(:per_page => 8, :page => params[:page])
   end
 
 
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
     @tabs = Tabs.new.logged_in @user
 
     if params[:name] == "all"
-      @words = @user.word.order("updated_at")
+      @words = @user.word.order("updated_at DESC")
     else
-      @words = @user.word.order("updated_at").find_all do |word|
+      @words = @user.word.order("updated_at DESC").find_all do |word|
         if word.tags.find_by_name(params[:name])
           word.id
         end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     end
     # @title = "Show words by tag"
     @wordsReverse = @words.reverse
-    @wordsList = @wordsReverse.paginate(:per_page => 8, :page => params[:page])
+    #@wordsList = @wordsReverse.paginate(:per_page => 8, :page => params[:page])
     respond_to do |format|
       format.json { render :json => @wordsReverse, :content_type => "text/html" }
       format.js

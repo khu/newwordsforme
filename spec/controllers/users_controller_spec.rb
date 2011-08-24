@@ -13,7 +13,7 @@ describe UsersController do
     
     it "should deny access" do
       get :show, :id => @user
-      response.should redirect_to(signin_path)
+      response.should redirect_to(root_path)
     end
     
      it "should subscribe the rss results" do
