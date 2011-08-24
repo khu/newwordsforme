@@ -9,8 +9,15 @@ When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
 end
 
 When /^I click the "([^"]*)" tag$/ do |tag|
-    click_link tag
+  click_link tag
 end
+
+When /^I click the "([^"]*)" tab$/ do |tab|
+  within('.words-stream-tabs') do
+    page.find("a[@id=#{tab}-tab]").click
+  end
+end
+
 When /^I flipper the word "([^"]*)" (\d+) times$/ do |word, times|
   #class="sponsor" title="Click to flip"
   div1 = page.find("div[@id=#{word}]").find("div[@class=sponsor]")
@@ -34,8 +41,14 @@ end
 
 When /^"([^"]*)" post a sign in information with email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
   path = "/sessions/userid.json"
-  data = { "email" => email,"password" => password }.to_json
+  data = {"email" => email, "password" => password}.to_json
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   post path, data
+end
+
+When /^I mark "([^"]*)" as "([^"]*)"$/ do |word, tag|
+  within ('.new-sponsorListHolder') do
+    page.find("div[@id=#{word}]").find("div[@class=#{tag}]").click
+  end
 end

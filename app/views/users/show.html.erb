@@ -22,7 +22,7 @@
         <a class="words-tab-text" id="all-tab" href="">All</a>
       </li>
       <li class="words-stream-tab">
-        <a class="words-tab-text" id="stared-tab" href="">Starred</a>
+        <a class="words-tab-text" id="starred-tab" href="">Starred</a>
       </li>
       <li class="words-stream-tab">
         <a class="words-tab-text" id="important-tab" href="">Important</a>
@@ -95,8 +95,7 @@
             }
         });
 
-        $('.sponsor .star').live("click", function() {
-
+        $('.sponsor .starred').live("click", function() {
             var word_id = $(this).parents(".sponsorFlip").attr("word_id");
             if ($(this).css("background-position") == "0px 0px") {
                 $(this).css({
@@ -252,7 +251,7 @@
             $.get("/users/" + '<%= @user.id %>' + "/tag/all", null, null, "script");
             return false;
         });
-        $("#stared-tab").live("click", function() {
+        $("#starred-tab").live("click", function() {
             current_tab_name = "starred";
             $.get("/users/" + '<%= @user.id %>' + "/tag/starred", null, null, "script");
             return false;
