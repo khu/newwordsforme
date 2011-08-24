@@ -15,7 +15,7 @@ describe WordsController do
 
     it "should deny access" do
       get :index, :user_id => @user
-      response.should redirect_to(signin_path)
+      response.should redirect_to(root_path)
     end
   end
 
