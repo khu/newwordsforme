@@ -18,6 +18,7 @@ group :development, :test do
   gem "cucumber-rails"
   gem "will_paginate", "3.0.pre4"
   gem 'launchy'
+  gem 'metric_fu', '2.1.1'
 end
 
 # Bundle edge Rails instead:
