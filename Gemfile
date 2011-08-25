@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 # gem 'annotate-models', '1.0.4'
-
+gem 'main', '4.2.0'
 group :development, :test do
   gem 'factory_girl_rails', '1.0'
   gem "autotest"
@@ -18,6 +18,7 @@ group :development, :test do
   gem "cucumber-rails"
   gem "will_paginate", "3.0.pre4"
   gem 'launchy'
+  gem 'chronic', '0.3.0'
   gem 'metric_fu', '2.1.1'
 end
 
