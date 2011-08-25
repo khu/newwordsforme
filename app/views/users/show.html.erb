@@ -22,7 +22,7 @@
         <a class="words-tab-text" id="all-tab" href="">All</a>
       </li>
       <li class="words-stream-tab">
-        <a class="words-tab-text" id="stared-tab" href="">Starred</a>
+        <a class="words-tab-text" id="starred-tab" href="">Starred</a>
       </li>
       <li class="words-stream-tab">
         <a class="words-tab-text" id="important-tab" href="">Important</a>
@@ -69,6 +69,8 @@
             }
         });
 
+        $('textarea#word_word').focus();
+
         $("#play-button").live("click", function() {
             switchPlayAndStop();
 
@@ -95,8 +97,7 @@
             }
         });
 
-        $('.sponsor .star').live("click", function() {
-
+        $('.sponsor .starred').live("click", function() {
             var word_id = $(this).parents(".sponsorFlip").attr("word_id");
             if ($(this).css("background-position") == "0px 0px") {
                 $(this).css({
@@ -167,13 +168,12 @@
                 display:"none"
             });
             has_fetched_words = false;
-//            ajax_get_words();
-            setTimeout("ajax_get_words();", 2000);
+            ajax_get_words();
+//            setTimeout("ajax_get_words();", 2000);
             $("#featured-box").show("scale", {}, 1000, function() {
                 if (!has_fetched_words) {
                     $(".words-loading-img").fadeIn();
                 }
-
             });
         });
     }
@@ -193,15 +193,15 @@
 
     function stopCards() {
 
-        $(".slider-nav").fadeOut();
-        $(".slides_container").fadeOut("slow", function() {
+//        $(".slider-nav").fadeOut();
+//        $(".slides_container").fadeOut("slow", function() {
 
             $("#featured-box").hide("scale", {}, 800, function() {
                 $("#cards-container").animate({
                     "opacity": "show"
                 }, 500);
             });
-        });
+//        });
 
     }
 
@@ -216,8 +216,8 @@
                 $.each(data, function(i, word) {
                     has_fetched_words = true;
                     total_words++;
-                    var div_string = '<div class="slide"><div class="word" id="word' + word.word.id + '">' + word.word.word
-                            + '</div><div class="slide_back">' + word.word.translation + '</div></div>';
+                    var div_string = '<div class="slide"><div class="word" id="word' + word.word.id + '"><div class="content">' + word.word.word
+                            + '</div></div><div class="slide_back"><div class="content">' + word.word.translation + '</div></div></div>';
                     $(".slides_container").append(div_string);
 
                 });
@@ -252,7 +252,7 @@
             $.get("/users/" + '<%= @user.id %>' + "/tag/all", null, null, "script");
             return false;
         });
-        $("#stared-tab").live("click", function() {
+        $("#starred-tab").live("click", function() {
             current_tab_name = "starred";
             $.get("/users/" + '<%= @user.id %>' + "/tag/starred", null, null, "script");
             return false;
@@ -416,6 +416,7 @@
                     $('.add_word_success_info').hide(0, function() {
                         $('textarea#word_word').attr("disabled", "");
                         $('input#word_submit').attr("disabled", "");
+                        $('textarea#word_word').focus();
                     });
                 }, 1000);
             },

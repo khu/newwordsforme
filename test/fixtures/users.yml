@@ -3,5 +3,5 @@
 one:
   name: Dong Ning
   email: admin@keepin.com
-  encrypted_password: p
+  encrypted_password: password
   
