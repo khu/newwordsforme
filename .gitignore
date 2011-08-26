@@ -3,8 +3,8 @@ db/*.sqlite3
 log/*.log
 tmp/
 .idea/**/*
-.rvmrc
 spork/
 .idea
 .DS_Store
 .gitignore
+vendor/ruby
