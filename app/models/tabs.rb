@@ -9,17 +9,21 @@ class Tabs
   
   def logged_in user
     @tabs = []
-    @tabs << Tab.new(:plugins, 'Plugins', plugins_path)
-    @tabs << Tab.new(:mobiles, 'Mobiles', mobile_path)
-    @tabs << Tab.new(:signin, 'Sign out', signout_path)      
+    #@tabs << Tab.new(:plugins, 'Plugins', plugins_path)
+    #@tabs << Tab.new(:mobiles, 'Mobiles', mobile_path)
+    @tabs << Tab.new(:home , 'Home', root_path)
+    @tabs << Tab.new(:addons, 'Addons', addons_path)
+    @tabs << Tab.new(:signin, 'Sign out', signout_path)
     @tabs.reverse!
     return self
   end
-  
+
   def logged_out
     @tabs = []
-    @tabs << Tab.new(:plugins, 'Plugins', plugins_path)
-    @tabs << Tab.new(:mobiles, 'Mobiles', mobile_path)
+    #@tabs << Tab.new(:plugins, 'Plugins', plugins_path)
+    #@tabs << Tab.new(:mobiles, 'Mobiles', mobile_path)
+    @tabs << Tab.new(:home , 'Home', root_path)
+    @tabs << Tab.new(:addons, 'Addons', addons_path)
     #@tabs << Tab.new(:signin, 'Sign in', root_path)
     @tabs.reverse!
     return self

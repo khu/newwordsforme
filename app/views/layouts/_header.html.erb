@@ -11,23 +11,3 @@
   </ul>
   <div style="clear:both"></div>
 </div>
-
-
-<script type="text/javascript">
-
-    $(function() {
-
-        $("a:contains('Plugins')").live('click', function() {
-            var params = {
-                "Keepin": { URL: "/plugins/keepin.xpi",
-                    toString: function () {
-                        return this.URL;
-                    }
-                }
-            };
-            InstallTrigger.install(params);
-            return false;
-        });
-    })
-
-</script>

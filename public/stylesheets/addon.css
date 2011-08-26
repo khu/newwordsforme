@@ -1,0 +1,104 @@
+.download-container .download-button {
+    background: #FA2 url(/stylesheets/img/bg-btn-signup.png) repeat-x 0 0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 5px #FFC829;
+    font: normal 16px/16px Helvetica Neue, Arial, "Lucida Grande", Sans-serif;
+    padding: 8px 12px;
+    min-width: 150px;
+    display: inline-block;
+    vertical-align: middle;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 5px #999;
+    border: 0;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, .2), 0 0 5px #FFC829;
+    -webkit-animation-name: mobileDownloadGlow;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    margin-left: 60px;
+}
+
+.download-container {
+    margin-top: 20px;
+    width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+
+.download-container .app-header {
+    padding: 0 0 0 90px;
+    height: 90px;
+    width: 250px;
+}
+
+.download-container .actions {
+    float: left;
+    position: absolute;
+    top: 120px;
+}
+
+.download-container h2 {
+    font-size: 22px;
+    margin-bottom: -2px;
+    font-weight: 300;
+    color: #333;
+}
+
+.download-container .compatibility {
+    color: #666;
+    margin: 0;
+}
+
+.download-container .select {
+    background: url(/stylesheets/img/bg_addon_choice_20x78.png) repeat-x transparent;
+    border: 1px solid #CCCCCC;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 1px 1px 2px #CCCCCC;
+    overflow: hidden;
+    padding: 0 0 0 30px;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-container h3 {
+    float: left;
+    margin-right: 15px;
+    padding-top: 26px;
+}
+
+.select li {
+    display: inline;
+    float: left;
+}
+
+.select li img {
+    height: 64px;
+    width: 64px;
+}
+
+.select li div {
+    color: #006699;
+    font-size: 150%;
+    font-weight: bold;
+    padding: 5px 10px 0px 6px;
+    position: relative;
+}
+
+.select li div a {
+    bottom: 24px;
+    position: relative;
+}
+
+.download-container .chosen_addon {
+    margin: 0 auto;
+    position: relative;
+    width: 850px;
+    min-height: 480px;
+}
+
+.download-container .android-img {
+    position: relative;
+    float: right;
+}

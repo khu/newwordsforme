@@ -303,6 +303,14 @@ ul li#link-signin.selected {
     border-bottom: 4px solid #377800;
 }
 
+#link-addons {
+    border-bottom: 4px solid #e55c00;
+}
+
+#link-home {
+    border-bottom: 4px solid #377800;
+}
+
 #nav  a {
     -moz-background-clip: border;
     -moz-background-origin: padding;

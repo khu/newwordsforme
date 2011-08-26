@@ -1,5 +1,6 @@
 Keepin::Application.routes.draw do
 
+  match '/addons',  :to => 'pages#addons'
   match '/mobile',  :to => 'pages#mobile'
   match '/plugins', :to => 'pages#plugins'
   match '/contact', :to => 'pages#contact'

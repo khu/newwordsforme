@@ -1,0 +1,46 @@
+<div class="download-container">
+  <div class="chosen_addon" id="firefox-plugin">
+    <%= render 'layouts/firefox-plugin-download' %>
+  </div>
+  <div class="chosen_addon" id="android" style="display: none">
+    <%= render 'layouts/android-download' %>
+  </div>
+  <div class="select">
+    <h3>Choose Addon:</h3>
+    <ul>
+      <li class="firefox">
+        <div>
+          <img src="/stylesheets/img/firefox-plugin.png">
+          <a>firefox plugin</a>
+        </div>
+      </li>
+      <li class="android">
+        <div>
+          <img src="/stylesheets/img/android.png">
+          <a>Android</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="other">
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $('li.firefox').live("click", function() {
+            if ($("div#firefox-plugin").css("display") == "none") {
+                $("div#android").fadeOut("slow", function() {
+                    $("div#firefox-plugin").fadeIn("slow")
+                })
+            }
+        })
+        $('li.android').live("click", function() {
+            if ($("div#android").css("display") == "none") {
+                $("div#firefox-plugin").fadeOut("slow", function() {
+                    $("div#android").fadeIn("slow")
+                })
+            }
+        })
+    })
+</script>

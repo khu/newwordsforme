@@ -1,0 +1,20 @@
+<div class="actions">
+  <div class="app-header">
+    <h2>WoJiDe for Android</h2>
+
+    <p class="compatibility">Compatible with devices running Android 2.1 or later.</p>
+  </div>
+  <button class="download-button" id="android">Download Now</button>
+</div>
+<div class="android-img">
+  <img src=/stylesheets/img/android-flashcard.png style="margin-right: -36px;">
+  <img src=/stylesheets/img/android-signin.png>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+      $("button#android").live('click',function(){
+          window.location.href = '/plugins/AndroidKeepin.apk';
+      })
+  })
+</script>

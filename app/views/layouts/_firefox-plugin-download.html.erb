@@ -1,0 +1,36 @@
+<div class="actions">
+  <div class="app-header">
+    <h2>WoJiDe Firefox Plugin</h2>
+
+    <p class="compatibility">make it easy to add words to WoJiDe</p>
+  </div>
+  <button class="download-button" id="firefox">Download Now</button>
+</div>
+<div class="android-img">
+  <img src=/stylesheets/img/firefox-shot-modified.png>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        if ($.browser.mozilla) {
+            $("button#firefox").text("Add to Firefox");
+        }
+
+        $("button#firefox").live('click', function() {
+            if ($.browser.mozilla) {
+                var params = {
+                    "Keepin": { URL: "/plugins/wojide.xpi",
+                        toString: function () {
+                            return this.URL;
+                        }
+                    }
+                };
+                InstallTrigger.install(params);
+                return false;
+            } else {
+                window.location.href = "/plugins/wojide.xpi";
+            }
+        })
+
+    })
+</script>
