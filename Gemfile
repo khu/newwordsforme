@@ -9,12 +9,12 @@ group :development, :test do
   gem "rspec"
   gem "rspec-rails",      "2.3.0"
   gem 'webrat'
-  gem "machinist",        :git => "git://github.com/notahat/machinist.git"
+  #gem "machinist",        :git => "git://github.com/notahat/machinist.git"
   gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
   gem "cucumber"       
-  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
+  #gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
   gem "cucumber-rails"
   gem "will_paginate", "3.0.pre4"
   gem 'launchy'
