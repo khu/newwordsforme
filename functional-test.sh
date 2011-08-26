@@ -1,3 +1,5 @@
+source "$HOME/.rvm/scripts/rvm"
+
 rvm rvmrc trust
 rvm rvmrc load
 
