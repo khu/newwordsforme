@@ -17,12 +17,11 @@ test: &test
 
 production: 
   encoding: unicode
-  adapter: postgresql
-  username: xpwbsaaiux
-  port: 5432
-  host: ec2-50-16-228-68.compute-1.amazonaws.com
-  database: ajakhaawsi
-  password: eO92xJVHEEkWUDdp4mp-
+  adapter: mysql
+  username: wojide
+  host: localhost
+  database: wojide
+  password: wojide
 
 cucumber:
   <<: *test
