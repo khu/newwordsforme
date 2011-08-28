@@ -16,7 +16,6 @@ test: &test
     timeout: 5000
 
 production: 
-  encoding: unicode
   adapter: mysql2
   username: wojide
   host: localhost
