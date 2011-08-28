@@ -17,7 +17,7 @@ test: &test
 
 production: 
   encoding: unicode
-  adapter: mysql
+  adapter: mysql2
   username: wojide
   host: localhost
   database: wojide
