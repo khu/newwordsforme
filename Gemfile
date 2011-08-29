@@ -22,6 +22,9 @@ group :development, :test do
   gem 'metric_fu', '2.1.1'
 end
 
+gem 'test-unit','2.0.0'
+gem 'ci_reporter','1.6.3'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

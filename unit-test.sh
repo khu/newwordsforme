@@ -5,4 +5,6 @@ rvm rvmrc load
 
 gem install bundle && bundle install --local
 rake db:migrate 
-rake test:units
+#rake test:units
+
+rake ci:setup:testunit test:units

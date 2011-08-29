@@ -3,5 +3,10 @@
 
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
+# for ci_reporter
+require 'rubygems'
+gem 'ci_reporter'
+require 'ci/reporter/rake/test_unit'
+# for ci_reporter end
 include Rake::DSL
 Keepin::Application.load_tasks

@@ -8,3 +8,5 @@ spork/
 .DS_Store
 .gitignore
 vendor/ruby
+machinist/
+test/reports/
