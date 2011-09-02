@@ -1,13 +1,18 @@
 # coding: utf-8
 require 'test_helper'
 require 'iconv'
+require 'flexmock/test_unit'
+
+
 
 class WordsControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
   end
 
+
   test "should create word with only the word" do
+    flexmock(Net::HTTP).should_receive(:get).and_return('{"responseData": {"translatedText":"苹果"}, "responseDetails": null, "responseStatus": 200}')
     post :create, {:word => {:word => "apple"}, :user_id => @user.to_param }
     word = Word.find_by_word('apple')
     assert_not_nil(word)
