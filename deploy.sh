@@ -1,3 +1,3 @@
-tar -cvf  ../keepin-release/keepin-release.tar  ../keepin-release/release/
+tar -cvf  ../keepin-release/keepin.tar  ../keepin-release/keepin/
 
-cp ../keepin-release/keepin-release.tar /etc/puppet/modules/keepin-deployment/files/keepin-release.tar
+cp ../keepin-release/keepin.tar /etc/puppet/modules/keepin-deployment/files/keepin.tar
