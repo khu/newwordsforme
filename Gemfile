@@ -20,6 +20,7 @@ group :development, :test do
   gem 'launchy'
   gem 'chronic', '0.3.0'
   gem 'metric_fu', '2.1.1'
+  gem 'flexmock'
 end
 
 gem 'test-unit','2.0.0'
