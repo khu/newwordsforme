@@ -9,7 +9,6 @@
 #   not_if "ls /dev/" + node[:runa][:device]
 #   Chef::Log.info("successfully created the volumn")
 # end
-
 bash "create the folder to mount" do
   code "mkdir /var/lib/mysql"
   not_if "ls /var/lib/mysql"
@@ -17,8 +16,7 @@ end
 
 mount "/var/lib/mysql" do
   device "/dev/sdh"
-  options "rw noatime"
-  fstype "xfs"
+  fstype "tmpfs"
   action [ :enable, :mount ]
   # Do not execute if its already mounted
   not_if "cat /proc/mounts | grep /var/lib/mysql"
@@ -27,9 +25,11 @@ end
 bash "Changing the owner:group for Mysql data and log folders" do
   code <<-EOC
     user = "ubuntu"
+    useradd mysql -U
     chown -R mysql:mysql /var/lib/mysql
     chown -R mysql:mysql /var/local/log
   EOC
+  not_if "id mysql"
 end
 
 link node[:mysql][:ec2_path] do
@@ -38,17 +38,3 @@ link node[:mysql][:ec2_path] do
 end
 
 
-execute "create keepin database" do
-  command "/usr/bin/mysqladmin -u root -p root create keepin"
-  not_if do    
-    require 'mysql'
-    m = Mysql.new("localhost", "root", "root")
-    if !m.list_dbs.include?("keepin")
-      # Create the database
-      Chef::Log.info "Creating mysql database keepin"
-      m.query("CREATE DATABASE keepin CHARACTER SET utf8")
-      m.query("GRANT ALL ON keepin.* TO 'keepin'@'localhost' IDENTIFIED BY 'keepin'")
-      m.reload
-    end
-  end
-end

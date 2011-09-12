@@ -1,9 +1,0 @@
-{
-  "normal": {
-  },
-  "name": "ip-10-128-191-191.ap-southeast-1.compute.internal",
-  "chef_environment": "default",
-  "run_list": [
-
-  ]
-}
