@@ -1,6 +1,7 @@
 name "app-prod-server"
 description "Use this role along with runa-base and an environment role to install a mysql instance"
-run_list "xfs", "keepin::configure-db", "mysql::client", "mysql::server", "mysql::server_ec2", "keepin::configure-users", "keepin::rvm"
+#run_list "xfs", "keepin::configure-db", "mysql::client", "mysql::server", "mysql::server_ec2", "keepin::configure-users", "keepin::rvm"
+run_list "keepin::rvm"
 
 override_attributes({
   "runa"  => {
