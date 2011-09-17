@@ -2,6 +2,7 @@ class PagesController < ApplicationController
 
 
   def home
+    logger.info(user_path(current_user))
     if !current_user.nil?
       redirect_to(user_path(current_user))
     end
