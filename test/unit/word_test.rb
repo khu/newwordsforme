@@ -1,3 +1,4 @@
+#utf8
 require 'test_helper'
 
 class WordTest < ActiveSupport::TestCase
@@ -8,6 +9,13 @@ class WordTest < ActiveSupport::TestCase
     assert_equal nil, word.sample
     assert_equal nil, word.link
   end
+
+  test "should translate the word" do
+    word = Word.create({:word => "Apple"})
+    word.translate!
+    assert_equal "苹果", word.translation
+  end
+
   
   test "can split the link" do
     word = Word.create({:word => "Apple@I love Apple"})

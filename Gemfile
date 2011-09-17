@@ -1,6 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+gem 'mysql2', '< 0.3'
+gem 'passenger'
+
 # gem 'annotate-models', '1.0.4'
 gem 'main', '4.2.0'
 group :development, :test do

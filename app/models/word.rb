@@ -7,10 +7,8 @@ class Word < ActiveRecord::Base
   has_many :tags, :through => :word_tag_relations, :limit => 2
 
   def translate!
-    translated = Net::HTTP.get 'ajax.googleapis.com', '/ajax/services/language/translate?v=1.0&q='+ word + '&langpair=en|zh-CN'
-    j = ActiveSupport::JSON
-    encoded = j.decode(translated)
-    self.translation = encoded["responseData"]["translatedText"]
+    translated = Net::HTTP.get 'api.microsofttranslator.com', '/v2/Http.svc/Translate?appId=7E707A9D2D00707BA9B5E9BD5D36967F08F570CE&from=en&to=zh-chs&text=' + word
+    self.translation = />(.*)</.match(translated)[1]
   end
 
   def self.create(hash)

@@ -34,6 +34,7 @@ bash "make REE the default ruby" do
   code  <<-EOC
     source /home/ubuntu/.profile
     rvm --default ree-1.8.7-head
+    gem install bundle
   EOC
   
   not_if "rvm list | grep \"=> ree-1.8.7\""

@@ -17,10 +17,10 @@ test: &test
 
 production: 
   adapter: mysql2
-  username: wojide
+  username: root
   host: localhost
-  database: wojide
-  password: wojide
+  database: keepin
+  password: root
 
 cucumber:
   <<: *test
