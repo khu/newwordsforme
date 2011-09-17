@@ -11,3 +11,4 @@ vendor/cache/ruby
 vendor/ruby
 machinist/
 test/reports/
+vendor/cache
