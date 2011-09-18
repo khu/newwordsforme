@@ -3,10 +3,12 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 
-require 'webrat'
+require "webrat"
+require 'webrat/core/matchers'
+include Webrat::Methods
 
 Webrat.configure do |config|
-  config.mode = :rails
+  config.mode = :rack
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
