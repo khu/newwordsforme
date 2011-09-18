@@ -13,7 +13,6 @@ group :development, :test do
   gem "rspec-rails",      "2.3.0"
   gem 'webrat'
   gem "machinist",        :git => "git://github.com/notahat/machinist.git"
-  gem "ZenTest"
   gem "autotest"
   gem "autotest-rails"
   gem "cucumber"       
@@ -26,7 +25,7 @@ group :development, :test do
   gem 'flexmock'
 end
 
-gem 'test-unit','2.0.0'
+gem 'test-unit', '< 2.0'
 gem 'ci_reporter','1.6.3'
 
 # Bundle edge Rails instead:

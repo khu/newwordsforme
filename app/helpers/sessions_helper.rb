@@ -49,7 +49,7 @@ module SessionsHelper
 
   ## Listing 10.16
   def store_location
-    session[:return_to] = request.request_uri
+    session[:return_to] = request.url
   end
 
   ## Listing 10.16

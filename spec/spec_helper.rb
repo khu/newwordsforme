@@ -4,6 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 
 require 'webrat'
+
 Webrat.configure do |config|
   config.mode = :rails
 end
@@ -34,4 +35,10 @@ RSpec.configure do |config|
   def test_sign_in(user)
       controller.current_user = user
   end
+end
+
+def method_missing(m, *args, &block)  
+    if m.to_s.include?("_path")
+      return "path"
+    end
 end

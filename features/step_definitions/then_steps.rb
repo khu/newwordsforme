@@ -59,7 +59,7 @@ Then /^I should see the words belongs to the tag:$/ do |word_table|
 end
 
 Then /^I should see the words under the tab:$/ do |word_table|
-
+  sleep 3
   div = page.find('div[@id=cards-container]')
   word_table.hashes.each {|hash|
     div.should have_content(hash[:word])
@@ -80,6 +80,7 @@ Then /^I should see "([^"]*)" tip message$/ do |tip|
 end
 
 Then /^"([^"]*)" should see "([^"]*)" with translation "([^"]*)"$/ do |name, english, translation|
+  sleep 2
   page.body.should have_content(translation)
 end
 

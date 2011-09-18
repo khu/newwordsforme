@@ -10,7 +10,7 @@ Given /^I logged in as "([^"]*)"$/ do |user_name|
   visit signin_path
   fill_in "session_email", :with => @user.email
   fill_in "session_password", :with => @user.password
-  click_button "session_submit"
+  click_button "Sign in"
 end
 
 
@@ -21,7 +21,7 @@ Given /^"([^"]*)" logged in$/ do |user_name|
   visit signin_path
   fill_in "session_email", :with => @user.email
   fill_in "session_password", :with => @user.password
-  click_button "session_submit"
+  click_button "Sign in"
 end
 Given /^there exists a word "([^"]*)" for "([^"]*)"$/ do |word, user|
   rick = User.find_by_name(user)
