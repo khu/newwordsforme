@@ -1,57 +1,261 @@
-source 'http://rubygems.org'
+GIT
+  remote: git://github.com/bmabey/database_cleaner.git
+  revision: 7f477031e9c2f075efe2f2513ffc90522c334af1
+  specs:
+    database_cleaner (0.6.7)
 
-gem 'rails', '3.1.0'
-gem 'mysql2', '0.3.7'
-gem 'passenger'
+GIT
+  remote: git://github.com/notahat/machinist.git
+  revision: bc4872ae436ad6def6d09dbdeae0dc513315e7bd
+  specs:
+    machinist (2.0.0.beta2)
 
-# gem 'annotate-models', '1.0.4'
-gem 'main', '4.2.0'
-group :development, :test do
-  gem 'factory_girl_rails', '1.0'
-  gem "autotest"
-  gem "rspec" 
-  gem "rspec-rails",      "2.6.1"
-  gem 'webrat'
-  gem "machinist",        :git => "git://github.com/notahat/machinist.git"
-  gem "autotest"
-  gem "autotest-rails"
-  gem "cucumber"       
-  gem "database_cleaner", :git => 'git://github.com/bmabey/database_cleaner.git'
-  gem "cucumber-rails"
-  gem "will_paginate", "3.0.pre4"
-  gem 'launchy'
-  gem 'chronic', '0.3.0'
-  gem 'metric_fu', '2.1.1'
-  gem 'flexmock'
-end
+GEM
+  remote: http://rubygems.org/
+  specs:
+    Saikuro (1.1.0)
+    ZenTest (4.5.0)
+    actionmailer (3.1.0)
+      actionpack (= 3.1.0)
+      mail (~> 2.3.0)
+    actionpack (3.1.0)
+      activemodel (= 3.1.0)
+      activesupport (= 3.1.0)
+      builder (~> 3.0.0)
+      erubis (~> 2.7.0)
+      i18n (~> 0.6)
+      rack (~> 1.3.2)
+      rack-cache (~> 1.0.3)
+      rack-mount (~> 0.8.2)
+      rack-test (~> 0.6.1)
+      sprockets (~> 2.0.0)
+    activemodel (3.1.0)
+      activesupport (= 3.1.0)
+      bcrypt-ruby (~> 3.0.0)
+      builder (~> 3.0.0)
+      i18n (~> 0.6)
+    activerecord (3.1.0)
+      activemodel (= 3.1.0)
+      activesupport (= 3.1.0)
+      arel (~> 2.2.1)
+      tzinfo (~> 0.3.29)
+    activeresource (3.1.0)
+      activemodel (= 3.1.0)
+      activesupport (= 3.1.0)
+    activesupport (3.1.0)
+      multi_json (~> 1.0)
+    addressable (2.2.6)
+    arel (2.2.1)
+    arrayfields (4.7.4)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    autotest-rails (4.1.1)
+      ZenTest (= 4.5)
+    bcrypt-ruby (3.0.1)
+    builder (3.0.0)
+    capybara (1.1.1)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      selenium-webdriver (~> 2.0)
+      xpath (~> 0.1.4)
+    childprocess (0.2.2)
+      ffi (~> 1.0.6)
+    chronic (0.3.0)
+    churn (0.0.13)
+      chronic (>= 0.2.3)
+      hirb
+      json_pure
+      main
+      ruby_parser (~> 2.0.4)
+      sexp_processor (~> 3.0.3)
+    ci_reporter (1.6.3)
+      builder (>= 2.1.2)
+    colored (1.2)
+    cucumber (1.0.6)
+      builder (>= 2.1.2)
+      diff-lcs (>= 1.1.2)
+      gherkin (~> 2.4.18)
+      json (>= 1.4.6)
+      term-ansicolor (>= 1.0.6)
+    cucumber-rails (1.0.5)
+      capybara (>= 1.1.1)
+      cucumber (~> 1.0.6)
+      nokogiri (>= 1.5.0)
+    daemon_controller (0.2.6)
+    diff-lcs (1.1.3)
+    erubis (2.7.0)
+    factory_girl (1.3.3)
+    factory_girl_rails (1.0)
+      factory_girl (~> 1.3)
+      rails (>= 3.0.0.beta4)
+    fastthread (1.0.7)
+    fattr (2.2.0)
+    ffi (1.0.9)
+    flay (1.4.3)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    flexmock (0.9.0)
+    flog (2.5.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    gherkin (2.4.21)
+      json (>= 1.4.6)
+    haml (3.1.3)
+    hike (1.2.1)
+    hirb (0.5.0)
+    hoe (2.12.3)
+      rake (~> 0.8)
+    i18n (0.6.0)
+    json (1.6.1)
+    json_pure (1.6.1)
+    launchy (2.0.5)
+      addressable (~> 2.2.6)
+    mail (2.3.0)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
+    main (4.2.0)
+      arrayfields (>= 4.7.4)
+      fattr (>= 2.1.0)
+    metric_fu (2.1.1)
+      Saikuro (>= 1.1.0)
+      activesupport (>= 2.0.0)
+      chronic (~> 0.3.0)
+      churn (>= 0.0.7)
+      flay (>= 1.2.1)
+      flog (>= 2.3.0)
+      rails_best_practices (>= 0.6.4)
+      rcov (>= 0.8.3.3)
+      reek (>= 1.2.6)
+      roodi (>= 2.1.0)
+      syntax
+    mime-types (1.16)
+    multi_json (1.0.3)
+    mysql2 (0.3.7)
+    nokogiri (1.5.0)
+    passenger (3.0.9)
+      daemon_controller (>= 0.2.5)
+      fastthread (>= 1.0.1)
+      rack
+      rake (>= 0.8.1)
+    polyglot (0.3.2)
+    rack (1.3.3)
+    rack-cache (1.0.3)
+      rack (>= 0.4)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
+    rack-ssl (1.3.2)
+      rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
+    rails (3.1.0)
+      actionmailer (= 3.1.0)
+      actionpack (= 3.1.0)
+      activerecord (= 3.1.0)
+      activeresource (= 3.1.0)
+      activesupport (= 3.1.0)
+      bundler (~> 1.0)
+      railties (= 3.1.0)
+    rails_best_practices (0.10.1)
+      activesupport
+      colored
+      erubis
+      haml
+      i18n
+      ruby-progressbar
+      ruby_parser
+    railties (3.1.0)
+      actionpack (= 3.1.0)
+      activesupport (= 3.1.0)
+      rack-ssl (~> 1.3.2)
+      rake (>= 0.8.7)
+      rdoc (~> 3.4)
+      thor (~> 0.14.6)
+    rake (0.9.2)
+    rcov (0.9.10)
+    rdoc (3.9.4)
+    reek (1.2.8)
+      ruby2ruby (~> 1.2)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    roodi (2.1.0)
+      ruby_parser
+    rspec (2.6.0)
+      rspec-core (~> 2.6.0)
+      rspec-expectations (~> 2.6.0)
+      rspec-mocks (~> 2.6.0)
+    rspec-core (2.6.4)
+    rspec-expectations (2.6.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.6.0)
+    rspec-rails (2.6.1)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      railties (~> 3.0)
+      rspec (~> 2.6.0)
+    ruby-progressbar (0.0.10)
+    ruby2ruby (1.3.0)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.0.6)
+      sexp_processor (~> 3.0)
+    rubyzip (0.9.4)
+    selenium-webdriver (2.6.0)
+      childprocess (>= 0.2.1)
+      ffi (>= 1.0.7)
+      json_pure
+      rubyzip
+    sexp_processor (3.0.6)
+    sprockets (2.0.0)
+      hike (~> 1.2)
+      rack (~> 1.0)
+      tilt (!= 1.3.0, ~> 1.1)
+    sqlite3 (1.3.4)
+    sqlite3-ruby (1.3.3)
+      sqlite3 (>= 1.3.3)
+    syntax (1.0.0)
+    term-ansicolor (1.0.6)
+    test-unit (1.2.3)
+      hoe (>= 1.5.1)
+    thor (0.14.6)
+    tilt (1.3.3)
+    treetop (1.4.10)
+      polyglot
+      polyglot (>= 0.3.1)
+    tzinfo (0.3.29)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    will_paginate (3.0.pre4)
+    xpath (0.1.4)
+      nokogiri (~> 1.3)
 
-gem 'test-unit', '< 2.0'
-gem 'ci_reporter','1.6.3'
+PLATFORMS
+  ruby
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
+DEPENDENCIES
+  autotest
+  autotest-rails
+  chronic (= 0.3.0)
+  ci_reporter (= 1.6.3)
+  cucumber
+  cucumber-rails
+  database_cleaner!
+  factory_girl_rails (= 1.0)
+  flexmock
+  launchy
+  machinist!
+  main (= 4.2.0)
+  metric_fu (= 2.1.1)
+  mysql2 (= 0.3.7)
+  passenger
+  rails (= 3.1.0)
+  rspec
+  rspec-rails (= 2.6.1)
+  sqlite3-ruby
+  test-unit (< 2.0)
+  webrat
+  will_paginate (= 3.0.pre4)
