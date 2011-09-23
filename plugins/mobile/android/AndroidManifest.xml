@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.tw.keepin"
+          android:versionCode="1"
+          android:versionName="1.0"
+        >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application android:label="@string/app_name"
+                 android:icon="@drawable/icon"
+                 android:theme="@android:style/Theme.NoTitleBar"
+            >
+        <activity android:name="WordTagListActivity"
+                  android:label="@string/tag_list_title">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="com.tw.keepin/tags"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".BrowsingWordsActivity" android:label="Words">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="com.tw.keepin.tag/words"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ConfigureCredentialActivity"
+                  android:label="Configuration"/>
+        <provider android:name="KeepinContentProvider"
+                  android:authorities="com.tw.provider.Keepin"/>
+        <service android:name=".SubscribeWordsFromKeepinService"
+                 android:label="Subscribe Words"/>
+    </application>
+</manifest> 

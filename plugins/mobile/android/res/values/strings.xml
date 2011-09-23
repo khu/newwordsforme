@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Keepin</string>
+    <string name="content_uri">com.tw.provider.Keepin</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="sign_in">Sign In</string>
+    <string name="clear">Clear</string>
+    <string name="signInUrl">http://keepin3.heroku.com/m_signin</string>
+    <string name="tag_list_title">Word Tags</string>
+    <drawable name="gray">#CCC</drawable>
+</resources>

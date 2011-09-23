@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="androidkeepin" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.orig/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_2.2_platform" value="${jdk.home.android_2.2_platform}/../../System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin"/>
+  <path id="jdk.classpath.android_2.2_platform">
+    <fileset dir="${jdk.home.android_2.2_platform}">
+      <include name="platforms/android-8/android.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.robolectric.classpath">
+    <pathelement location="/libs/test/robolectric-0.9.4-all.jar"/>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm.jar"/>
+    <pathelement location="${javac2.home}/asm-commons.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module AndroidKeepin -->
+  
+  <dirname property="module.androidkeepin.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.androidkeepin" value="${jdk.home.android_2.2_platform}"/>
+  <property name="module.jdk.bin.androidkeepin" value="${jdk.bin.android_2.2_platform}"/>
+  <property name="module.jdk.classpath.androidkeepin" value="jdk.classpath.android_2.2_platform"/>
+  
+  <property name="compiler.args.androidkeepin" value="${compiler.args}"/>
+  
+  <property name="androidkeepin.output.dir" value="${module.androidkeepin.basedir}/out/production/AndroidKeepin"/>
+  <property name="androidkeepin.testoutput.dir" value="${module.androidkeepin.basedir}/out/test/AndroidKeepin"/>
+  
+  <path id="androidkeepin.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="androidkeepin.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidkeepin}"/>
+  </path>
+  
+  <path id="androidkeepin.runtime.production.module.classpath">
+    <pathelement location="${androidkeepin.output.dir}"/>
+  </path>
+  
+  <path id="androidkeepin.module.classpath">
+    <path refid="library.robolectric.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.8.jar"/>
+    <path refid="${module.jdk.classpath.androidkeepin}"/>
+    <pathelement location="${androidkeepin.output.dir}"/>
+  </path>
+  
+  <path id="androidkeepin.runtime.module.classpath">
+    <path refid="library.robolectric.classpath"/>
+    <pathelement location="${idea.home}/lib/junit-4.8.jar"/>
+    <pathelement location="${androidkeepin.testoutput.dir}"/>
+    <pathelement location="${androidkeepin.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.androidkeepin">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.androidkeepin">
+    <patternset refid="excluded.from.module.androidkeepin"/>
+  </patternset>
+  
+  <path id="androidkeepin.module.sourcepath">
+    <dirset dir="${module.androidkeepin.basedir}">
+      <include name="src"/>
+      <include name="gen"/>
+    </dirset>
+  </path>
+  
+  <path id="androidkeepin.module.test.sourcepath">
+    <dirset dir="${module.androidkeepin.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.androidkeepin" depends="compile.module.androidkeepin.production,compile.module.androidkeepin.tests" description="Compile module AndroidKeepin"/>
+  
+  <target name="compile.module.androidkeepin.production" depends="register.custom.compilers" description="Compile module AndroidKeepin; production classes">
+    <mkdir dir="${androidkeepin.output.dir}"/>
+    <javac2 destdir="${androidkeepin.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidkeepin}/javac">
+      <compilerarg line="${compiler.args.androidkeepin}"/>
+      <bootclasspath refid="androidkeepin.module.bootclasspath"/>
+      <classpath refid="androidkeepin.module.production.classpath"/>
+      <src refid="androidkeepin.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidkeepin"/>
+    </javac2>
+    
+    <copy todir="${androidkeepin.output.dir}">
+      <fileset dir="${module.androidkeepin.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.androidkeepin.basedir}/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.androidkeepin.tests" depends="register.custom.compilers,compile.module.androidkeepin.production" description="compile module AndroidKeepin; test classes" unless="skip.tests">
+    <mkdir dir="${androidkeepin.testoutput.dir}"/>
+    <javac2 destdir="${androidkeepin.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidkeepin}/javac">
+      <compilerarg line="${compiler.args.androidkeepin}"/>
+      <bootclasspath refid="androidkeepin.module.bootclasspath"/>
+      <classpath refid="androidkeepin.module.classpath"/>
+      <src refid="androidkeepin.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidkeepin"/>
+    </javac2>
+    
+    <copy todir="${androidkeepin.testoutput.dir}">
+      <fileset dir="${module.androidkeepin.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.androidkeepin" description="cleanup module">
+    <delete dir="${androidkeepin.output.dir}"/>
+    <delete dir="${androidkeepin.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.androidkeepin" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.androidkeepin" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
