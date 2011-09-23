@@ -12,32 +12,6 @@
 									<%=word.word%>
 								</div>
 							</div>
-							<!--
-							<div class="tag">
-								<ul style="margin-left:10px; ">
-									<% word.tags.each do |tag| %>
-									 <li class='tag-item'>
-									 	<%= tag.name %>
-									 </li>
-									<% end%>
-								</ul>
-							</div>
-							-->
-						</div>
-					 	<div class="sponsorData">
-							<div class="sponsorDescription">
-								<div style="font-size:30px;text-align:center;margin-top:20px"><%=word.translation%></div>
-							</div>
-							<div class="sponsorURL">
-								<a href="<%= word.link%>"><%= (word.sample || word.link)%></a>
-							</div>
-						</div>
-					</div>
-					<!-- cancel the edit tag
-					<div style='margin-left:10px'>
-						<a href="##" class='edit' user_id="<%= word.user.id %>" word_id="<%= word.id %>" word="<%= word.word %>" translation="<%= word.translation%>" tag_count="<%= word.tags.count%>" >edit</a>
-					</div>
-					-->
 				</div>
 			<%}%>
 	<div>

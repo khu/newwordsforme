@@ -17,12 +17,9 @@ class UsersController < ApplicationController
     else
       @words = Word.find(:all, :conditions => ["user_id = ? and updated_at > ?", @user.id, DateTime.parse(params[:date])], :order => "updated_at DESC")
     end
-    #@wordsList = @words.paginate(:per_page => 8, :page => params[:page])
   end
 
-
   def show_word_by_tag
-
     @user = User.find(params[:id])
     if (request.format != 'rss' && @user.id != current_user.id)
       redirect_to(user_path(current_user))
@@ -38,9 +35,6 @@ class UsersController < ApplicationController
         end
       end
     end
-    # @title = "Show words by tag"
-    #@wordsReverse = @words.reverse
-    #@wordsList = @wordsReverse.paginate(:per_page => 8, :page => params[:page])
     respond_to do |format|
       format.json { render :json => @words, :content_type => "text/html" }
       format.js
@@ -60,12 +54,9 @@ class UsersController < ApplicationController
     if @user.save
       user = User.authenticate(@user.email, @user.password)
       sign_in user
-      #flash[:success] = "Welcome to keepin!"
-      #redirect_to user_path(user.id)
       redirect_to "/users/#{user.id}"
     else
       @title = "Sign up"
-      ## Reset password input after failed password attempt
       @user.password = nil
       @user.password_confirmation = nil
       @tabs = Tabs.new.logged_out
@@ -77,7 +68,7 @@ class UsersController < ApplicationController
     if current_user?(@user)
       flash[:success] = "You are already signed in"
     else
-      redirect_to root_path # unless current_user?(@user)
+      redirect_to root_path
     end
   end
   
