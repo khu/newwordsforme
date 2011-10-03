@@ -3,7 +3,7 @@ Feature: Sign In Via API
   Rick
   want to use a API to sign in
 
-@Rick
+@Rick @wip
   Scenario: Sign in
     Given "Rick" registed in Keepin with email "rick@example.com" and password "rick123"
     When  "Rick" post a sign in information with email "rick@example.com" and password "rick123"
