@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe UsersController do  
   render_views
   describe "unsign and GET 'show'" do
     before(:each) do
@@ -13,7 +13,7 @@ describe UsersController do
     
     it "should deny access" do
       get :show, :id => @user
-      response.should redirect_to(root_path)
+      response.should redirect_to(login_path)
     end
     
      it "should subscribe the rss results" do
@@ -51,7 +51,7 @@ describe UsersController do
       it "should subscribe all the words" do
         word1 = @user.word.create!(:word =>"new", :translation => "Xin de", :created_at => Time.new, :updated_at => Time.new)
         word2 = @user.word.create!(:word =>"go", :translation => "Jin ru", :created_at => Time.new, :updated_at => (Time.new - 60 * 60 * 24))
-        test_sign_in(@user)
+        controller.current_user= @user
         word1.tags.create!(:name => "unfamiliar")
         word2.tags.create!(:name => "familiar")
         get :show, :id => @user.id, :format => :rss
@@ -73,7 +73,7 @@ describe UsersController do
   describe "sign and GET 'show' other user" do
     before(:each) do
       @user = Factory(:Figo)
-      test_sign_in(@user)
+      controller.current_user= @user
       @other_user = Factory(:Rick)
     end 
     it "should be successful" do
@@ -89,7 +89,7 @@ describe UsersController do
   describe "sign in and GET 'show'" do
       before(:each) do
         @user = Factory(:Figo)
-        test_sign_in(@user)
+        controller.current_user= @user
       end
 
       it "should be successful" do
@@ -132,7 +132,7 @@ describe UsersController do
     describe "failure" do
 
       before(:each) do
-        @attr = { :name => "", :email => "", :password => "",
+        @attr = { :username => "", :email => "", :password => "",
                   :password_confirmation => "" }
       end
 
@@ -156,8 +156,8 @@ describe UsersController do
     describe "success" do
       
       before(:each) do
-        @attr = { :name => "New User", :email => "user@example.com",
-                  :password => "foobar", :password_confirmation => "foobar" }
+        @attr = { :username => "New User", :email => "user@example.com",
+                  :password => "123456", :password_confirmation => "123456" }
         end
 
       it "should create a user" do
@@ -170,11 +170,7 @@ describe UsersController do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
       end
-      
-      it "should sign the user in" do
-        post :create, :user => @attr
-        controller.should be_signed_in
-      end    
+
     end
   end
 end

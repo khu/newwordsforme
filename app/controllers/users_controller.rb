@@ -3,9 +3,9 @@ require 'will_paginate/array'
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
-  
+  skip_before_filter :require_user, :if => Proc.new { |c| c.request.format == 'rss' }
   # before_filter :authenticate, :except => [:new, :create, :sign_up]
-  #   skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
+  
   
   def show
     @user = User.find(params[:id])
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
       redirect_to(user_path(current_user))
     end
     @title = "Show words"
-
     if params[:date].nil?
       @words = Word.find(:all, :conditions => ["user_id = ?", @user.id], :order => "updated_at DESC")
     else
