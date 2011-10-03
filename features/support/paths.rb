@@ -13,7 +13,7 @@ module NavigationHelpers
     when /the index page/
       user_path(@user.id)
     when /^(.*)'s page$/
-      user_path(User.find_by_name($1))
+      user_path(User.find_by_username($1))
     when /sign in page/
       signin_path
 

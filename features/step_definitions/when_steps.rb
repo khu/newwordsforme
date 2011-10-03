@@ -1,11 +1,11 @@
 When /^"([^"]*)" save "([^"]*)" into vocabulary from home page$/ do |user, wordx|
-  visit user_path(User.find_by_name(user))
+  visit user_path(User.find_by_username(user))
   fill_in "word_word", :with => wordx
   click_button "word_submit"
 end
 
 When /^"([^"]*)" visit new words for "([^"]*)"$/ do |user, period|
-  visit user_words_path(User.find_by_name(user), {:today=>DateTime.parse("2011-01-21"), :mode=>period})
+  visit user_words_path(User.find_by_username(user), {:today=>DateTime.parse("2011-01-21"), :mode=>period})
 end
 
 When /^I click the "([^"]*)" tag$/ do |tag|
@@ -40,7 +40,7 @@ When /^I flip the word "([^"]*)"$/ do |word_name|
 end
 
 When /^"([^"]*)" post a sign in information with email "([^"]*)" and password "([^"]*)"$/ do |name, email, password|
-  path = "/sessions/userid.json"
+  path = "/usersessions/userid.json"
   data = {"email" => email, "password" => password}.to_json
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'

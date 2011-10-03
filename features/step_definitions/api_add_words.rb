@@ -10,11 +10,11 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
 Given /^"([^"]*)" registed in Keepin with email "([^"]*)" and password "([^"]*)"$/ do |username, email, password|
-  user = User.create(:name => username, :email => email, :password => password)
+  user = User.create(:username => username, :email => email, :password => password)
 end
 
 When /^"([^"]*)" post a word "([^"]*)" to the API with password "([^"]*)"$/ do |username, word, password|
-  user = User.find_by_name(username)
+  user = User.find_by_username(username)
   path = "/users/#{user.id}/words.json"
   data = { "user_id" => user.id,"password" => password, "word" => { "word" => word } }.to_json
   header 'Accept', 'application/json'

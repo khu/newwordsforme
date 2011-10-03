@@ -11,7 +11,7 @@ Then /^"([^"]*)" can see all "([^"]*)" words:$/ do |user, status, words|
 end
 
 Then /^"([^"]*)"'s words for "([^"]*)" should sorted by updated time$/ do |username, period|
-    user = User.find_by_name(username)
+    user = User.find_by_username(username)
     today = DateTime.parse("2011-01-21")
     words = user.method(period).call(today).order("updated_at");
     match_regex = ""

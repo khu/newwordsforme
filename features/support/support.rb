@@ -1,5 +1,6 @@
 Before("@listing") do 
-   arden = Factory.create(:Arden)
+   arden = Factory.build(:Arden)
+   arden.save_without_session_maintenance
    friday = Time.mktime(2011, 1, 21)
    thur = Time.mktime(2011, 1, 20)
    wed_last_week = Time.mktime(2011, 1, 13)
@@ -13,7 +14,8 @@ Before("@listing") do
    arden.word << Word.new(:word =>"year", :translation => "jintian", :created_at => last_year, :status=>2)
    arden.save
    
-    rick = Factory.create(:Rick)
+    rick = Factory.build(:Rick)
+    rick.save_without_session_maintenance
     jul2nd = Time.mktime(2011, 7, 2)
 
     rick.word << Word.new(:word =>"tomato", :translation => "xhs", :created_at => friday, :status=>0)

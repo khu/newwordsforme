@@ -15,7 +15,6 @@ class WordsController < ApplicationController
       @user = current_user
     else
       @words = @user.method(mode).call(today).order("updated_at").reverse
-      @tabs = Tabs.new.logged_in(@user)
 
       respond_to do |format|
         format.html # index.html.erb
