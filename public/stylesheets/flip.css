@@ -127,16 +127,16 @@ a img {
     padding: 0px;
 
 }
-.sponsor .starred{
-    background: url("/stylesheets/img/star.png") no-repeat 0 0 scroll transparent;
-    height: 20px;
-    width: 20px;
-}
-.sponsor .important{
-    background: url("/stylesheets/img/important.png") no-repeat 0 0 scroll transparent;
+.starred{
+    background: url("/stylesheets/img/star.png") no-repeat 0 100% scroll transparent;
     height: 20px;
     width: 20px;
 }
 
+.unstarred{
+    background: url("/stylesheets/img/star.png") no-repeat 0 0 scroll transparent;
+    height: 20px;
+    width: 20px;
+}
 
 /*************for star end ***********/

@@ -48,7 +48,8 @@ When /^"([^"]*)" post a sign in information with email "([^"]*)" and password "(
 end
 
 When /^I mark "([^"]*)" as "([^"]*)"$/ do |word, tag|
+  look_for_tag = "starred".eql?(tag) ? "unstarred" : "starred"
   within ('.new-sponsorListHolder') do
-    page.find("div[@id=#{word}]").find("div[@class=#{tag}]").click
+    page.find("div[@id=#{word}]").find("div[@class=#{look_for_tag}]").click
   end
 end

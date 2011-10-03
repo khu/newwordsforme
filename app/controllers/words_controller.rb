@@ -16,7 +16,6 @@ class WordsController < ApplicationController
       @user = current_user
     else
       @words = @user.method(mode).call(today).order("updated_at").reverse
-
       respond_to do |format|
         format.html # index.html.erb
         format.xml { render :xml => @users }
@@ -101,7 +100,6 @@ class WordsController < ApplicationController
   end
 
   def delete_tag
-
     tagId=Tag.find_by_name(params[:word][:tag])
     if (not Word.exists? params[:word][:word_id]) || (not Tag.exists? params[:word][:tag_id]) || tagId.nil?#params[:word][:tag].length == 0
       render :json => {:state => "failure"}

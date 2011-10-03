@@ -11,16 +11,9 @@
               <ul class="star-ul">
                 <li>
                   <% if (word.tags.find_by_name("starred") != nil) %>
-                      <div class="starred" title="Click to mark Starred" style="background-position: 0px 100%"></div>
+                      <div class="starred" title="Click to mark Unstarred"></div>
                   <% else %>
-                      <div class="starred" title="Click to mark Starred" style="background-position: 0px 0px"></div>
-                  <% end %>
-                </li>
-                <li>
-                  <% if (word.tags.find_by_name("important") != nil) %>
-                      <div class="important" title="Click to mark Important" style="background-position: 0px 95%"></div>
-                  <% else %>
-                      <div class="important" title="Click to mark Important" style="background-position: 0px 0px"></div>
+                      <div class="unstarred" title="Click to mark Starred"></div>
                   <% end %>
                 </li>
               </ul>
