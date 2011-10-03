@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
   end
   
   def require_http_auth_user
-    authenticate_or_request_with_http_basic do |username, password|
-        if @current_user = User.find_by_email(username) 
+    authenticate_or_request_with_http_basic do |email, password|
+        if @current_user = User.find_by_email(email) 
           @current_user.valid_password?(password)
         else
           false

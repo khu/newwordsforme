@@ -10,14 +10,16 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "pat
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
 Given /^"([^"]*)" registed in Keepin with email "([^"]*)" and password "([^"]*)"$/ do |username, email, password|
-  user = User.create(:username => username, :email => email, :password => password)
+  user = User.new(:email => email, :password => "123456",:password_confirmation => "123456", :crypted_password=>"a7944c46edb15a444ee1facd57fb23cf7d675bf3634e0bd5728d9866bbd8f5154829981e0af0c5b50e2f5534484d8a398363fcd185c3737844e424dd81196907")
+  user.save_without_session_maintenance
 end
 
-When /^"([^"]*)" post a word "([^"]*)" to the API with password "([^"]*)"$/ do |username, word, password|
-  user = User.find_by_username(username)
+When /^"([^"]*)" post a word "([^"]*)" to the API with password "([^"]*)"$/ do |email, word, password|
+  user = User.find_by_email(email)
   path = "/users/#{user.id}/words.json"
-  data = { "user_id" => user.id,"password" => password, "word" => { "word" => word } }.to_json
-  header 'Accept', 'application/json'
+  authorize(user.email, password)
+  data = { "user_id" => user.id, "word" => { "word" => word } }.to_json
+  header 'Accept',       'application/json'
   header 'Content-Type', 'application/json'
   post path, data
 end

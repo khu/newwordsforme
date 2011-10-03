@@ -48,7 +48,7 @@ class WordsController < ApplicationController
     if params[:format]==nil
       user=current_user
     else
-      user=User.authenticate_with_password(params[:user_id], params[:password])
+      user= current_user
       deny_access if user.nil?
     end
     if params[:word].nil?
