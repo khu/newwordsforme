@@ -20,16 +20,6 @@ Feature: Change Word Tag
       | word  |
       | apple |
 
-  @javascript
-  Scenario: mark a word starred twice
-    Given I logged in as "Rick"
-    When I go to the index page
-    And I mark "apple" as "starred"
-    And I mark "apple" as "starred"
-    And I click the "starred" tab
-    Then I should not see the words under the tab:
-      | word  |
-      | apple |
 
 # Don't fit for new UI
 # @Rich @javascript
