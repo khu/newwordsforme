@@ -14,3 +14,4 @@ test/reports/
 vendor/cache
 plugins/mobile/android/gen
 *binstubs/*
+plugins/mobile/android/out/*

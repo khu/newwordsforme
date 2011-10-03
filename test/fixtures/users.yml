@@ -1,7 +1,7 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: Dong Ning
+  username: Dong Ning
   email: admin@keepin.com
-  encrypted_password: password
+  crypted_password: password
   
