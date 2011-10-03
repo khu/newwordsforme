@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show_word_by_tag
-    @user = @current_user
+    @user = current_user
     if (request.format != 'rss' && @user.id != current_user.id)
       redirect_to(user_path(current_user))
     end

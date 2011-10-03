@@ -44,12 +44,17 @@ class ApplicationController < ActionController::Base
   end
   
   def require_http_auth_user
-    authenticate_or_request_with_http_basic do |email, password|
-        if @current_user = User.find_by_email(email) 
-          @current_user.valid_password?(password)
-        else
-          false
-        end
+    unless current_user
+      logger.info ("no current user has been defined anywhere." )
+      authenticate_or_request_with_http_basic do |email, password|
+          logger.info("@current_user.valid_password?(password)" + @current_user.valid_password?(password).to_s)
+          if @current_user = User.find_by_email(email) 
+            @current_user.valid_password?(password)
+          else
+            false
+          end
+      end
     end
+    return true
   end
 end
