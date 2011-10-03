@@ -13,3 +13,4 @@ machinist/
 test/reports/
 vendor/cache
 plugins/mobile/android/gen
+*binstubs/*

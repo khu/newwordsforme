@@ -29,10 +29,10 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
-    <orderEntry type="library" scope="TEST" name="test" level="project" />
-    <orderEntry type="library" name="src" level="project" />
     <orderEntry type="jdk" jdkName="Android 2.2 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="src-nwfm" level="project" />
+    <orderEntry type="library" name="test-nwfm" level="project" />
   </component>
 </module>
 

@@ -1,1 +1,1 @@
-rake test && rspec spec/ && cucumber
+bundle exec rake test && bundle exec rspec spec/ && bundle exec cucumber

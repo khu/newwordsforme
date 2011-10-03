@@ -1,8 +1,6 @@
-overlay		chrome://browser/content/browser.xul    chrome://flashcard/content/overlay.xul
-content		flashcard	chrome/content/flashcard/
-resource	flashcard	chrome/content/flashcard/
-skin	flashcard	classic	chrome/skin/classic/flashcard/
-
-
-locale	flashcard	en-US	chrome/locale/flashcard/en-US/
-style	chrome://global/content/customizeToolbar.xul	chrome://flashcard/skin/skin.css
+overlay		chrome://browser/content/browser.xul    chrome://newwordsforme/content/overlay.xul
+content		newwordsforme							chrome/content/newwordsforme/
+resource	newwordsforme							chrome/content/newwordsforme/
+skin		newwordsforme   classic					chrome/skin/classic/newwordsforme/
+locale		newwordsforme	en-US					chrome/locale/newwordsforme/en-US/
+style		chrome://global/content/customizeToolbar.xul	chrome://newwordsforme/skin/skin.css

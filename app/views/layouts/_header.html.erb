@@ -3,11 +3,10 @@
     WoJiDe
   </h5>
   <ul id="nav">
-    <% @tabs.each { |tab| %>
-        <li class="<%= tab.css %>" id="link-<%= tab.id %>">
-          <%= link_to tab.label, tab.url %>
-        </li>
-    <% } %>
+	<%= tabs_tag do |tab| %>
+	  <%= tab.home      'Homepage', root_path %>
+	  <%= tab.addons    'AddOns', root_path %>
+	<% end %>
   </ul>
   <div style="clear:both"></div>
 </div>

@@ -1,26 +1,36 @@
 <link rel=StyleSheet href="stylesheets/signup.css" type="text/css" media=screen>
 <div id="signup-container" style="opacity: 1;">
+	<%= form_for(@user) do |f| %>
+	  <% if @user.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-  <%= form_for(@user) do |f| %>
-      <div id="sign-up-title">Welcom to use WoJiDe, it will help you remember words conveniently.</div>
-      <div class="formcont">
-        <div class="form">
-          <div class="name">
-            <%= f.text_field :name, :autocomplete => :off %>
-          </div>
-          <div class="email">
-            <%= f.text_field :email, :autocomplete => :off %>
-          </div>
-          <div class="passwd">
-            <%= f.password_field :password, :autocomplete => :off %>
-          </div>
-          <div class="passwd-confirm">
-            <%= f.password_field :password_confirmation, :autocomplete => :off %>
-          </div>
-        </div>
-      </div>
-      <%= f.submit "Sign up", :autocomplete => :off, :class => "signup-button" %>
-  <% end %>
+	      <ul>
+	      <% @user.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
 
-
+	  <div class="field">
+	    <%= f.label :username %><br />
+	    <%= f.text_field :username %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :email %><br />
+	    <%= f.text_field :email %>
+	  </div>
+	  <div class="field">
+	    <%= f.label :password %><br />
+	    <%= f.password_field :password %>
+	  </div>
+	  <div class="field">
+	      <%= f.label :password_confirmation %><br />
+	      <%= f.password_field :password_confirmation %>
+	    </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+	<% end %>
 </div>

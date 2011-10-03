@@ -6,7 +6,6 @@ class PagesController < ApplicationController
       redirect_to(user_path(current_user))
     end
     @title = "Home"
-    @tabs = Tabs.new.logged_out
   end
 
   def help
@@ -24,9 +23,7 @@ class PagesController < ApplicationController
   def addons
     @title = "Addons"
     if current_user.nil?
-      @tabs = Tabs.new.logged_out
     else
-      @tabs = Tabs.new.logged_in current_user
     end
   end
 end

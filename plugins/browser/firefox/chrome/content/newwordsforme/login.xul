@@ -1,0 +1,23 @@
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+  id="dialog_login" title="Login to newwordsfor.me"
+  persist="screenX screenY width height" windowtype="DialogWindowType" buttons="accept,cancel"
+  onload="window.sizeToContent();" ondialogaccept="return login();">   
+	 
+<dialogheader title="Options" description="Login to newwordsfor.me"/>
+	<grid>
+    	<columns><column/><column/></columns>
+    	<rows>
+			<row>
+				<label control="lbl_newwordsforme_name" value="email"/>
+				<textbox id="txt_newwordsforme_name" type="autocomplete"/>
+			</row>
+			<row>
+				<label control="lbl_newwordsforme_password" value="password"/>
+				<textbox id="txt_newwordsforme_password" type="password"/>
+			</row>
+		</rows>
+    </grid>
+	<script type="application/x-javascript" src="chrome://newwordsforme/content/jquery.js"></script>
+	<script type="application/x-javascript" src="chrome://newwordsforme/content/newwordsforme-conn.js"></script>
+	<script type="application/x-javascript" src="chrome://newwordsforme/content/newwordsforme.js"></script>
+</dialog>

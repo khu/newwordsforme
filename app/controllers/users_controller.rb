@@ -1,15 +1,17 @@
 require 'will_paginate/array'
 
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:new, :create, :sign_up]
-  skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
-
+  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:show, :edit, :update]
+  
+  # before_filter :authenticate, :except => [:new, :create, :sign_up]
+  #   skip_before_filter :authenticate, :if => Proc.new { |c| c.request.format == 'rss' }
+  
   def show
     @user = User.find(params[:id])
     if (request.format != 'rss' && @user.id != current_user.id)
       redirect_to(user_path(current_user))
     end
-    @tabs = Tabs.new.logged_in @user
     @title = "Show words"
 
     if params[:date].nil?
@@ -20,11 +22,10 @@ class UsersController < ApplicationController
   end
 
   def show_word_by_tag
-    @user = User.find(params[:id])
+    @user = @current_user
     if (request.format != 'rss' && @user.id != current_user.id)
       redirect_to(user_path(current_user))
     end
-    @tabs = Tabs.new.logged_in @user
 
     if params[:name] == "all"
       @words = @user.word.order("updated_at DESC")
@@ -45,23 +46,20 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @title = "Sign up"
-    @tabs = Tabs.new.logged_out
     render 'new'
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      user = User.authenticate(@user.email, @user.password)
-      sign_in user
-      redirect_to "/users/#{user.id}"
-    else
-      @title = "Sign up"
-      @user.password = nil
-      @user.password_confirmation = nil
-      @tabs = Tabs.new.logged_out
-      render 'new'
-    end
+   @user = User.new(params[:user])
+   if @user.save
+     flash[:notice] = "Account registered!"
+     redirect_back_or_default "/users/#{@user.id}"
+   else
+     @title = "Sign up"
+     @user.password = nil
+     @user.password_confirmation = nil
+     render :action => :new
+   end    
   end
 
   def signed_in_user
@@ -73,7 +71,6 @@ class UsersController < ApplicationController
   end
   
   def sign_up
-    @tabs = Tabs.new.logged_in @user
     @title = "Sign up"
     print "This is sign_up method. \n"
     render 'signup'

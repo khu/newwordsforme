@@ -1,6 +1,5 @@
 package com.tw.keepin;
 
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

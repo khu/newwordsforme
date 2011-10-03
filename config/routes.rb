@@ -1,15 +1,13 @@
 Keepin::Application.routes.draw do
-
+  match "/login",  :to => "user_sessions#new"
+  match "/logout", :to => "user_sessions#destroy"
+  match "/signup", :to => "users#new"
   match '/addons',  :to => 'pages#addons'
   match '/mobile',  :to => 'pages#mobile'
   match '/plugins', :to => 'pages#plugins'
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
-  match '/signup',  :to => 'users#new'
-  match '/signup2', :to => 'users#sign_up'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout',  :to => 'sessions#destroy'
   match '/get_word_tags', :to => 'words#get_word_tags'
   
   match 'users/:id/words/:word', :to => 'words#show_word', :as => "show_word"
@@ -28,7 +26,8 @@ Keepin::Application.routes.draw do
   resources :users do
     resources :words
   end
-  resources :sessions
+  
+  resources :user_sessions
   
   post "words/add_tag"  
   

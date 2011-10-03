@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://newwordsforme/skin/skin.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://newwordsforme/locale/newwordsforme.dtd">
+<overlay id="newwordsformeOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/x-javascript" src="chrome://newwordsforme/content/browser.js"></script>
+    <script type="application/x-javascript" src="chrome://newwordsforme/content/newwordsforme-conn.js"></script>
+    <script type="application/x-javascript" src="chrome://newwordsforme/content/newwordsforme.js"></script>
+
+    <menupopup id="contentAreaContextMenu">
+        <menuseparator id="separator_newwordsforme"/>
+        <menuitem id="menuitem_newwordsforme_add" class="menuitem-iconic" image="chrome://newwordsforme/skin/word.png"/>
+    </menupopup>
+</overlay>
