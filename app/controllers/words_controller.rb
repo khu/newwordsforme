@@ -3,6 +3,7 @@ require 'uri'
 require 'json'
 
 class WordsController < ApplicationController
+  before_filter :require_http_auth_user, :if => Proc.new { |c| c.request.format == 'json' }
   before_filter :require_user, :except => [:add_tag, :create]
 
   # GET /users

@@ -44,6 +44,7 @@ describe WordsController do
       @user = Factory.build(:Figo)
       @user.save_without_session_maintenance
       controller.current_user=@user
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@user.email,@user.password)
       @word = @user.word.create!(:word => 'hello', :translation => '你好')
     end
 
@@ -79,9 +80,9 @@ describe WordsController do
     it "should return all tags of the special word in format of JSON" do
       @word.tags.create!(:name => "greeting")
       @word.tags.create!(:name => "test")
+      
       get :get_word_tags, :id => @word.id, :format => :json
       result = JSON.parse(response.body)
-
       result[0]['tag']['name'].include?("greeting").should be_true
       result[1]['tag']['name'].include?("test").should be_true
     end
@@ -92,6 +93,7 @@ describe WordsController do
       @user = Factory.build(:Figo)
       @user.save_without_session_maintenance
       controller.current_user=@user
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@user.email,@user.password)
       @word1 = @user.word.create!(:word => 'hello', :translation => '你好')
       @word1.tags.create!(:name => "unfamiliar")
       @word2 = @user.word.create!(:word => 'what', :translation => '什么')
@@ -112,6 +114,7 @@ describe WordsController do
     before(:each) do
       @user = Factory.build(:Figo)
       @user.save_without_session_maintenance
+      request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(@user.email,@user.password)
       controller.current_user=@user
       @word1 = @user.word.create!(:word => 'hello', :translation => '你好', :created_at => DateTime.parse("2011-8-1 00:00:00"), :updated_at => DateTime.parse("2011-8-1 00:00:00"))
       @word1.tags.create!(:name => "unfamiliar")
