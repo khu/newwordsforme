@@ -6,7 +6,8 @@ describe WordsController do
 
   describe "unsign and GET 'index'" do
     before(:each) do
-      @user = Factory(:Figo)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
     end
     it "should not be successful" do
       get :index, :user_id => @user
@@ -15,15 +16,17 @@ describe WordsController do
 
     it "should deny access" do
       get :index, :user_id => @user
-      response.should redirect_to(root_path)
+      response.should redirect_to(login_path)
     end
   end
 
   describe "sign and GET 'index' of other user" do
     before(:each) do
-      @user = Factory(:Figo)
-      test_sign_in(@user)
-      @otheruser = Factory(:Rick)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
+      controller.current_user=@user
+      @otheruser = Factory.build(:Rick)
+      @otheruser.save_without_session_maintenance
     end
     it "should be successful" do
       get :index, :user_id => @otheruser
@@ -32,14 +35,15 @@ describe WordsController do
 
     it "should get the index page of oneself" do
       get :index, :user_id => @otheruser
-      response.should visit(user_path(@user)+"/words")
+      response.should visit(user_path(@user )+"/words")
     end
   end
 
   context "add tags for word" do
     before(:each) do
-      @user = Factory(:Figo)
-      test_sign_in(@user)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
+      controller.current_user=@user
       @word = @user.word.create!(:word => 'hello', :translation => '你好')
     end
 
@@ -85,8 +89,9 @@ describe WordsController do
 
   describe "update word tags" do
     before(:each) do
-      @user = Factory(:Figo)
-      test_sign_in(@user)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
+      controller.current_user=@user
       @word1 = @user.word.create!(:word => 'hello', :translation => '你好')
       @word1.tags.create!(:name => "unfamiliar")
       @word2 = @user.word.create!(:word => 'what', :translation => '什么')
@@ -105,8 +110,9 @@ describe WordsController do
 
   describe "update words via json" do
     before(:each) do
-      @user = Factory(:Figo)
-      test_sign_in(@user)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
+      controller.current_user=@user
       @word1 = @user.word.create!(:word => 'hello', :translation => '你好', :created_at => DateTime.parse("2011-8-1 00:00:00"), :updated_at => DateTime.parse("2011-8-1 00:00:00"))
       @word1.tags.create!(:name => "unfamiliar")
       @word2 = @user.word.create!(:word => 'what', :translation => '什么', :created_at => DateTime.parse("2011-8-1 00:00:00"), :updated_at => DateTime.parse("2011-8-1 00:00:00"))
@@ -136,8 +142,9 @@ describe WordsController do
 
   describe "delete tags for word" do
     before(:each) do
-      @user = Factory(:Figo)
-      test_sign_in(@user)
+      @user = Factory.build(:Figo)
+      @user.save_without_session_maintenance
+      controller.current_user=@user
       @word = @user.word.create!(:word => 'hello', :translation => '你好')
       @word.add_tag_by_name('stared');
     end

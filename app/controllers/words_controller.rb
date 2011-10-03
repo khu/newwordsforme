@@ -3,7 +3,8 @@ require 'uri'
 require 'json'
 
 class WordsController < ApplicationController
-  before_filter :authenticate, :except => [:add_tag, :create]
+  before_filter :require_user, :except => [:add_tag, :create]
+
   # GET /users
   # GET /users.xml
   def index
@@ -11,7 +12,7 @@ class WordsController < ApplicationController
     mode = params[:mode].nil? ? "days7" : params[:mode]
     @user = User.find(params[:user_id])
     if @user.id != current_user.id
-      @user=current_user
+      @user = current_user
     else
       @words = @user.method(mode).call(today).order("updated_at").reverse
       @tabs = Tabs.new.logged_in(@user)
