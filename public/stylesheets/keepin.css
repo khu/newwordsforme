@@ -269,8 +269,10 @@ body #wrapper #chart .fifth h2 {
 }
 
 #nav {
+	padding-top:13px;
+	padding-bottom:13px;
     height: 40px;
-    padding-right: 145px;
+
     color: #f9f9f9;
 }
 
@@ -278,6 +280,25 @@ body #wrapper #chart .fifth h2 {
     float: right;
     padding: 0;
     margin-top: 10px;
+}
+
+#nav form {
+	float : right;
+	width :600px;
+}
+
+#nav .field {
+	display : inline-block;
+	margin-left:10px;
+}
+
+#nav label, #nav .field input {
+	width: 142px;
+	display:block;
+}
+
+#nav .action input {
+	width: 60px;
 }
 
 #main-logo {

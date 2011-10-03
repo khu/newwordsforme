@@ -1,12 +1,31 @@
 <div id="header" style="background-color:#333333">
   <h5 id="main-logo">
-    WoJiDe
+New Words For Me
   </h5>
   <ul id="nav">
-	<%= tabs_tag do |tab| %>
-	  <%= tab.home      'Homepage', root_path %>
-	  <%= tab.addons    'AddOns', root_path %>
-	<% end %>
+	  <%unless (current_user)%>
+		  <%= form_for(:user_session, :url => user_sessions_path) do |f| %>
+		      <div class="field">
+		        <%= f.label :email %>
+		        <%= f.text_field :email %>
+		      </div>
+		      <div class="field">
+		        <%= f.label :password %>
+		        <%= f.password_field :password %>
+		      </div>
+		      <div class="field action">
+				<label>&nbsp;&nbsp;&nbsp;</label>
+		        <%= f.submit "Sign in"%>
+		      </div>
+		  <% end %>
+	  <% end %>
+	  <%if (current_user)%>
+		<%= tabs_tag do |tab| %>
+	 	  <%= tab.home      'Logout', logout_path %>
+		  <%= tab.addons    'AddOns', addons_path %>
+	 	  <%= tab.home      'Home', user_path(current_user) %>
+		<% end %>
+	  <% end %>
   </ul>
   <div style="clear:both"></div>
 </div>

@@ -67,27 +67,39 @@
   </div>
   <div id="right-panel">
     <link rel=StyleSheet href="/stylesheets/home_sign_in.css" type="text/css" media=screen>
+		<%= form_for(@user) do |f| %>
+		  <% if @user.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-    <div id="signin-container" style="opacity: 1;">
-      <%= form_for(:user_session, :url => user_sessions_path) do |f| %>
-          <div class="formcont">
-            <div class="form">
-              <div class="email">
-                <%= f.text_field :email, :autocomplete => :off %>
-              </div>
-              <div class="passwd">
-                <%= f.password_field :password, :autocomplete => :off %>
-              </div>
-              <div class="to-signup">
-                <label>New user?</label>
-                <a href="/signup">Signup</a>
-              </div>
-              <%= f.submit "Sign in", :autocomplete => :off ,:class => "signin-button" %>
-            </div>
-          </div>
+		      <ul>
+		      <% @user.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
 
-      <% end %>
-
+		  <div class="field">
+		    <%= f.label :username %><br />
+		    <%= f.text_field :username %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :email %><br />
+		    <%= f.text_field :email %>
+		  </div>
+		  <div class="field">
+		    <%= f.label :password %><br />
+		    <%= f.password_field :password %>
+		  </div>
+		  <div class="field">
+		      <%= f.label :password_confirmation %><br />
+		      <%= f.password_field :password_confirmation %>
+		    </div>
+		  <div class="actions">
+		    <%= f.submit %>
+		  </div>
+		<% end %>
     </div>
 
 
